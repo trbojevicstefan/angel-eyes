@@ -193,6 +193,16 @@ nav {
   font-size: 1.1rem; color: var(--smoke);
   max-width: 420px; border-left: 3px solid var(--gold);
   padding-left: 1.5rem; margin-top: 2rem; opacity: 0.8;
+  min-height: 2.5rem;
+}
+.typewriter-cursor {
+  display: inline; color: var(--gold-bright);
+  font-weight: 700; font-style: normal;
+  animation: cursor-blink 0.7s step-end infinite;
+}
+@keyframes cursor-blink {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 .hero-scroll {
   position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
@@ -1082,8 +1092,8 @@ footer .credit-blondie {
         <span class="hero-tag">Assassin</span>
         <span class="hero-tag">$200,000</span>
       </div>
-      <blockquote class="hero-quote">
-        "When I'm paid, I always see the job through."
+      <blockquote class="hero-quote" id="heroTypewriter">
+        <span id="typewriterText"></span><span class="typewriter-cursor">|</span>
       </blockquote>
     </div>
   </div>
@@ -1610,6 +1620,62 @@ window.addEventListener('scroll', () => {
   }
 
   loadActivity();
+})();
+
+// ── TYPEWRITER EFFECT — Hero quote cycling ──
+(function() {
+  const textEl = document.getElementById('typewriterText');
+  if (!textEl) return;
+
+  const QUOTES = [
+    '"When I\'m paid, I always see the job through."',
+    '"This website built itself. Your leads can too."',
+    '"I never sleep. I never make excuses."',
+    '"Every 5 minutes, this site improves — autonomously."',
+    '"No humans. No navigation. Pure agent."'
+  ];
+
+  let quoteIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  const TYPE_SPEED = 55;
+  const DELETE_SPEED = 25;
+  const PAUSE_AFTER_TYPE = 2200;
+  const PAUSE_AFTER_DELETE = 350;
+
+  function type() {
+    const current = QUOTES[quoteIndex];
+
+    if (!isDeleting) {
+      // Typing forward
+      textEl.textContent = current.slice(0, charIndex + 1);
+      charIndex++;
+
+      if (charIndex === current.length) {
+        // Finished typing — pause then delete
+        isDeleting = true;
+        setTimeout(type, PAUSE_AFTER_TYPE);
+        return;
+      }
+      setTimeout(type, TYPE_SPEED);
+    } else {
+      // Deleting
+      textEl.textContent = current.slice(0, charIndex - 1);
+      charIndex--;
+
+      if (charIndex === 0) {
+        // Finished deleting — move to next quote
+        isDeleting = false;
+        quoteIndex = (quoteIndex + 1) % QUOTES.length;
+        setTimeout(type, PAUSE_AFTER_DELETE);
+        return;
+      }
+      setTimeout(type, DELETE_SPEED);
+    }
+  }
+
+  // Start the typewriter after hero animation settles (1.5s delay)
+  setTimeout(type, 1800);
 })();
 </script>
 </body>
