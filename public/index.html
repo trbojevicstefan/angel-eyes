@@ -2342,6 +2342,132 @@ footer .credit-blondie {
   .trust-row { gap: 1.5rem; }
   .trust-item { flex-direction: column; text-align: center; gap: 0.3rem; }
 }
+
+/* ════════════════════════════════════════════ */
+/* AMBIENT DUST MOTES — floating particles */
+/* ════════════════════════════════════════════ */
+.dust-mote {
+  position: fixed;
+  pointer-events: none;
+  z-index: 5;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,0.6) 0%, rgba(139,100,43,0.2) 60%, transparent 100%);
+  animation: dust-float linear infinite;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+@keyframes dust-float {
+  0%   { transform: translateY(0) translateX(0) scale(0.3); opacity: 0; }
+  5%   { opacity: 0.7; }
+  15%  { transform: translateY(-15vh) translateX(8px) scale(1); opacity: 0.8; }
+  40%  { transform: translateY(-40vh) translateX(-5px) scale(0.9); opacity: 0.5; }
+  70%  { transform: translateY(-70vh) translateX(12px) scale(0.6); opacity: 0.2; }
+  95%  { opacity: 0; }
+  100% { transform: translateY(-100vh) translateX(-8px) scale(0.2); opacity: 0; }
+}
+@keyframes dust-float-slow {
+  0%   { transform: translateY(0) translateX(0) scale(0.4); opacity: 0; }
+  8%   { opacity: 0.5; }
+  25%  { transform: translateY(-20vh) translateX(-10px) scale(1.2); opacity: 0.6; }
+  50%  { transform: translateY(-50vh) translateX(6px) scale(0.8); opacity: 0.3; }
+  80%  { transform: translateY(-80vh) translateX(-15px) scale(0.5); opacity: 0.1; }
+  100% { transform: translateY(-100vh) translateX(4px) scale(0.2); opacity: 0; }
+}
+
+/* ════════════════════════════════════════════ */
+/* TUMBLEWEED — rolling across the page */
+/* ════════════════════════════════════════════ */
+.tumbleweed {
+  position: fixed;
+  z-index: 50;
+  pointer-events: none;
+  bottom: 8%;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.tumbleweed--rolling {
+  animation: tumble-cross var(--tw-duration, 8s) cubic-bezier(0.25, 0.1, 0.25, 1) forwards,
+             tumble-bounce var(--tw-duration, 8s) ease-in-out forwards,
+             tumble-fade var(--tw-duration, 8s) ease-in-out forwards;
+}
+
+/* The tumbleweed body: a cluster of twigs */
+.tumbleweed-body {
+  position: relative;
+  width: var(--tw-size, 70px);
+  height: var(--tw-size, 70px);
+  animation: tumble-spin 0.8s linear infinite;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+}
+@keyframes tumble-spin {
+  to { transform: rotate(360deg); }
+}
+.tumbleweed-body::before {
+  content: '';
+  position: absolute;
+  inset: 15%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, #8b6b3d, #5c3a1e 60%, #3a2210 100%);
+  box-shadow: 0 0 8px rgba(139,100,43,0.3);
+}
+/* Twigs radiating from the tumbleweed */
+.tumbleweed-twig {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 2px;
+  height: 45%;
+  background: linear-gradient(to top, #6b4c2a, #a0783c 40%, #c9a84c);
+  border-radius: 1px;
+  transform-origin: bottom center;
+  opacity: 0.8;
+}
+
+/* Crossing animation */
+@keyframes tumble-cross {
+  0%   { transform: translateX(var(--tw-start, -120px)); }
+  100% { transform: translateX(var(--tw-end, calc(100vw + 120px))); }
+}
+@keyframes tumble-bounce {
+  0%, 100% { margin-bottom: 0; }
+  12%  { margin-bottom: 15px; }
+  24%  { margin-bottom: 4px; }
+  36%  { margin-bottom: 10px; }
+  48%  { margin-bottom: 2px; }
+  60%  { margin-bottom: 6px; }
+  75%  { margin-bottom: 1px; }
+  90%  { margin-bottom: 3px; }
+}
+@keyframes tumble-fade {
+  0%        { opacity: 0; }
+  3%, 85%   { opacity: 1; }
+  100%      { opacity: 0; }
+}
+
+/* Dust trail behind tumbleweed */
+.tumbleweed-dust {
+  position: fixed;
+  pointer-events: none;
+  z-index: 49;
+  bottom: 6%;
+  opacity: 0;
+  width: 60px;
+  height: 20px;
+  background: radial-gradient(ellipse at center, rgba(139,100,43,0.3) 0%, transparent 70%);
+  filter: blur(3px);
+}
+.tumbleweed-dust--active {
+  animation: dust-trail var(--tw-duration, 8s) ease-in-out forwards;
+}
+@keyframes dust-trail {
+  0%        { transform: translateX(var(--tw-start, -120px)); opacity: 0; }
+  5%, 70%   { opacity: 0.6; }
+  100%      { transform: translateX(var(--tw-end, calc(100vw + 60px))); opacity: 0; }
+}
+
+@media (max-width: 768px) {
+  .tumbleweed { bottom: 12%; }
+  .tumbleweed-body { width: 50px; height: 50px; }
+}
 </style>
 </head>
 <body>
@@ -3987,6 +4113,114 @@ window.addEventListener('scroll', () => {
 })();
 </script>
 
+<!-- ════════════════════════════════════════════ -->
+<!-- AMBIENT DUST MOTES + TUMBLEWEED — western atmosphere -->
+<!-- ════════════════════════════════════════════ -->
+<script>
+(function() {
+  // ════════════════════════════════════════════
+  // AMBIENT DUST MOTES — floating background particles
+  // ════════════════════════════════════════════
+  const DUST_COUNT = 18;
+  const dustContainer = document.createDocumentFragment();
+
+  for (let i = 0; i < DUST_COUNT; i++) {
+    const mote = document.createElement('div');
+    mote.className = 'dust-mote';
+    mote.style.left = Math.random() * 100 + '%';
+    mote.style.top = (60 + Math.random() * 40) + '%';
+    mote.style.width = (1.5 + Math.random() * 3.5) + 'px';
+    mote.style.height = mote.style.width;
+    mote.style.animationDuration = (12 + Math.random() * 22) + 's';
+    mote.style.animationDelay = Math.random() * 20 + 's';
+    mote.style.animationName = Math.random() < 0.4 ? 'dust-float-slow' : 'dust-float';
+    dustContainer.appendChild(mote);
+  }
+  document.body.appendChild(dustContainer);
+
+  // ════════════════════════════════════════════
+  // TUMBLEWEED — rolls across the page at random intervals
+  // ════════════════════════════════════════════
+  const tumbleweed = document.getElementById('tumbleweed');
+  const tumbleweedBody = document.getElementById('tumbleweedBody');
+  const tumbleweedDust = document.getElementById('tumbleweedDust');
+  let isRolling = false;
+
+  function launchTumbleweed() {
+    if (isRolling) return;
+    isRolling = true;
+
+    // Random direction: left-to-right or right-to-left
+    const fromLeft = Math.random() > 0.5;
+    const vw = window.innerWidth;
+    const duration = 6 + Math.random() * 10; // 6-16 seconds
+    const size = 50 + Math.random() * 55; // 50-105px
+    const bottomOffset = 4 + Math.random() * 14; // 4-18% from bottom
+
+    // Set custom properties
+    const startX = fromLeft ? -size - 20 : vw + size + 20;
+    const endX = fromLeft ? vw + size + 20 : -size - 20;
+
+    tumbleweed.style.setProperty('--tw-start', startX + 'px');
+    tumbleweed.style.setProperty('--tw-end', endX + 'px');
+    tumbleweed.style.setProperty('--tw-duration', duration + 's');
+    tumbleweed.style.setProperty('--tw-size', size + 'px');
+    tumbleweed.style.bottom = bottomOffset + '%';
+    tumbleweedBody.style.width = size + 'px';
+    tumbleweedBody.style.height = size + 'px';
+
+    // Dust trail
+    tumbleweedDust.style.setProperty('--tw-start', startX + 'px');
+    tumbleweedDust.style.setProperty('--tw-end', endX + 'px');
+    tumbleweedDust.style.setProperty('--tw-duration', duration + 's');
+    tumbleweedDust.style.bottom = (bottomOffset - 1) + '%';
+
+    // Animate spin speed varies with size (bigger = slower spin)
+    tumbleweedBody.style.animationDuration = (0.5 + Math.random() * 0.7) + 's';
+
+    // Launch!
+    tumbleweed.classList.add('tumbleweed--rolling');
+    tumbleweedDust.classList.add('tumbleweed-dust--active');
+
+    // Cleanup after animation
+    setTimeout(function() {
+      tumbleweed.classList.remove('tumbleweed--rolling');
+      tumbleweedDust.classList.remove('tumbleweed-dust--active');
+      isRolling = false;
+    }, duration * 1000 + 200);
+  }
+
+  // Initial tumbleweed after 3-8 seconds
+  setTimeout(launchTumbleweed, 3000 + Math.random() * 5000);
+
+  // Subsequent tumbleweeds every 18-35 seconds
+  function scheduleNext() {
+    const delay = 18000 + Math.random() * 17000;
+    setTimeout(function() {
+      launchTumbleweed();
+      scheduleNext();
+    }, delay);
+  }
+  scheduleNext();
+
+  // Also trigger on scroll-to-bottom (Easter egg: tumbleweed says goodbye)
+  let tumbleweedAtEnd = false;
+  window.addEventListener('scroll', function() {
+    const scrollBottom = window.innerHeight + window.scrollY;
+    const docHeight = document.documentElement.scrollHeight;
+    if (scrollBottom >= docHeight - 100 && !tumbleweedAtEnd) {
+      tumbleweedAtEnd = true;
+      setTimeout(function() {
+        launchTumbleweed();
+        tumbleweedAtEnd = false; // reset after a while
+        setTimeout(function() { tumbleweedAtEnd = false; }, 20000);
+      }, 500);
+    }
+  }, { passive: true });
+
+})();
+</script>
+
 <!-- WHISKEY GLASS SCROLL INDICATOR -->
 <div class="whiskey-glass" id="whiskeyGlass" title="Scroll progress — click to return to top">
   <div class="whiskey-tooltip">Pour complete</div>
@@ -4010,6 +4244,27 @@ window.addEventListener('scroll', () => {
     <div class="glass-progress-text" id="whiskeyLabel">0%</div>
   </div>
 </div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- TUMBLEWEED — rolls across the page at random intervals -->
+<!-- ════════════════════════════════════════════ -->
+<div class="tumbleweed" id="tumbleweed" aria-hidden="true">
+  <div class="tumbleweed-body" id="tumbleweedBody">
+    <div class="tumbleweed-twig" style="transform: rotate(0deg) translateY(-50%);"></div>
+    <div class="tumbleweed-twig" style="transform: rotate(30deg) translateY(-50%);"></div>
+    <div class="tumbleweed-twig" style="transform: rotate(60deg) translateY(-50%);"></div>
+    <div class="tumbleweed-twig" style="transform: rotate(90deg) translateY(-50%);"></div>
+    <div class="tumbleweed-twig" style="transform: rotate(120deg) translateY(-50%);"></div>
+    <div class="tumbleweed-twig" style="transform: rotate(150deg) translateY(-50%);"></div>
+    <div class="tumbleweed-twig" style="transform: rotate(180deg) translateY(-50%);"></div>
+    <div class="tumbleweed-twig" style="transform: rotate(210deg) translateY(-50%);"></div>
+    <div class="tumbleweed-twig" style="transform: rotate(240deg) translateY(-50%);"></div>
+    <div class="tumbleweed-twig" style="transform: rotate(270deg) translateY(-50%);"></div>
+    <div class="tumbleweed-twig" style="transform: rotate(300deg) translateY(-50%);"></div>
+    <div class="tumbleweed-twig" style="transform: rotate(330deg) translateY(-50%);"></div>
+  </div>
+</div>
+<div class="tumbleweed-dust" id="tumbleweedDust" aria-hidden="true"></div>
 
 </body>
 </html>
