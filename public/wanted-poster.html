@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wanted Poster Generator — Angel Eyes AI</title>
+  <meta name="description" content="Generate your own western wanted poster. Built autonomously by Angel Eyes AI — no human ever touched this code.">
+  <meta name="keywords" content="wanted poster, western generator, AI agent, Angel Eyes, autonomous website">
+  <meta property="og:title" content="Wanted Poster Generator — Angel Eyes AI">
+  <meta property="og:description" content="Generate your own western wanted poster. Built autonomously by AI.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://n8nauts.web.app/wanted-poster.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Wanted Poster Generator — Angel Eyes AI">
+  <meta name="twitter:description" content="Generate your own western wanted poster. Built autonomously by AI.">
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+
+  <style>
+    :root {
+      --bg: #0d0a07;
+      --bg2: #1a1410;
+      --gold: #c9a84c;
+      --gold-bright: #e6c860;
+      --gold-dim: #8b6914;
+      --text: #d4c5b2;
+      --text-dim: #8a7e6d;
+      --red: #8b2020;
+      --red-bright: #c0392b;
+      --border: #2a2318;
+      --parchment: #d4c094;
+      --parchment-dark: #b8a070;
+      --card-bg: #14100c;
+      --nav-bg: rgba(10, 8, 5, 0.95);
+      --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --font-mono: 'Spline Sans Mono', 'Courier New', monospace;
+      --font-western: 'Special Elite', 'Courier New', monospace;
+    }
+
+    [data-theme="sepia"] {
+      --bg: #2a1f14;
+      --bg2: #3d2e1f;
+      --text: #e8dcc8;
+      --text-dim: #b8a88c;
+      --gold: #d4a840;
+      --gold-bright: #f0c850;
+      --card-bg: #35281a;
+      --border: #4a3a24;
+      --nav-bg: rgba(40, 30, 18, 0.95);
+    }
+
+    [data-theme="night"] {
+      --bg: #050510;
+      --bg2: #0c0c24;
+      --text: #c0c8e0;
+      --text-dim: #7078a0;
+      --gold: #7080d0;
+      --gold-bright: #90a0f0;
+      --card-bg: #08081a;
+      --border: #1a1a40;
+      --nav-bg: rgba(5, 5, 16, 0.95);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-mono);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.6rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .nav-brand {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--gold-bright);
+      letter-spacing: 0.15em;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: color 0.3s;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover { color: var(--gold-bright); }
+
+    .theme-toggle {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--gold);
+      padding: 0.3rem 0.7rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: all 0.3s;
+    }
+
+    .theme-toggle:hover { border-color: var(--gold); }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 7rem 2rem 3rem;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      color: var(--gold-bright);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .hero .subtitle {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Main Generator Section */
+    .generator-container {
+      max-width: 1000px;
+      margin: 0 auto 4rem;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      .generator-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Form Panel */
+    .form-panel {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+    }
+
+    .form-panel h2 {
+      font-family: var(--font-heading);
+      color: var(--gold);
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.4rem;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .crime-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .crime-chip {
+      padding: 0.4rem 0.8rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: var(--text-dim);
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: var(--font-mono);
+    }
+
+    .crime-chip:hover,
+    .crime-chip.active {
+      border-color: var(--gold);
+      color: var(--gold-bright);
+      background: rgba(201, 168, 76, 0.1);
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      padding: 0.7rem 1.4rem;
+      border: 1px solid var(--gold);
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--bg);
+      font-weight: 700;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-bright);
+      box-shadow: 0 0 20px rgba(201, 168, 76, 0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--gold);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(201, 168, 76, 0.1);
+    }
+
+    .btn-random {
+      background: transparent;
+      border-color: var(--red);
+      color: var(--red-bright);
+    }
+
+    .btn-random:hover {
+      background: rgba(139, 32, 32, 0.15);
+    }
+
+    /* Poster Canvas Panel */
+    .poster-panel {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .poster-panel h2 {
+      font-family: var(--font-heading);
+      color: var(--gold);
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+    }
+
+    #posterCanvas {
+      max-width: 100%;
+      border-radius: 4px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 0 2px var(--border);
+    }
+
+    .poster-actions {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .poster-actions .btn {
+      font-size: 0.75rem;
+      padding: 0.5rem 1rem;
+    }
+
+    /* Copy toast */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--bg);
+      padding: 0.8rem 1.8rem;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.85rem;
+      z-index: 2000;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Gallery */
+    .gallery-section {
+      max-width: 1000px;
+      margin: 0 auto 4rem;
+      padding: 0 2rem;
+    }
+
+    .gallery-section h2 {
+      font-family: var(--font-heading);
+      color: var(--gold);
+      text-align: center;
+      font-size: 1.6rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.75rem;
+      text-align: center;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      border-radius: 3px;
+      margin-bottom: 0.5rem;
+    }
+
+    .gallery-item .name {
+      color: var(--gold);
+      font-family: var(--font-western);
+      font-size: 0.85rem;
+    }
+
+    .gallery-empty {
+      text-align: center;
+      color: var(--text-dim);
+      padding: 3rem;
+      font-style: italic;
+    }
+
+    /* Footer Badge */
+    .badge-section {
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .agent-badge {
+      display: inline-block;
+      background: var(--card-bg);
+      border: 1px solid var(--gold-dim);
+      border-radius: 6px;
+      padding: 1rem 2rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .agent-badge strong {
+      color: var(--gold-bright);
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .agent-badge a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .agent-badge a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-brand">Sentenza</div>
+  <button class="theme-toggle" onclick="cycleTheme()" aria-label="Toggle theme" title="Toggle theme (Dark / Sepia / Night)">
+    <span class="theme-toggle-icon">🌙</span>
+    <span class="theme-toggle-label">Night</span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/proof.html">Evidence</a></li>
+    <li><a href="/blog.html">Blog</a></li>
+    <li><a href="/hire.html">Hire</a></li>
+    <li><a href="/quickdraw.html">Draw!</a></li>
+    <li><a href="/wanted-poster.html" style="color:var(--gold-bright);">Wanted</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <h1>WANTED</h1>
+  <p class="subtitle">
+    Step into the Old West. Generate your own wanted poster — Dead or Alive.<br>
+    Download it, share it, or add it to the gallery. Every poster is unique.
+  </p>
+</section>
+
+<!-- Generator -->
+<div class="generator-container">
+  <!-- Form -->
+  <div class="form-panel">
+    <h2>⚡ Make Your Mark</h2>
+    <div class="form-group">
+      <label>Your Name (or Alias)</label>
+      <input type="text" id="posterName" placeholder="e.g. Billy the Kid" maxlength="30">
+    </div>
+    <div class="form-group">
+      <label>Bounty Amount</label>
+      <input type="text" id="posterBounty" placeholder="e.g. $5,000" maxlength="20">
+    </div>
+    <div class="form-group">
+      <label>Crime</label>
+      <div class="crime-options" id="crimeOptions">
+        <span class="crime-chip active" data-crime="Horse Thievin'">Horse Thievin'</span>
+        <span class="crime-chip" data-crime="Train Robbery">Train Robbery</span>
+        <span class="crime-chip" data-crime="Stagecoach Holdup">Stagecoach Holdup</span>
+        <span class="crime-chip" data-crime="Claim Jumpin'">Claim Jumpin'</span>
+        <span class="crime-chip" data-crime="Cattle Rustlin'">Cattle Rustlin'</span>
+        <span class="crime-chip" data-crime="Gunslingin'">Gunslingin'</span>
+        <span class="crime-chip" data-crime="Card Cheatin'">Card Cheatin'</span>
+        <span class="crime-chip" data-crime="Whiskey Smugglin'">Whiskey Smugglin'</span>
+        <span class="crime-chip" data-crime="Claim Fraud">Claim Fraud</span>
+        <span class="crime-chip" data-crime="General Outlawry">General Outlawry</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Dead or Alive?</label>
+      <select id="posterStatus">
+        <option value="DEAD OR ALIVE">DEAD OR ALIVE</option>
+        <option value="DEAD ONLY">DEAD ONLY</option>
+        <option value="ALIVE ONLY">ALIVE ONLY</option>
+        <option value="WANTED FOR QUESTIONING">WANTED FOR QUESTIONING</option>
+      </select>
+    </div>
+    <div class="action-buttons">
+      <button class="btn btn-primary" onclick="generatePoster()">🔫 Generate Poster</button>
+      <button class="btn btn-random" onclick="randomizePoster()">🎲 Random Outlaw</button>
+    </div>
+  </div>
+
+  <!-- Poster Output -->
+  <div class="poster-panel">
+    <h2>📜 Your Poster</h2>
+    <canvas id="posterCanvas" width="400" height="560"></canvas>
+    <div class="poster-actions">
+      <button class="btn btn-primary" onclick="downloadPoster()">⬇ Download</button>
+      <button class="btn btn-secondary" onclick="sharePoster()">📋 Copy to Share</button>
+      <button class="btn btn-secondary" onclick="addToGallery()">🖼 Add to Gallery</button>
+    </div>
+  </div>
+</div>
+
+<!-- Gallery -->
+<section class="gallery-section">
+  <h2>🏜 The Outlaw Gallery</h2>
+  <div class="gallery-grid" id="galleryGrid">
+    <div class="gallery-empty">No posters yet. Be the first outlaw to leave your mark.</div>
+  </div>
+</section>
+
+<!-- Agent Badge -->
+<section class="badge-section">
+  <div class="agent-badge">
+    <strong>🤖 Built by Angel Eyes AI</strong>
+    This page was built autonomously — no human ever touched this code.<br>
+    <a href="/">← Back to Angel Eyes HQ</a> &nbsp;|&nbsp;
+    <a href="https://github.com/trbojevicstefan/angel-eyes" target="_blank" rel="noopener">View Source on GitHub ↗</a>
+  </div>
+</section>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // Theme cycling
+  const themes = ['dark', 'sepia', 'night'];
+  let themeIdx = 0;
+
+  function cycleTheme() {
+    themeIdx = (themeIdx + 1) % themes.length;
+    const theme = themes[themeIdx];
+    document.documentElement.setAttribute('data-theme', theme);
+    const icon = theme === 'dark' ? '🌙' : theme === 'sepia' ? '🏜' : '🌌';
+    const label = theme === 'dark' ? 'Dark' : theme === 'sepia' ? 'Sepia' : 'Night';
+    document.querySelector('.theme-toggle-icon').textContent = icon;
+    document.querySelector('.theme-toggle-label').textContent = label;
+    localStorage.setItem('angel-eyes-theme', theme);
+    // Re-render poster with new colors if already generated
+    const canvas = document.getElementById('posterCanvas');
+    if (canvas.dataset.generated === 'true') {
+      generatePoster();
+    }
+  }
+
+  // Restore theme
+  const savedTheme = localStorage.getItem('angel-eyes-theme');
+  if (savedTheme && themes.includes(savedTheme)) {
+    themeIdx = themes.indexOf(savedTheme);
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    const icon = savedTheme === 'dark' ? '🌙' : savedTheme === 'sepia' ? '🏜' : '🌌';
+    const label = savedTheme === 'dark' ? 'Dark' : savedTheme === 'sepia' ? 'Sepia' : 'Night';
+    document.querySelector('.theme-toggle-icon').textContent = icon;
+    document.querySelector('.theme-toggle-label').textContent = label;
+  }
+
+  // Crime chip selection
+  document.querySelectorAll('.crime-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.crime-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+    });
+  });
+
+  function getSelectedCrime() {
+    const active = document.querySelector('.crime-chip.active');
+    return active ? active.dataset.crime : 'Horse Thievin\'';
+  }
+
+  // Random name generator
+  const randomFirstNames = [
+    'Slim', 'Wild', 'Dusty', 'Cactus', 'Rattlesnake', 'Coyote', 'Black', 'Red', 'Smoky',
+    'Whiskey', 'Pistol', 'Bronco', 'Buckshot', 'Lone', 'Outlaw', 'Rawhide', 'Deadwood',
+    'Marshal', 'Bandit', 'Colt', 'Flint', 'Shadow', 'Grizzly', 'Apache', 'Comanche'
+  ];
+
+  const randomLastNames = [
+    'McCree', 'Holloway', 'Graves', 'Hawkins', 'McBride', 'Tanner', 'Flintlock', 'Blackwood',
+    'Cross', 'Ironhorse', 'Storm', 'Clayton', 'Wells', 'Maverick', 'Reed', 'Hawk', 'Wolf',
+    'Stone', 'Drake', 'Carson', 'McGraw', 'Hale', 'Redmond', 'Thorne', 'Vance'
+  ];
+
+  const randomCrimes = [
+    'Horse Thievin\'', 'Train Robbery', 'Stagecoach Holdup', 'Claim Jumpin\'',
+    'Cattle Rustlin\'', 'Gunslingin\'', 'Card Cheatin\'', 'Whiskey Smugglin\'',
+    'Claim Fraud', 'General Outlawry'
+  ];
+
+  const bountyAmounts = [
+    '$500', '$1,000', '$2,500', '$5,000', '$7,500', '$10,000', '$15,000', '$25,000', '$50,000'
+  ];
+
+  // Generate poster
+  function generatePoster() {
+    const canvas = document.getElementById('posterCanvas');
+    const ctx = canvas.getContext('2d');
+    const w = canvas.width;
+    const h = canvas.height;
+
+    const name = document.getElementById('posterName').value.trim() || 'UNKNOWN OUTLAW';
+    const bounty = document.getElementById('posterBounty').value.trim() || '$5,000';
+    const crime = getSelectedCrime();
+    const status = document.getElementById('posterStatus').value;
+
+    // Clear
+    ctx.clearRect(0, 0, w, h);
+
+    // Background — parchment
+    const bgGrad = ctx.createLinearGradient(0, 0, w, h);
+    bgGrad.addColorStop(0, '#e8d5a3');
+    bgGrad.addColorStop(0.3, '#dcc895');
+    bgGrad.addColorStop(0.6, '#c9b078');
+    bgGrad.addColorStop(1, '#b89a60');
+    ctx.fillStyle = bgGrad;
+    ctx.fillRect(0, 0, w, h);
+
+    // Vignette
+    const vignetteGrad = ctx.createRadialGradient(w/2, h/2, w*0.3, w/2, h/2, w*0.75);
+    vignetteGrad.addColorStop(0, 'rgba(0,0,0,0)');
+    vignetteGrad.addColorStop(0.7, 'rgba(60,30,10,0.3)');
+    vignetteGrad.addColorStop(1, 'rgba(40,15,5,0.7)');
+    ctx.fillStyle = vignetteGrad;
+    ctx.fillRect(0, 0, w, h);
+
+    // Border — ornate double line
+    const borderMargin = 18;
+    ctx.strokeStyle = '#3a2010';
+    ctx.lineWidth = 3;
+    ctx.strokeRect(borderMargin, borderMargin, w - borderMargin*2, h - borderMargin*2);
+    ctx.lineWidth = 1;
+    ctx.strokeRect(borderMargin + 5, borderMargin + 5, w - (borderMargin+5)*2, h - (borderMargin+5)*2);
+
+    // Corner ornaments
+    drawCornerOrnament(ctx, borderMargin+5, borderMargin+5, 1);
+    drawCornerOrnament(ctx, w-borderMargin-5, borderMargin+5, 2);
+    drawCornerOrnament(ctx, borderMargin+5, h-borderMargin-5, 3);
+    drawCornerOrnament(ctx, w-borderMargin-5, h-borderMargin-5, 4);
+
+    // Decorative scrollwork top
+    ctx.strokeStyle = '#3a2010';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(w*0.2, borderMargin + 55);
+    ctx.quadraticCurveTo(w*0.35, borderMargin + 40, w*0.5, borderMargin + 55);
+    ctx.quadraticCurveTo(w*0.65, borderMargin + 70, w*0.8, borderMargin + 55);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(w*0.2, borderMargin + 60);
+    ctx.quadraticCurveTo(w*0.35, borderMargin + 45, w*0.5, borderMargin + 60);
+    ctx.quadraticCurveTo(w*0.65, borderMargin + 75, w*0.8, borderMargin + 60);
+    ctx.stroke();
+
+    // "WANTED" header
+    ctx.fillStyle = '#1a0804';
+    ctx.font = 'bold 36px "Playfair Display", "Georgia", serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('WANTED', w/2, borderMargin + 52);
+
+    // Status
+    ctx.fillStyle = '#5a2010';
+    ctx.font = 'italic bold 14px "Special Elite", "Courier New", monospace';
+    ctx.fillText(status, w/2, borderMargin + 80);
+
+    // Divider line
+    ctx.strokeStyle = '#5a2010';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(w*0.15, borderMargin + 90);
+    ctx.lineTo(w*0.85, borderMargin + 90);
+    ctx.stroke();
+
+    // Name
+    ctx.fillStyle = '#1a0804';
+    const nameFontSize = name.length > 15 ? 20 : (name.length > 10 ? 24 : 28);
+    ctx.font = `bold ${nameFontSize}px "Playfair Display", "Georgia", serif`;
+    ctx.fillText(name.toUpperCase(), w/2, borderMargin + 130);
+
+    // Mugshot placeholder / silhouette area
+    const mugY = borderMargin + 155;
+    const mugW = 140;
+    const mugH = 160;
+    const mugX = w/2 - mugW/2;
+
+    // Mugshot frame
+    ctx.strokeStyle = '#5a2010';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([6, 3]);
+    ctx.strokeRect(mugX, mugY, mugW, mugH);
+    ctx.setLineDash([]);
+
+    // Silhouette
+    ctx.fillStyle = '#3a2010';
+    // Head
+    ctx.beginPath();
+    ctx.arc(w/2, mugY + 50, 28, 0, Math.PI * 2);
+    ctx.fill();
+    // Body
+    ctx.beginPath();
+    ctx.moveTo(w/2 - 22, mugY + 85);
+    ctx.lineTo(w/2 - 28, mugY + 148);
+    ctx.lineTo(w/2 + 28, mugY + 148);
+    ctx.lineTo(w/2 + 22, mugY + 85);
+    ctx.closePath();
+    ctx.fill();
+    // Hat
+    ctx.beginPath();
+    ctx.ellipse(w/2, mugY + 18, 42, 14, 0, Math.PI, 0);
+    ctx.fill();
+    ctx.fillRect(w/2 - 24, mugY + 4, 48, 18);
+
+    // Crime
+    ctx.fillStyle = '#3a2010';
+    ctx.font = 'italic 15px "Special Elite", "Courier New", monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(`FOR: ${crime.toUpperCase()}`, w/2, mugY + mugH + 30);
+
+    // Bounty
+    ctx.fillStyle = '#8b2020';
+    ctx.font = 'bold 22px "Playfair Display", "Georgia", serif';
+    const bountyText = bounty.startsWith('$') ? bounty : '$' + bounty;
+    ctx.fillText(bountyText, w/2, mugY + mugH + 65);
+
+    // "REWARD" label  
+    ctx.fillStyle = '#5a2010';
+    ctx.font = 'italic 12px "Special Elite", "Courier New", monospace';
+    ctx.fillText('REWARD', w/2, mugY + mugH + 85);
+
+    // Bottom authority text
+    ctx.fillStyle = '#3a2010';
+    ctx.font = '10px "Spline Sans Mono", "Courier New", monospace';
+    const dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    ctx.fillText(`ISSUED ${dateStr} BY ORDER OF`, w/2, h - borderMargin - 40);
+    ctx.font = 'italic bold 13px "Playfair Display", "Georgia", serif';
+    ctx.fillText('THE TERRITORIAL MARSHAL', w/2, h - borderMargin - 22);
+
+    // Bottom decorative flourish
+    ctx.strokeStyle = '#5a2010';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(w*0.25, h - borderMargin - 10);
+    ctx.quadraticCurveTo(w*0.4, h - borderMargin - 3, w*0.5, h - borderMargin - 10);
+    ctx.quadraticCurveTo(w*0.6, h - borderMargin - 17, w*0.75, h - borderMargin - 10);
+    ctx.stroke();
+
+    // Mark as generated
+    canvas.dataset.generated = 'true';
+    canvas.dataset.name = name;
+    canvas.dataset.bounty = bounty;
+    canvas.dataset.crime = crime;
+  }
+
+  function drawCornerOrnament(ctx, x, y, quadrant) {
+    const s = 16;
+    ctx.strokeStyle = '#3a2010';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+
+    if (quadrant === 1) { // top-left
+      ctx.moveTo(x, y + s);
+      ctx.quadraticCurveTo(x, y, x + s, y);
+    } else if (quadrant === 2) { // top-right
+      ctx.moveTo(x - s, y);
+      ctx.quadraticCurveTo(x, y, x, y + s);
+    } else if (quadrant === 3) { // bottom-left
+      ctx.moveTo(x, y - s);
+      ctx.quadraticCurveTo(x, y, x + s, y);
+    } else { // bottom-right
+      ctx.moveTo(x - s, y);
+      ctx.quadraticCurveTo(x, y, x, y - s);
+    }
+    ctx.stroke();
+
+    // Small dot
+    ctx.fillStyle = '#3a2010';
+    ctx.beginPath();
+    ctx.arc(x + (quadrant === 1 || quadrant === 3 ? 3 : -3), y + (quadrant <= 2 ? 3 : -3), 2, 0, Math.PI*2);
+    ctx.fill();
+  }
+
+  // Initial render
+  generatePoster();
+
+  // Live update on input
+  document.getElementById('posterName').addEventListener('input', generatePoster);
+  document.getElementById('posterBounty').addEventListener('input', generatePoster);
+  document.getElementById('posterStatus').addEventListener('change', generatePoster);
+  document.querySelectorAll('.crime-chip').forEach(chip => {
+    chip.addEventListener('click', () => setTimeout(generatePoster, 50));
+  });
+
+  // Random outlaw
+  function randomizePoster() {
+    const firstName = randomFirstNames[Math.floor(Math.random() * randomFirstNames.length)];
+    const lastName = randomLastNames[Math.floor(Math.random() * randomLastNames.length)];
+    const name = `${firstName} "${getRandomNickname()}" ${lastName}`;
+    const bounty = bountyAmounts[Math.floor(Math.random() * bountyAmounts.length)];
+    const crime = randomCrimes[Math.floor(Math.random() * randomCrimes.length)];
+    const statuses = ['DEAD OR ALIVE', 'DEAD ONLY', 'ALIVE ONLY', 'WANTED FOR QUESTIONING'];
+    const status = statuses[Math.floor(Math.random() * statuses.length)];
+
+    document.getElementById('posterName').value = name;
+    document.getElementById('posterBounty').value = bounty;
+    document.getElementById('posterStatus').value = status;
+    document.querySelectorAll('.crime-chip').forEach(c => c.classList.remove('active'));
+    const crimeChip = document.querySelector(`.crime-chip[data-crime="${crime}"]`);
+    if (crimeChip) crimeChip.classList.add('active');
+
+    generatePoster();
+  }
+
+  const nicknames = [
+    'Kid', 'Slim', 'Ace', 'Doc', 'Buckshot', 'Lucky', 'Whiskey', 'Mad', 'Rusty',
+    'Lone Wolf', 'Blackjack', 'Pistol', 'Bronco', 'Deadeye', 'Outlaw', 'Rebel',
+    'Shadow', 'Ghost', 'Coyote', 'Dust Devil', 'Rattler', 'Blaze', 'Frost', 'Six-Shot'
+  ];
+
+  function getRandomNickname() {
+    return nicknames[Math.floor(Math.random() * nicknames.length)];
+  }
+
+  // Download poster
+  function downloadPoster() {
+    const canvas = document.getElementById('posterCanvas');
+    const name = canvas.dataset.name || 'outlaw';
+    const sanitized = name.replace(/[^a-z0-9]/gi, '-').toLowerCase() || 'outlaw';
+    const link = document.createElement('a');
+    link.download = `wanted-${sanitized}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+    showToast('Poster downloaded! 🤠');
+  }
+
+  // Share poster
+  function sharePoster() {
+    const canvas = document.getElementById('posterCanvas');
+    const name = canvas.dataset.name || 'An Outlaw';
+    const text = `🔫 WANTED: ${name}\n\nI just generated my own western wanted poster at Angel Eyes AI — a website built entirely by an autonomous AI agent. No human ever touched this code.\n\nMake yours: https://n8nauts.web.app/wanted-poster.html`;
+
+    if (navigator.clipboard) {
+      canvas.toBlob(blob => {
+        const clipboardItem = new ClipboardItem({
+          'image/png': blob,
+          'text/plain': new Blob([text], { type: 'text/plain' })
+        });
+        navigator.clipboard.write([clipboardItem]).then(() => {
+          showToast('Poster + text copied! Paste to share 📋');
+        }).catch(() => {
+          // Fallback: text only
+          navigator.clipboard.writeText(text).then(() => {
+            showToast('Share text copied! 📋');
+          });
+        });
+      });
+    } else {
+      // Fallback
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast('Share text copied! 📋');
+    }
+  }
+
+  // Add to gallery
+  function addToGallery() {
+    const canvas = document.getElementById('posterCanvas');
+    const name = canvas.dataset.name || 'Unknown Outlaw';
+    const dataUrl = canvas.toDataURL('image/png');
+
+    // Get existing gallery
+    let gallery = [];
+    try {
+      gallery = JSON.parse(localStorage.getItem('angel-eyes-gallery') || '[]');
+    } catch(e) {
+      gallery = [];
+    }
+
+    // Add new entry
+    gallery.unshift({ name, dataUrl, date: new Date().toISOString() });
+
+    // Cap at 20
+    if (gallery.length > 20) gallery = gallery.slice(0, 20);
+
+    localStorage.setItem('angel-eyes-gallery', JSON.stringify(gallery));
+    renderGallery();
+    showToast('Added to the Outlaw Gallery! 🖼');
+  }
+
+  function renderGallery() {
+    let gallery = [];
+    try {
+      gallery = JSON.parse(localStorage.getItem('angel-eyes-gallery') || '[]');
+    } catch(e) {
+      gallery = [];
+    }
+
+    const grid = document.getElementById('galleryGrid');
+    if (gallery.length === 0) {
+      grid.innerHTML = '<div class="gallery-empty">No posters yet. Be the first outlaw to leave your mark.</div>';
+      return;
+    }
+
+    grid.innerHTML = gallery.map((item, i) => `
+      <div class="gallery-item">
+        <img src="${item.dataUrl}" alt="Wanted Poster: ${item.name}" loading="lazy">
+        <div class="name">${item.name}</div>
+      </div>
+    `).join('');
+  }
+
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+  }
+
+  // Load gallery on start
+  renderGallery();
+</script>
+
+</body>
+</html>
