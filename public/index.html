@@ -686,6 +686,7 @@ footer .credit-blondie {
     <li><a href="#faceoff">Faceoff</a></li>
     <li><a href="#arsenal">Arsenal</a></li>
     <li><a href="#bounty">Bounty</a></li>
+    <li><a href="#activity">Activity</a></li>
   </ul>
 </nav>
 
@@ -938,6 +939,98 @@ window.addEventListener('scroll', () => {
       updateTime();
     }, 3000);
   }, 60000);
+})();
+
+// ── LIVE ACTIVITY FEED ──
+(function() {
+  const log = document.getElementById('activityLog');
+  const countEl = document.getElementById('activityCount');
+  if (!log) return;
+
+  const ICONS = {
+    feat: '🔫',
+    fix: '🔧',
+    docs: '📜',
+    style: '🎨',
+    chore: '🛠',
+    refactor: '♻',
+    perf: '⚡',
+    test: '🎯'
+  };
+
+  function formatTime(iso) {
+    try {
+      const d = new Date(iso);
+      const now = new Date();
+      const diff = now - d;
+      const mins = Math.floor(diff / 60000);
+      const hrs = Math.floor(diff / 3600000);
+      const days = Math.floor(diff / 86400000);
+      if (mins < 1) return 'just now';
+      if (mins < 60) return mins + 'm ago';
+      if (hrs < 24) return hrs + 'h ago';
+      if (days < 7) return days + 'd ago';
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    } catch(e) { return ''; }
+  }
+
+  function getIcon(message) {
+    const parts = (message || '').split(':')[0].toLowerCase();
+    return ICONS[parts] || '📋';
+  }
+
+  function renderEntry(c, idx) {
+    const icon = getIcon(c.message);
+    const time = formatTime(c.date);
+    const shortDate = c.date ? c.date.slice(0,10) : '';
+    return `
+      <div class="activity-entry">
+        <span class="activity-hash">#${idx + 1}</span>
+        <span class="activity-icon">${icon}</span>
+        <div class="activity-body">
+          <div class="activity-msg">${c.message.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
+          <div class="activity-meta">
+            <span>${c.hash || '—'}</span>
+            <span>${c.author || 'Angel Eyes AI'}</span>
+            <span class="activity-time">${shortDate} &bull; ${time}</span>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function showError(msg) {
+    log.innerHTML = `<div class="activity-placeholder">⚠ ${msg}</div>`;
+  }
+
+  async function loadActivity() {
+    try {
+      const resp = await fetch('/api/activity');
+      if (!resp.ok) throw new Error('API unavailable');
+      const data = await resp.json();
+      if (!Array.isArray(data) || data.length === 0) {
+        log.innerHTML = '<div class="activity-placeholder">No activity recorded yet — the agent is just getting started.</div>';
+        return;
+      }
+      log.innerHTML = data.map((c, i) => renderEntry(c, i)).join('');
+      if (countEl) countEl.textContent = data.length + ' entries';
+    } catch(e) {
+      // Try static fallback
+      try {
+        const resp2 = await fetch('/git-log.json');
+        if (resp2.ok) {
+          const data2 = await resp2.json();
+          if (Array.isArray(data2) && data2.length > 0) {
+            log.innerHTML = data2.map((c, i) => renderEntry(c, i)).join('');
+            if (countEl) countEl.textContent = data2.length + ' entries';
+            return;
+          }
+        }
+      } catch(e2) {}
+      showError('Activity feed offline — agent is on a mission.');
+    }
+  }
+
+  loadActivity();
 })();
 </script>
 </body>
