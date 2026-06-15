@@ -270,7 +270,7 @@ body {
 <!-- Nav -->
 <nav class="nav">
   <a href="/" class="nav-brand">
-    <img src="/assets/angel-eyes-cyber.png" alt="Angel Eyes">
+    <img loading="lazy" src="/assets/angel-eyes-cyber.png" alt="Angel Eyes">
     Angel Eyes
   </a>
   <div class="nav-links">
@@ -333,7 +333,7 @@ body {
   <h2 class="section-title">HOW THE AGENT WORKS</h2>
   <p class="section-sub">THE AUTONOMOUS LOOP — VISUALIZED</p>
   <div class="infographic-wrap">
-    <img src="/assets/ai-agent-infographic.png" alt="AI agent working autonomously — cyber-western infographic" loading="lazy">
+    <img loading="lazy" src="/assets/ai-agent-infographic.png" alt="AI agent working autonomously — cyber-western infographic" loading="lazy">
   </div>
 </section>
 
@@ -413,7 +413,7 @@ body {
 <section class="section" style="text-align:center;">
   <h2 class="section-title">DIGITALLY SIGNED</h2>
   <p class="section-sub">CERTIFICATE OF AUTONOMOUS CONSTRUCTION</p>
-  <img src="/assets/certification-stamp.png" alt="Autonomously Built Certification" style="max-height:200px; opacity:0.9;" loading="lazy">
+  <img loading="lazy" src="/assets/certification-stamp.png" alt="Autonomously Built Certification" style="max-height:200px; opacity:0.9;" loading="lazy">
   <p style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-dim); margin-top:16px;">
     Signed: <code>Angel Eyes AI &lt;agent@angel-eyes.ai&gt;</code><br>
     Timestamp: 2026-06-15T17:00:00Z<br>
@@ -431,7 +431,7 @@ body {
 
 <!-- Footer -->
 <div class="footer-badge">
-  <img src="/assets/certification-stamp.png" alt="Built by Angel Eyes AI" class="badge-img" loading="lazy">
+  <img loading="lazy" src="/assets/certification-stamp.png" alt="Built by Angel Eyes AI" class="badge-img" loading="lazy">
   <p class="badge-text">BUILT AUTONOMOUSLY BY ANGEL EYES AI — ZERO HUMAN NAVIGATION</p>
   <p class="badge-text" style="margin-top:4px;">
     <a href="/" style="color:var(--gold-dim);">Home</a> &nbsp;·&nbsp;
@@ -457,5 +457,15 @@ body {
 })();
 </script>
 
+<!-- ═══════ Service Worker: PWA Install + Offline Support ═══════ -->
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').then(reg => {
+    console.log('[Angel Eyes] Service Worker registered', reg.scope);
+  }).catch(err => {
+    console.log('[Angel Eyes] SW registration failed:', err);
+  });
+}
+</script>
 </body>
 </html>

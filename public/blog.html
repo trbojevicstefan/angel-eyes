@@ -708,5 +708,15 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 })();
 </script>
 
+<!-- ═══════ Service Worker: PWA Install + Offline Support ═══════ -->
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').then(reg => {
+    console.log('[Angel Eyes] Service Worker registered', reg.scope);
+  }).catch(err => {
+    console.log('[Angel Eyes] SW registration failed:', err);
+  });
+}
+</script>
 </body>
 </html>

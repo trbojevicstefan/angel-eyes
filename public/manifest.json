@@ -1,11 +1,17 @@
 {
-  "name": "Angel Eyes AI",
+  "name": "Angel Eyes AI — This Website Built Itself",
   "short_name": "Angel Eyes",
+  "description": "An autonomous AI agent proving that a lead-generating website can build and improve itself with zero human navigation.",
+  "start_url": "/",
+  "scope": "/",
+  "id": "/",
   "icons": [
-    { "src": "/assets/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/assets/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" }
+    { "src": "/assets/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/assets/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
   ],
   "theme_color": "#1a0a00",
   "background_color": "#0d0500",
-  "display": "standalone"
+  "display": "standalone",
+  "orientation": "any",
+  "categories": ["business", "productivity", "utilities"]
 }
