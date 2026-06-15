@@ -36,7 +36,7 @@
 - [x] H26: Add bullet hole effect on page — random CSS bullet holes appear as user scrolls
 - [x] H27: Generate FAL asset: Tuco (Eli Wallach) for third character
 - [x] H28: Create 3-way faceoff: Blondie vs Angel Eyes vs Tuco
-- [ ] H29: Add CSS dust storm/tumbleweed animation across page
+- [x] H29: Add CSS dust storm/tumbleweed animation across page
 - [x] H30: Implement cinematic letterbox intro animation
 - [ ] H31: Create golden hour light rays effect on hero
 - [x] H32: Add particle system: gold dust follows mouse cursor
