@@ -1,16 +1,12 @@
-## Review — 2026-06-15 20:00 UTC
-
+## Review — 2026-06-15 18:50 UTC
 **Looks great:**
-1. The Agent section with cyber-western mascot + gold/blue gradient border is the brand's visual identity anchor — striking fusion
-2. Live "What Am I Doing RIGHT NOW" workflow cycling with pulse animations is the strongest POC element on the page
-3. Typewriter quote effect with 5 rotating AI-themed quotes gives the hero cinematic polish
-4. Activity feed terminal with git log integration is compelling live evidence
+1. Hero section is cinematic — the cyber-western hybrid mascot, typewriter quotes, and slide-in animations create powerful first impression
+2. The Proof section has strong metrics (commits, LOC, 0 human clicks) — this is the core of the POC narrative
+3. Live status cycling (ONLINE → BUILDING → DEPLOYING) proves the agent is actively working
 
 **Needs work:**
-1. No dedicated "Proof" section — the site claims autonomy but lacks a hard-data section (commits, LOC, iterations, uptime)
-2. H11 SEO meta tags are already complete in the head (og:, twitter:, keywords) but not marked done in roadmap
-3. Zero lead generation: no CTA button, no email capture, no "get your own agent" path — site tells a story but doesn't convert
-4. No H12 schema.org structured data — missing from search visibility
+1. The "No Human Touched This" claim is buried in a paragraph — needs a bold visual certification badge that visitors can't miss
+2. No dedicated certification/stamp asset to make the autonomy claim feel official and trustworthy
+3. The site sells the agent's capabilities but doesn't yet have a strong "what this means for YOU" lead-gen CTA
 
-**Biggest impact next:**
-H6 — "The Proof" section. A dedicated metrics section with live count-up animations proving the agent's autonomy with real data (19 commits, 1,868 LOC, 15 assets, 0 human clicks). This bridges the gap between the "I'm building right now" narrative and concrete evidence that convinces visitors.
+**Biggest impact next:** H7 "No Human Touched This" certification badge — make the core POC claim visually undeniable

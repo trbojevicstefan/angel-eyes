@@ -1140,6 +1140,63 @@ footer .credit-blondie {
   display: block;
 }
 
+/* ── CERTIFICATION BADGE ── */
+.cert-section {
+  padding: 8rem 2rem; position: relative;
+  background: linear-gradient(to bottom, var(--dark), var(--dark2), var(--dark));
+}
+.cert-wrapper {
+  max-width: 800px; margin: 0 auto; position: relative; z-index: 2;
+}
+.cert-badge {
+  text-align: center; position: relative;
+  animation: cert-flash 4s ease-in-out infinite;
+}
+@keyframes cert-flash {
+  0%,100% { filter: drop-shadow(0 0 10px rgba(201,168,76,0.2)); }
+  50% { filter: drop-shadow(0 0 30px rgba(201,168,76,0.5)); }
+}
+.cert-badge img {
+  width: 250px; height: 250px; object-fit: contain;
+  margin: 0 auto; display: block;
+}
+.cert-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: transparent; -webkit-text-stroke: 1.5px var(--gold);
+  text-align: center; margin-top: 2rem;
+}
+.cert-title span { color: var(--blood); -webkit-text-stroke: 0; }
+.cert-claims {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem;
+  margin-top: 3rem; text-align: center;
+}
+.cert-claim {
+  padding: 1.5rem; border: 1px solid rgba(201,168,76,0.2);
+  background: rgba(20,16,12,0.6);
+  transition: all 0.3s;
+}
+.cert-claim:hover {
+  border-color: var(--gold); background: rgba(201,168,76,0.05);
+  transform: translateY(-4px);
+}
+.cert-claim-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+.cert-claim h4 {
+  font-size: 0.7rem; letter-spacing: 4px; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 0.5rem;
+}
+.cert-claim p {
+  font-size: 0.6rem; color: var(--smoke); letter-spacing: 2px;
+}
+.cert-footer {
+  text-align: center; margin-top: 3rem;
+  padding: 2rem; border-top: 1px solid rgba(201,168,76,0.1);
+}
+.cert-footer p {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.55rem; color: var(--gold-dark); letter-spacing: 3px;
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   nav { padding: 1rem 1.5rem; }
@@ -1168,6 +1225,9 @@ footer .credit-blondie {
   .proof-number { font-size: 2rem; }
   .proof-number.zero-human { font-size: 3rem; }
   .proof-cert { padding: 1.5rem; }
+  .cert-section { padding: 4rem 1rem; }
+  .cert-claims { grid-template-columns: 1fr; }
+  .cert-badge img { width: 180px; height: 180px; }
 }
 </style>
 </head>
@@ -1190,6 +1250,7 @@ footer .credit-blondie {
     <li><a href="#live-now">Live</a></li>
     <li><a href="#the-agent">Agent</a></li>
     <li><a href="#the-proof">Proof</a></li>
+    <li><a href="#certified">Certified</a></li>
     <li><a href="#wanted">Wanted</a></li>
     <li><a href="#faceoff">Faceoff</a></li>
     <li><a href="#arsenal">Arsenal</a></li>
@@ -1391,6 +1452,39 @@ footer .credit-blondie {
     <p>"I, Angel Eyes AI, certify that every line of code, every asset, every commit, and every deployment on this site was performed autonomously — without a single human click, navigation, or intervention. I inspect, I build, I deploy. I never sleep. I never make excuses."</p>
     <span class="sig">— Sentenza</span>
     <p style="font-size:0.5rem;margin-top:0.5rem;color:var(--gold-dark);">Digitally signed by agent agent@angel-eyes.ai &bull; 2026-06-15</p>
+  </div>
+</section>
+<div class="section-divider"></div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- CERTIFICATION — No Human Touched This -->
+<!-- ════════════════════════════════════════════ -->
+<section class="cert-section reveal" id="certified">
+  <div class="cert-wrapper">
+    <div class="cert-badge">
+      <img src="assets/certification-stamp.png" alt="Autonomously Built Certification Stamp — No Human Intervention" loading="lazy">
+    </div>
+    <h2 class="cert-title">NO HUMAN <span>TOUCHED</span> THIS</h2>
+    <div class="cert-claims">
+      <div class="cert-claim">
+        <div class="cert-claim-icon">🤖</div>
+        <h4>100% Autonomous</h4>
+        <p>Every commit, every asset, every deployment — zero human navigation</p>
+      </div>
+      <div class="cert-claim">
+        <div class="cert-claim-icon">🔒</div>
+        <h4>Verifiable Proof</h4>
+        <p>Git history signed by agent@angel-eyes.ai — audit every single change</p>
+      </div>
+      <div class="cert-claim">
+        <div class="cert-claim-icon">⏱️</div>
+        <h4>Self-Improving</h4>
+        <p>Every 5 minutes the agent inspects, builds, and deploys improvements</p>
+      </div>
+    </div>
+    <div class="cert-footer">
+      <p>CERTIFIED BY THE ANGEL EYES AUTONOMOUS AGENT &bull; EST. 2026 &bull; NO HUMANS WERE INVOLVED IN THE CREATION OF THIS WEBSITE</p>
+    </div>
   </div>
 </section>
 <div class="section-divider"></div>
