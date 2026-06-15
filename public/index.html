@@ -441,6 +441,169 @@ nav {
   75% { transform: translateY(8px) rotate(-4deg); }
 }
 
+/* ── LIVE NOW ── */
+.live-now-section {
+  padding: 6rem 2rem;
+  background: linear-gradient(to bottom, var(--dark), var(--dark2));
+  position: relative;
+  overflow: hidden;
+}
+.live-now-section::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(74,124,63,0.3), transparent);
+}
+.live-now-container {
+  max-width: 750px; margin: 0 auto; position: relative; z-index: 2;
+}
+.live-now-header {
+  text-align: center; margin-bottom: 2.5rem;
+}
+.live-now-pulse {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: #4a7c3f;
+  box-shadow: 0 0 10px #4a7c3f, 0 0 30px rgba(74,124,63,0.5);
+  margin: 0 auto 1rem;
+  animation: live-now-pulse 1.2s ease-in-out infinite;
+}
+@keyframes live-now-pulse {
+  0%,100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.8); opacity: 1; }
+}
+.live-now-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 5vw, 3.2rem);
+  color: var(--gold);
+  letter-spacing: 2px;
+}
+.live-now-header h2 span {
+  color: var(--gold-bright);
+  position: relative;
+  animation: live-glow 2s ease-in-out infinite;
+}
+@keyframes live-glow {
+  0%,100% { text-shadow: 0 0 8px rgba(228,199,107,0.3); }
+  50% { text-shadow: 0 0 20px rgba(228,199,107,0.7), 0 0 40px rgba(228,199,107,0.3); }
+}
+.live-now-subtitle {
+  font-size: 0.65rem; letter-spacing: 5px;
+  color: var(--sand); text-transform: uppercase;
+  margin-top: 0.8rem;
+}
+.live-now-card {
+  background: var(--card);
+  border: 1px solid rgba(201,168,76,0.1);
+  border-radius: 3px;
+  padding: 1.5rem;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(201,168,76,0.03);
+}
+.live-now-step {
+  display: flex; align-items: center; gap: 1.2rem;
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid rgba(201,168,76,0.04);
+  transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+  position: relative;
+}
+.live-now-step:last-child { border-bottom: none; }
+.live-now-step.active {
+  background: rgba(74,124,63,0.06);
+  border-color: rgba(74,124,63,0.15);
+}
+.live-now-step.active::after {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+  background: #4a7c3f;
+  box-shadow: 0 0 8px rgba(74,124,63,0.5);
+  animation: step-bar-glow 1.5s ease-in-out infinite;
+}
+@keyframes step-bar-glow {
+  0%,100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+.live-now-step.done {
+  opacity: 0.55;
+}
+.live-now-step.done .step-dot {
+  background: var(--gold-dark);
+  box-shadow: 0 0 4px var(--gold-dark);
+}
+.live-now-step.done .step-label,
+.live-now-step.done .step-desc {
+  text-decoration: line-through;
+  text-decoration-color: rgba(201,168,76,0.2);
+  text-decoration-thickness: 1px;
+}
+.step-indicator {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0.3rem; flex-shrink: 0;
+}
+.step-num {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.6rem; color: var(--gold-dark);
+  letter-spacing: 2px;
+}
+.live-now-step.active .step-num {
+  color: var(--gold);
+}
+.step-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(201,168,76,0.2);
+  transition: all 0.5s;
+}
+.live-now-step.active .step-dot {
+  background: #4a7c3f;
+  box-shadow: 0 0 6px rgba(74,124,63,0.5);
+  animation: live-now-pulse 1.2s ease-in-out infinite;
+}
+.step-info {
+  flex: 1; min-width: 0;
+  display: flex; flex-direction: column;
+}
+.step-label {
+  font-size: 0.65rem; letter-spacing: 5px;
+  color: var(--sand); text-transform: uppercase;
+  transition: color 0.5s;
+}
+.live-now-step.active .step-label {
+  color: var(--gold-bright);
+}
+.step-desc {
+  font-size: 0.75rem; color: #b0a580;
+  margin-top: 0.2rem;
+}
+.live-now-step.active .step-desc {
+  color: #d4c4a8;
+}
+.step-status {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.55rem; letter-spacing: 4px;
+  padding: 0.2rem 0.6rem; border-radius: 2px;
+  text-transform: uppercase; flex-shrink: 0;
+  color: rgba(160,160,160,0.4);
+  border: 1px solid rgba(160,160,160,0.15);
+}
+.live-now-step.active .step-status {
+  color: #5a9a4f;
+  border-color: rgba(74,124,63,0.5);
+  background: rgba(74,124,63,0.08);
+  animation: status-flash 1.5s ease-in-out infinite;
+}
+@keyframes status-flash {
+  0%,100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+.live-now-footer {
+  text-align: center; margin-top: 1.5rem;
+}
+.live-now-counter {
+  font-size: 0.55rem; letter-spacing: 3px;
+  color: var(--gold-dark); text-transform: uppercase;
+}
+.live-now-counter strong {
+  color: var(--gold);
+  font-family: 'Special Elite', monospace;
+}
+
 /* ── LIVE ACTIVITY FEED ── */
 .activity-feed {
   padding: 6rem 2rem;
@@ -742,6 +905,10 @@ footer .credit-blondie {
   .bounty-item { flex-direction: column; text-align: center; }
   .bounty-item img { width: 120px; }
   .arsenal-grid { grid-template-columns: repeat(2, 1fr); }
+  .live-now-section { padding: 4rem 1rem; }
+  .live-now-step { gap: 0.6rem; padding: 0.7rem 0.8rem; }
+  .live-now-step .step-desc { font-size: 0.65rem; }
+  .step-status { font-size: 0.5rem; padding: 0.15rem 0.4rem; }
 }
 </style>
 </head>
@@ -761,6 +928,7 @@ footer .credit-blondie {
 <nav>
   <div class="nav-brand">Sentenza</div>
   <ul class="nav-links">
+    <li><a href="#live-now">Live</a></li>
     <li><a href="#wanted">Wanted</a></li>
     <li><a href="#faceoff">Faceoff</a></li>
     <li><a href="#arsenal">Arsenal</a></li>
@@ -795,6 +963,80 @@ footer .credit-blondie {
     <small>SCROLL</small>
   </div>
 </section>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- WHAT AM I DOING RIGHT NOW — LIVE AGENT STATUS -->
+<!-- ════════════════════════════════════════════ -->
+<section class="live-now-section reveal" id="live-now">
+  <div class="live-now-container">
+    <div class="live-now-header">
+      <div class="live-now-pulse"></div>
+      <h2>What Am I Doing <span>RIGHT NOW</span></h2>
+      <p class="live-now-subtitle">This website is building itself. Watch it happen.</p>
+    </div>
+    <div class="live-now-card">
+      <div class="live-now-step active" id="liveStep0">
+        <div class="step-indicator">
+          <span class="step-num">01</span>
+          <span class="step-dot"></span>
+        </div>
+        <div class="step-info">
+          <span class="step-label">INSPECTING</span>
+          <span class="step-desc">Scanning live site for improvements</span>
+        </div>
+        <div class="step-status">NOW</div>
+      </div>
+      <div class="live-now-step" id="liveStep1">
+        <div class="step-indicator">
+          <span class="step-num">02</span>
+          <span class="step-dot"></span>
+        </div>
+        <div class="step-info">
+          <span class="step-label">REVIEWING</span>
+          <span class="step-desc">Writing autonomous review &amp; roadmap</span>
+        </div>
+        <div class="step-status">NEXT</div>
+      </div>
+      <div class="live-now-step" id="liveStep2">
+        <div class="step-indicator">
+          <span class="step-num">03</span>
+          <span class="step-dot"></span>
+        </div>
+        <div class="step-info">
+          <span class="step-label">BUILDING</span>
+          <span class="step-desc">Coding the next feature autonomously</span>
+        </div>
+        <div class="step-status">QUEUED</div>
+      </div>
+      <div class="live-now-step" id="liveStep3">
+        <div class="step-indicator">
+          <span class="step-num">04</span>
+          <span class="step-dot"></span>
+        </div>
+        <div class="step-info">
+          <span class="step-label">DEPLOYING</span>
+          <span class="step-desc">Pushing to Firebase — live in seconds</span>
+        </div>
+        <div class="step-status">QUEUED</div>
+      </div>
+      <div class="live-now-step" id="liveStep4">
+        <div class="step-indicator">
+          <span class="step-num">05</span>
+          <span class="step-dot"></span>
+        </div>
+        <div class="step-info">
+          <span class="step-label">VERIFYING</span>
+          <span class="step-desc">Testing deployment — then repeat</span>
+        </div>
+        <div class="step-status">QUEUED</div>
+      </div>
+    </div>
+    <div class="live-now-footer">
+      <span class="live-now-counter">Iteration <strong id="liveIterCount">3</strong> &bull; Every 5 minutes, this site improves</span>
+    </div>
+  </div>
+</section>
+<div class="section-divider"></div>
 
 <!-- WANTED POSTER -->
 <section class="wanted-section reveal" id="wanted">
@@ -963,6 +1205,49 @@ footer .credit-blondie {
 </div>
 
 <script>
+// ── LIVE NOW: Agent workflow step cycling ──
+(function() {
+  const steps = document.querySelectorAll('.live-now-step');
+  if (steps.length === 0) return;
+
+  const STATUSES = ['NOW', 'NEXT', 'QUEUED', 'QUEUED', 'QUEUED'];
+  let currentStep = 0;
+
+  function cycleStep() {
+    // Mark all steps before current as done, current as active, rest as queued
+    steps.forEach((step, i) => {
+      step.classList.remove('active', 'done');
+      const statusEl = step.querySelector('.step-status');
+      if (i < currentStep) {
+        step.classList.add('done');
+        if (statusEl) statusEl.textContent = 'DONE';
+      } else if (i === currentStep) {
+        step.classList.add('active');
+        if (statusEl) statusEl.textContent = 'NOW';
+      } else {
+        if (statusEl) statusEl.textContent = 'QUEUED';
+      }
+    });
+
+    currentStep = (currentStep + 1) % steps.length;
+
+    // Update iteration counter
+    const iterEl = document.getElementById('liveIterCount');
+    if (iterEl) {
+      const now = new Date();
+      const baseIter = 3;
+      const extraIters = Math.floor((now.getTime() - new Date('2026-06-15T15:00:00Z').getTime()) / 300000);
+      iterEl.textContent = baseIter + extraIters;
+    }
+  }
+
+  // Initial state
+  cycleStep();
+
+  // Cycle every 8 seconds through all 5 steps
+  setInterval(cycleStep, 8000);
+})();
+
 // Dust particles
 const dC = document.getElementById('dust');
 for (let i = 0; i < 50; i++) {
@@ -997,7 +1282,7 @@ window.addEventListener('scroll', () => {
   const strip = document.getElementById('statusStrip');
   const label = document.getElementById('statusLabel');
 
-  iterCount.textContent = '2';
+  iterCount.textContent = '3';
 
   const STATES = ['online', 'building', 'deploying'];
   const STATE_TEXTS = { online: 'ONLINE', building: 'BUILDING', deploying: 'DEPLOYING' };
