@@ -3435,6 +3435,95 @@ footer .credit-blondie {
   .standoff-stat-value { font-size: 1.5rem; }
   .standoff-countdown { font-size: 3.5rem; }
 }
+
+/* ── CLONE THIS AGENT SECTION (H82) ── */
+.clone-section {
+  max-width: 800px; margin: 4rem auto; padding: 3rem 2rem;
+  background: var(--card);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+.clone-section::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.clone-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; color: var(--gold-bright);
+  text-align: center; margin-bottom: 0.3rem;
+}
+.clone-sub {
+  text-align: center; color: var(--smoke);
+  font-size: 0.75rem; letter-spacing: 3px;
+  margin-bottom: 2.5rem;
+}
+.clone-steps { display: flex; flex-direction: column; gap: 1.2rem; }
+.clone-step {
+  display: flex; gap: 1.2rem; align-items: flex-start;
+  padding: 1.2rem;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(201,168,76,0.08);
+  border-radius: 6px;
+  transition: all 0.3s;
+}
+.clone-step:hover {
+  border-color: rgba(201,168,76,0.2);
+  background: rgba(255,255,255,0.03);
+}
+.clone-step-num {
+  flex-shrink: 0;
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid var(--gold-dark);
+  border-radius: 50%;
+  color: var(--gold-bright);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; font-weight: 900;
+}
+.clone-step-content h4 {
+  font-family: 'Playfair Display', serif;
+  color: var(--gold); font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+}
+.clone-step-content p {
+  color: var(--smoke); font-size: 0.8rem; line-height: 1.6;
+}
+.clone-cta-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(139,37,0,0.4), rgba(201,168,76,0.2));
+  border: 2px solid var(--gold-dark);
+  color: var(--gold-bright);
+  font-family: 'Special Elite', monospace;
+  font-size: 0.95rem;
+  padding: 0.9rem 2.2rem;
+  text-decoration: none;
+  letter-spacing: 2px;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+.clone-cta-btn:hover {
+  background: linear-gradient(135deg, rgba(139,37,0,0.6), rgba(201,168,76,0.3));
+  border-color: var(--gold);
+  box-shadow: 0 0 30px rgba(201,168,76,0.25);
+  transform: translateY(-1px);
+}
+
+/* ── CONFETTI CELEBRATION (H77) ── */
+.confetti-container {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 9998;
+}
+.confetti-piece {
+  position: absolute;
+  width: 10px; height: 10px;
+  animation: confetti-fall linear forwards;
+}
+@keyframes confetti-fall {
+  0% { transform: translateY(-10vh) rotate(0deg) scale(1); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg) scale(0.3); opacity: 0; }
+}
 </style>
 </head>
 <body>
@@ -4543,6 +4632,45 @@ footer .credit-blondie {
 <section class="trilogy reveal">
   <h3>The Dollars Trilogy</h3>
   <p>A FISTFUL OF DOLLARS &bull; FOR A FEW DOLLARS MORE &bull; THE GOOD, THE BAD AND THE UGLY</p>
+</section>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- CLONE THIS AGENT — H82: Deploy your own -->
+<!-- ════════════════════════════════════════════ -->
+<section class="clone-section reveal" id="clone-agent">
+  <h2 class="clone-title">Clone This Agent</h2>
+  <p class="clone-sub">YOU'VE SEEN THE PROOF. NOW DEPLOY YOUR OWN.</p>
+  
+  <div class="clone-steps">
+    <div class="clone-step">
+      <div class="clone-step-num">1</div>
+      <div class="clone-step-content">
+        <h4>Fork the Repository</h4>
+        <p>Clone <a href="https://github.com/trbojevicstefan/angel-eyes" target="_blank" rel="noopener" style="color:var(--gold);">github.com/trbojevicstefan/angel-eyes</a> — every line of this site, every commit, every asset is yours to inspect and remix.</p>
+      </div>
+    </div>
+    <div class="clone-step">
+      <div class="clone-step-num">2</div>
+      <div class="clone-step-content">
+        <h4>Configure Your Agent</h4>
+        <p>Point the agent at your niche. Real estate, restaurants, SaaS, e-commerce — the same autonomous loop works for any business. The agent learns your audience and builds accordingly.</p>
+      </div>
+    </div>
+    <div class="clone-step">
+      <div class="clone-step-num">3</div>
+      <div class="clone-step-content">
+        <h4>Deploy &amp; Watch It Build</h4>
+        <p>Firebase hosting. Cron schedule. The agent wakes, inspects, reviews, builds, commits, and deploys — every 5 minutes, 24/7. Zero human touch. Pure autonomous growth.</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:2rem;">
+    <a href="https://github.com/trbojevicstefan/angel-eyes" target="_blank" rel="noopener" class="clone-cta-btn">
+      🤖 FORK &amp; DEPLOY YOUR AGENT →
+    </a>
+    <p style="margin-top:0.8rem;font-size:0.65rem;color:var(--smoke);letter-spacing:2px;">No API keys needed to inspect. Full instructions in README.md.</p>
+  </div>
 </section>
 
 <!-- FOOTER -->
@@ -6314,6 +6442,53 @@ if ('serviceWorker' in navigator) {
     console.log('[Angel Eyes] SW registration failed:', err);
   });
 }
+</script>
+
+<!-- ═══════ CONFETTI CELEBRATION — H77: Burst when reaching page bottom ═══════ -->
+<script>
+(function(){
+  let confettiFired = false;
+  const COLORS = ['#c9a84c','#e4c76b','#8b2500','#d4c4a8','#8b6914','#a0a0a0','#c4a47c','#2a4a1f'];
+
+  function fireConfetti() {
+    if (confettiFired) return;
+    confettiFired = true;
+
+    const container = document.createElement('div');
+    container.className = 'confetti-container';
+    container.id = 'confettiContainer';
+    document.body.appendChild(container);
+
+    const pieceCount = 80;
+    for (let i = 0; i < pieceCount; i++) {
+      const piece = document.createElement('div');
+      piece.className = 'confetti-piece';
+      piece.style.left = Math.random() * 100 + '%';
+      piece.style.top = -(Math.random() * 30) + 'px';
+      piece.style.backgroundColor = COLORS[Math.floor(Math.random() * COLORS.length)];
+      piece.style.animationDuration = (2 + Math.random() * 3) + 's';
+      piece.style.animationDelay = Math.random() * 1.5 + 's';
+      piece.style.width = (6 + Math.random() * 8) + 'px';
+      piece.style.height = (6 + Math.random() * 10) + 'px';
+      piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+      container.appendChild(piece);
+    }
+
+    // Clean up after all animations
+    setTimeout(() => {
+      if (container.parentNode) container.parentNode.removeChild(container);
+    }, 6000);
+  }
+
+  // Detect scroll to bottom
+  window.addEventListener('scroll', function() {
+    const scrollBottom = window.innerHeight + window.scrollY;
+    const docHeight = document.documentElement.scrollHeight;
+    if (scrollBottom >= docHeight - 80) {
+      fireConfetti();
+    }
+  }, { passive: true });
+})();
 </script>
 </body>
 </html>
