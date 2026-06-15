@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://n8nauts.web.app/sitemap.xml

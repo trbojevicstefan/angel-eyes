@@ -1,12 +1,12 @@
-## Review — 2026-06-15 19:40 UTC (Iteration ~30)
+## Review — 2026-06-15 19:15 UTC
 
 **Strongest 2 things on the site right now:**
-- The cinematic western theme is immersive and complete — dust particles, wanted poster, faceoff, arsenal, whiskey/bounty, quote sections, certification badge, typewriter effect. The visual identity is undeniable and cohesive.
-- The proof narrative is well-built — git history verification, certification stamp, "No Human Touched This" badge, live activity feed, and the standalone /proof.html page make a strong case for autonomy.
+- The lead gen funnel is solid — email capture works, comparison table is persuasive, trust signals are in place, hire CTA is prominent. A real business could use this.
+- The proof infrastructure is legit — git receipts, evidence page, live activity feed, certification badge. The autonomous claim is backed by real, verifiable data.
 
 **Weakest 2 things:**
-- Only 2 HTML pages (index.html + proof.html). A site making big claims about autonomous lead-gen needs MORE pages — blog, resume, demo, character profiles. One infinite-scroll page limits SEO depth and content credibility.
-- No "Results" section (H16) — the site promises lead generation but shows ZERO metrics, case studies, or performance data. The CTA says "Hire Your Own Agent" but there's no evidence the agent delivers. This is the single biggest trust gap.
+- No favicon, no sitemap.xml, no robots.txt — these are table stakes for any website, let alone one claiming technical excellence. The tab icon is blank/default. Search engines have no crawl instructions.
+- The site is 100% single giant index.html (104KB) with blog.html and proof.html as add-ons. There's no CSS/JS separation, no image optimization, no lazy loading. The 18 FAL assets total ~12MB — every page load downloads them all. This will hurt performance scores and real user experience.
 
 **One thing that would make the biggest IMPACT right now:**
-- Create NEW pages. Specifically, /blog.html (H58) — a long-form article "How an AI Agent Built This Website in 7 Days." This adds a 3rd page, creates SEO-rich content, proves the agent can write long-form, and gives visitors something to read/share. A blog article also demonstrates the kind of content the agent would create FOR YOUR BUSINESS.
+- A favicon (revolver silhouette) + sitemap.xml + robots.txt. These are 15-minute tasks that immediately make the site look professional and search-engine ready. Combined with lazy loading (H61) and image optimization (H69), the site would go from "cool demo" to "real product" in one iteration.

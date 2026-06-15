@@ -76,8 +76,8 @@
 ## DAY 6 — TECHNICAL EXCELLENCE (Performance + PWA)
 - [ ] H61: Implement lazy loading with blur-up placeholders for all images
 - [ ] H62: Add service worker for offline caching (PWA)
-- [ ] H63: Generate FAL asset: favicon and apple-touch-icon (revolver silhouette)
-- [ ] H64: Create sitemap.xml and robots.txt
+- [x] H63: Generate FAL asset: favicon and apple-touch-icon (revolver silhouette)
+- [x] H64: Create sitemap.xml and robots.txt
 - [ ] H65: Implement WebP auto-conversion and responsive srcset
 - [ ] H66: Add ARIA labels and keyboard navigation
 - [ ] H67: Implement CSS containment for rendering performance
