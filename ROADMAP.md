@@ -53,7 +53,7 @@
 - [ ] H41: Add "Shoot the Target" CSS game — click moving targets
 - [ ] H42: Implement "The Standoff" — pick Blondie or Angel Eyes, random outcome
 - [ ] H43: Generate FAL asset: bullet animation frames for shooting effect
-- [ ] H44: Create "Visitor's Wall" — leave your alias carved in wood (localStorage)
+- [x] H44: Create "Visitor's Wall" — leave your alias carved in wood (localStorage)
 - [ ] H45: Add Ennio Morricone soundtrack buttons with YouTube links
 - [ ] H46: Implement page transition western door swing animation
 - [ ] H47: Create "Spin the Cylinder" Russian roulette mini-game
