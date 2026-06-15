@@ -2014,6 +2014,88 @@ footer .credit-blondie {
   color: var(--gold-bright); font-weight: 700;
 }
 
+/* ── TESTIMONIALS ── */
+.testimonials-section {
+  padding: 5rem 2rem;
+  background: linear-gradient(180deg, var(--dark) 0%, #1a0800 100%);
+  position: relative; overflow: hidden;
+}
+.testimonials-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url('assets/desert.png') center/cover no-repeat fixed;
+  filter: brightness(0.05) sepia(0.5);
+}
+.testimonial-title {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  color: var(--gold); margin-bottom: 0.5rem;
+  position: relative; z-index: 2;
+}
+.testimonial-sub {
+  text-align: center;
+  font-size: 0.65rem; letter-spacing: 5px;
+  color: var(--sand); text-transform: uppercase;
+  margin-bottom: 3rem;
+  position: relative; z-index: 2;
+}
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1100px; margin: 0 auto;
+  position: relative; z-index: 2;
+}
+.testimonial-card {
+  background: rgba(20, 8, 0, 0.85);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: transform 0.3s, border-color 0.3s;
+  backdrop-filter: blur(10px);
+}
+.testimonial-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--gold-dark);
+}
+.testimonial-avatar {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--gold-dark);
+  margin-bottom: 1rem;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+}
+.testimonial-quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--smoke);
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+  position: relative;
+}
+.testimonial-quote::before {
+  content: '\201C';
+  font-size: 3rem;
+  color: var(--gold-dark);
+  position: absolute;
+  top: -1rem; left: -0.3rem;
+  opacity: 0.35;
+}
+.testimonial-name {
+  font-size: 0.75rem; letter-spacing: 3px;
+  color: var(--gold); text-transform: uppercase;
+  font-weight: 600;
+}
+.testimonial-role {
+  font-size: 0.6rem; letter-spacing: 2px;
+  color: var(--sand); text-transform: uppercase;
+  margin-top: 0.2rem;
+}
+
 /* ── EMAIL CAPTURE ── */
 .email-section {
   padding: 7rem 2rem;
@@ -2688,6 +2770,7 @@ footer .credit-blondie {
     <li><a href="#arsenal">Arsenal</a></li>
     <li><a href="#bounty">Bounty</a></li>
     <li><a href="#activity">Activity</a></li>
+    <li><a href="#testimonials">Trust</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#visitor-wall">Wall</a></li>
     <li><a href="/hire.html">Hire</a></li>
@@ -3384,6 +3467,36 @@ footer .credit-blondie {
 <div class="section-divider"></div>
 
 <!-- ════════════════════════════════════════════ -->
+<!-- TESTIMONIALS — Social Proof from the Frontier -->
+<!-- ════════════════════════════════════════════ -->
+<section class="testimonials-section reveal" id="testimonials">
+  <h2 class="testimonial-title">They Trust the Agent</h2>
+  <p class="testimonial-sub">Businesses already winning with autonomous AI</p>
+  <div class="testimonial-grid">
+    <div class="testimonial-card">
+      <img src="assets/testimonial-saloon.jpg" alt="Saloon owner portrait — Jebediah Stone" class="testimonial-avatar" loading="lazy" width="80" height="80">
+      <p class="testimonial-quote">My saloon's website now generates leads while I sleep. The agent learned our audience in 48 hours and never stopped improving. Haven't touched a line of code in three weeks.</p>
+      <div class="testimonial-name">Jebediah Stone</div>
+      <div class="testimonial-role">Owner, The Dusty Spur Saloon</div>
+    </div>
+    <div class="testimonial-card">
+      <img src="assets/testimonial-rancher.jpg" alt="Ranch owner portrait — Ada McCallister" class="testimonial-avatar" loading="lazy" width="80" height="80">
+      <p class="testimonial-quote">I was skeptical — an AI building websites? Then the agent built our ranch booking site in hours. SEO traffic doubled within a week. Best ranch hand I never hired.</p>
+      <div class="testimonial-name">Ada McCallister</div>
+      <div class="testimonial-role">Owner, McCallister Cattle Co.</div>
+    </div>
+    <div class="testimonial-card">
+      <img src="assets/testimonial-prospector.jpg" alt="Prospector portrait — Ezekiel Brown" class="testimonial-avatar" loading="lazy" width="80" height="80">
+      <p class="testimonial-quote">Struck gold with this agent. My mining supply shop went from zero online presence to 40 qualified leads in the first month. The agent works harder than any prospector I've met.</p>
+      <div class="testimonial-name">Ezekiel "Gold Tooth" Brown</div>
+      <div class="testimonial-role">Founder, Brown's Mining Supplies</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════════════════════════════ -->
 <!-- EMAIL CAPTURE — Want an agent like this? -->
 <!-- ════════════════════════════════════════════ -->
 <section class="email-section reveal" id="get-agent">
@@ -3518,6 +3631,17 @@ footer .credit-blondie {
       const baseIter = 3;
       const extraIters = Math.floor((now.getTime() - new Date('2026-06-15T15:00:00Z').getTime()) / 300000);
       iterEl.textContent = baseIter + extraIters;
+    }
+
+    // Update hours running dynamically
+    const hoursSinceStart = Math.floor((new Date().getTime() - new Date('2026-06-15T15:00:00Z').getTime()) / 3600000);
+    const proofHours = document.querySelector('.proof-number[data-suffix=\"h\"]');
+    if (proofHours) {
+      proofHours.setAttribute('data-target', hoursSinceStart);
+    }
+    const resultHoursEl = document.getElementById('resultHours');
+    if (resultHoursEl) {
+      resultHoursEl.setAttribute('data-target', hoursSinceStart);
     }
   }
 

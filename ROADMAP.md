@@ -23,7 +23,7 @@
 - [x] H15b: Create dedicated /proof.html — "The Evidence" standalone page with git receipts, timeline, infographic, verification instructions, and proper SEO meta tags — linked from main nav
 - [x] H16: Create "Results" section — placeholder metrics that update as agent runs longer
 - [x] H17: Add email capture form (western styled) — "Want an agent like this?" — stores to localStorage
-- [ ] H18: Generate FAL asset: testimonial avatars (western characters) for social proof section
+- [x] H18: Generate FAL asset: testimonial avatars (western characters) for social proof section
 - [x] H19: Create "vs Competition" comparison table: Angel Eyes AI vs Manual Websites vs Other AI Tools
 - [x] H20: Add trust signals: "Built on Firebase", "Deployed Every 5 Minutes", "100% Autonomous"
 - [x] H21: SEO: Add FAQ section with schema markup — 5 questions about AI agents (schema already in head, now visible FAQ section with accordion toggle + nav link)
