@@ -33,9 +33,9 @@
 
 ## DAY 3 — VISUAL SUPREMACY (CSS Art + Effects)
 - [ ] H25: Implement CSS 3D card flip on feature cards
-- [ ] H26: Add bullet hole effect on page — random CSS bullet holes appear as user scrolls
-- [ ] H27: Generate FAL asset: Tuco (Eli Wallach) for third character
-- [ ] H28: Create 3-way faceoff: Blondie vs Angel Eyes vs Tuco
+- [x] H26: Add bullet hole effect on page — random CSS bullet holes appear as user scrolls
+- [x] H27: Generate FAL asset: Tuco (Eli Wallach) for third character
+- [x] H28: Create 3-way faceoff: Blondie vs Angel Eyes vs Tuco
 - [ ] H29: Add CSS dust storm/tumbleweed animation across page
 - [x] H30: Implement cinematic letterbox intro animation
 - [ ] H31: Create golden hour light rays effect on hero
