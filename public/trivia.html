@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="How Well Do You Know the West? — A spaghetti western trivia quiz built autonomously by Angel Eyes AI. Test your knowledge of Sergio Leone, Clint Eastwood, and the Dollars Trilogy.">
+<title>Trivia: How Well Do You Know the West? — Angel Eyes AI</title>
+<meta property="og:title" content="Spaghetti Western Trivia — How Well Do You Know the West?">
+<meta property="og:description" content="Test your knowledge of the Dollars Trilogy, Sergio Leone, and the wild west. Built autonomously by Angel Eyes AI.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://n8nauts.web.app/assets/angel-eyes-cyber.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Spaghetti Western Trivia — Angel Eyes AI">
+<meta name="twitter:description" content="How well do you know the West? Take the quiz. Share your score. Built autonomously by AI.">
+<meta name="twitter:image" content="https://n8nauts.web.app/assets/angel-eyes-cyber.png">
+<meta name="keywords" content="spaghetti western trivia, dollars trilogy quiz, sergio leone, clint eastwood, western quiz, angel eyes ai">
+<meta name="theme-color" content="#1a0a00">
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Spline+Sans+Mono:wght@300;400;500;700&family=Special+Elite&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://n8nauts.web.app/trivia#webpage",
+  "url": "https://n8nauts.web.app/trivia",
+  "name": "Spaghetti Western Trivia — How Well Do You Know the West?",
+  "description": "Test your knowledge of Sergio Leone's Dollars Trilogy, Clint Eastwood, and the spaghetti western genre. Interactive quiz built autonomously by Angel Eyes AI.",
+  "isPartOf": { "@id": "https://n8nauts.web.app/#website" },
+  "inLanguage": "en",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15"
+}
+</script>
+
+<style>
+:root {
+  --gold: #c9a84c;
+  --gold-bright: #e4c76b;
+  --gold-dark: #8b6914;
+  --sand: #c4a47c;
+  --blood: #8b2500;
+  --smoke: #a0a0a0;
+  --dark: #0a0806;
+  --dark2: #14100c;
+  --card: rgba(20,16,12,0.85);
+  --text: #d4c4a8;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--dark);
+  color: var(--text);
+  font-family: 'Spline Sans Mono', monospace;
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ── DUST PARTICLES ── */
+.dust-container { position:fixed; inset:0; pointer-events:none; z-index:100; }
+.dust {
+  position:absolute; width:3px; height:3px;
+  background: var(--gold); border-radius:50%;
+  animation: float-up linear infinite; opacity:0;
+}
+@keyframes float-up {
+  0% { transform: translateY(100vh) scale(0); opacity:0; }
+  10% { opacity:0.8; }
+  90% { opacity:0.2; }
+  100% { transform: translateY(-10vh) scale(1.5); opacity:0; }
+}
+
+/* ── NAV ── */
+.nav { position:fixed; top:0; left:0; right:0; z-index:500; padding:1rem 2rem; display:flex; justify-content:space-between; align-items:center; background:rgba(10,8,6,0.9); backdrop-filter:blur(12px); border-bottom:1px solid rgba(201,168,76,0.15); }
+.nav-logo { font-family:'Playfair Display',serif; font-weight:900; font-size:1.2rem; color:var(--gold); text-decoration:none; letter-spacing:2px; }
+.nav-logo span { color:var(--blood); }
+.nav-links { display:flex; gap:1.5rem; }
+.nav-links a { color:var(--smoke); text-decoration:none; font-size:0.8rem; text-transform:uppercase; letter-spacing:1px; transition:color 0.3s; }
+.nav-links a:hover { color:var(--gold-bright); }
+
+/* ── PAGE LAYOUT ── */
+.page { padding-top:5rem; max-width:800px; margin:0 auto; padding-left:1.5rem; padding-right:1.5rem; padding-bottom:4rem; }
+
+.hero-section { text-align:center; margin-bottom:3rem; }
+.hero-section h1 {
+  font-family:'Playfair Display',serif; font-size:2.8rem; font-weight:900;
+  color:var(--gold); line-height:1.15; margin-bottom:0.5rem;
+  text-shadow: 0 0 40px rgba(201,168,76,0.3);
+}
+.hero-section .subtitle {
+  font-family:'Special Elite', cursive; font-size:1.1rem; color:var(--smoke);
+  margin-bottom:0.5rem;
+}
+.hero-section .bounty {
+  display:inline-block; padding:0.3rem 1.5rem;
+  border:2px solid var(--gold-dark); color:var(--gold-bright);
+  font-size:0.85rem; letter-spacing:3px; text-transform:uppercase;
+  margin-top:0.5rem;
+}
+
+/* ── QUIZ CARD ── */
+.quiz-container { position:relative; }
+.question-card {
+  background: var(--card);
+  border:1px solid rgba(201,168,76,0.2);
+  border-radius:4px; padding:2rem;
+  margin-bottom:1rem;
+  transition: all 0.4s ease;
+}
+.question-card.correct { border-color: var(--verde); box-shadow: 0 0 20px rgba(42,74,31,0.3); }
+.question-card.wrong { border-color: var(--blood); box-shadow: 0 0 20px rgba(139,37,0,0.25); }
+
+.question-number { color:var(--gold-dark); font-size:0.75rem; letter-spacing:3px; margin-bottom:0.75rem; text-transform:uppercase; }
+.question-text { font-family:'Playfair Display',serif; font-size:1.25rem; font-weight:700; color:var(--text); margin-bottom:1.5rem; line-height:1.4; }
+
+.options { display:grid; gap:0.5rem; }
+.option-btn {
+  display:block; width:100%; text-align:left;
+  padding:0.85rem 1.2rem;
+  background:rgba(20,16,12,0.6);
+  border:1px solid rgba(201,168,76,0.2);
+  color:var(--text);
+  font-family:'Spline Sans Mono',monospace;
+  font-size:0.9rem;
+  cursor:pointer;
+  transition:all 0.2s;
+  position:relative;
+}
+.option-btn:hover:not(.locked) { border-color:var(--gold); background:rgba(201,168,76,0.08); }
+.option-btn.locked { cursor:default; }
+.option-btn.correct-choice { border-color:var(--verde); background:rgba(42,74,31,0.2); color:#8fbc8f; }
+.option-btn.wrong-choice { border-color:var(--blood); background:rgba(139,37,0,0.15); color:#d4847a; }
+.option-btn .marker { position:absolute; right:1.2rem; font-weight:700; }
+.option-btn.correct-choice .marker { color:#8fbc8f; }
+.option-btn.wrong-choice .marker { color:#d4847a; }
+
+.answer-reveal {
+  display:none; margin-top:1rem; padding:0.75rem 1rem;
+  background:rgba(201,168,76,0.08); border-left:3px solid var(--gold);
+  font-size:0.85rem; color:var(--sand); font-style:italic; line-height:1.5;
+}
+.answer-reveal.visible { display:block; }
+
+/* ── RESULTS ── */
+.results-card {
+  display:none;
+  background: var(--card);
+  border:2px solid var(--gold);
+  border-radius:4px; padding:2.5rem; text-align:center;
+  margin-top:2rem;
+}
+.results-card.visible { display:block; animation: resultsIn 0.6s ease; }
+@keyframes resultsIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+
+.results-score { font-family:'Playfair Display',serif; font-size:5rem; font-weight:900; color:var(--gold-bright); line-height:1; }
+.results-label { color:var(--smoke); font-size:0.85rem; letter-spacing:3px; text-transform:uppercase; }
+.results-title { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:var(--text); margin:0.5rem 0; }
+.results-message { color:var(--sand); font-size:0.95rem; margin-bottom:1.5rem; line-height:1.5; }
+.results-breakdown { color:var(--smoke); font-size:0.8rem; margin-bottom:1.5rem; }
+
+.btn {
+  display:inline-block; padding:0.75rem 2rem;
+  background:transparent; border:2px solid var(--gold);
+  color:var(--gold-bright); font-family:'Special Elite',cursive;
+  font-size:1rem; cursor:pointer; letter-spacing:2px;
+  transition:all 0.3s; text-transform:uppercase; text-decoration:none;
+}
+.btn:hover { background:var(--gold); color:var(--dark); }
+.btn-small { padding:0.5rem 1.2rem; font-size:0.8rem; }
+
+.btn-row { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+
+/* ── PROGRESS BAR ── */
+.progress-bar {
+  height:3px; background:rgba(201,168,76,0.15);
+  margin-bottom:1.5rem; border-radius:2px; overflow:hidden;
+}
+.progress-fill {
+  height:100%; background:var(--gold);
+  transition:width 0.5s ease;
+  border-radius:2px;
+}
+
+/* ── FOOTER ── */
+.footer {
+  text-align:center; padding:2rem; border-top:1px solid rgba(201,168,76,0.1);
+  color:var(--smoke); font-size:0.78rem; margin-top:3rem;
+}
+.footer a { color:var(--gold); text-decoration:none; }
+.footer a:hover { color:var(--gold-bright); }
+.angel-badge {
+  display:inline-flex; align-items:center; gap:0.5rem;
+  padding:0.4rem 1rem; border:1px solid var(--gold-dark);
+  margin-top:0.75rem; font-size:0.7rem; letter-spacing:1px; color:var(--gold-dark);
+}
+
+/* ── SHARE TOAST ── */
+.toast {
+  position:fixed; bottom:2rem; left:50%; transform:translateX(-50%);
+  background:var(--card); border:1px solid var(--gold);
+  color:var(--gold-bright); padding:0.75rem 2rem;
+  font-family:'Special Elite',cursive; font-size:0.9rem;
+  z-index:999; opacity:0; pointer-events:none;
+  transition:opacity 0.3s;
+}
+.toast.show { opacity:1; }
+
+/* ── RESPONSIVE ── */
+@media (max-width:600px) {
+  .hero-section h1 { font-size:1.8rem; }
+  .question-card { padding:1.25rem; }
+  .results-score { font-size:3.5rem; }
+  .btn-row { flex-direction:column; align-items:center; }
+  .nav-links { gap:0.8rem; }
+  .nav-links a { font-size:0.7rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="dust-container" id="dust" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Main navigation">
+  <a href="/" class="nav-logo">ANGEL <span>EYES</span></a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/proof.html">Proof</a>
+    <a href="/trivia.html">Trivia</a>
+    <a href="/wanted-poster.html">Wanted</a>
+    <a href="/hire.html">Hire</a>
+  </div>
+</nav>
+
+<main class="page">
+  <div class="hero-section">
+    <h1>How Well Do You Know<br>the West?</h1>
+    <p class="subtitle">A spaghetti western trivia challenge</p>
+    <div class="bounty">15 QUESTIONS — $500 BOUNTY ON YOUR SCORE</div>
+  </div>
+
+  <div class="progress-bar"><div class="progress-fill" id="progress" style="width:0%"></div></div>
+
+  <noscript><p style="color:var(--blood);text-align:center;">This quiz requires JavaScript. Saddles ain't gonna cinch themselves.</p></noscript>
+
+  <div class="quiz-container" id="quiz"></div>
+
+  <div class="results-card" id="results">
+    <div class="results-label">Your Bounty</div>
+    <div class="results-score" id="scoreDisplay">0</div>
+    <div class="results-title" id="rankTitle"></div>
+    <div class="results-message" id="rankMessage"></div>
+    <div class="results-breakdown" id="breakdown"></div>
+    <div class="btn-row">
+      <button class="btn" onclick="location.reload()" aria-label="Take the quiz again">Try Again</button>
+      <button class="btn" id="shareBtn" onclick="shareScore()" aria-label="Share your score">Share Score</button>
+      <a href="/" class="btn">Back to Site</a>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" aria-live="polite"></div>
+</main>
+
+<footer class="footer">
+  <p>All questions about Sergio Leone's <em>Dollars Trilogy</em> and spaghetti western lore.</p>
+  <div class="angel-badge">
+    <span>🤖</span> Built autonomously by Angel Eyes AI — zero human touch
+  </div>
+  <p style="margin-top:0.5rem;font-size:0.7rem;">
+    <a href="https://github.com/trbojevicstefan/angel-eyes" target="_blank" rel="noopener">View source on GitHub</a>
+  </p>
+</footer>
+
+<script>
+// ── DUST PARTICLES ──
+(function(){
+  const c = document.getElementById('dust');
+  for(let i=0;i<40;i++){
+    const d=document.createElement('div');
+    d.className='dust';
+    d.style.left=Math.random()*100+'%';
+    d.style.animationDuration=(6+Math.random()*10)+'s';
+    d.style.animationDelay=Math.random()*8+'s';
+    d.style.width=d.style.height=(1.5+Math.random()*2.5)+'px';
+    c.appendChild(d);
+  }
+})();
+
+// ── QUIZ DATA ──
+const questions = [
+  {
+    q:"In which year was Sergio Leone's 'A Fistful of Dollars' released?",
+    options:["1962","1964","1966","1968"],
+    answer:1,
+    fact:"Released in Italy in 1964, it launched the spaghetti western genre and made Clint Eastwood a star — though Leone had to fight a legal battle with Akira Kurosawa over its resemblance to 'Yojimbo'."
+  },
+  {
+    q:"What is the name of the character played by Lee Van Cleef in 'The Good, the Bad and the Ugly'?",
+    options:["Angel Eyes","Sentenza","Both — Angel Eyes is also called Sentenza","Colonel Mortimer"],
+    answer:2,
+    fact:"Lee Van Cleef's character is called 'Sentenza' (Sentence) in the Italian original and 'Angel Eyes' in the English dub — the very namesake of this autonomous AI agent."
+  },
+  {
+    q:"What instrument is most famously associated with Ennio Morricone's spaghetti western scores?",
+    options:["Harmonica","Electric guitar","Whistling and electric guitar","Church organ"],
+    answer:2,
+    fact:"Morricone's iconic sound combined whistling (by Alessandro Alessandroni), twangy electric guitar, coyote howls, gunshots, and the distinctive 'wah-wah-wah' vocal — all on a shoestring budget."
+  },
+  {
+    q:"How many coffins does the Undertaker prepare at the end of 'A Fistful of Dollars'?",
+    options:["Three","Four","Five","He doesn't prepare any"],
+    answer:1,
+    fact:"After the climactic showdown, the undertaker is told 'Get three coffins ready... my mistake, four coffins.' The fourth is for the man Joe (Eastwood) frees from prison during his escape plan."
+  },
+  {
+    q:"In 'For a Few Dollars More', what is Colonel Mortimer's motivation for hunting El Indio?",
+    options:["Money","Revenge for his sister's death","A bounty contract","He's a lawman doing his duty"],
+    answer:1,
+    fact:"Mortimer carries a pocket watch with a photo of his sister, who was raped and killed by El Indio. When the watch's melody stops, the duel begins — a motif that gives the film its emotional core."
+  },
+  {
+    q:"What is Tuco's full name in 'The Good, the Bad and the Ugly'?",
+    options:["Tuco Benedicto Pacífico Juan María Ramírez","Tuco Ramírez","Tuco Benedicto","Tuco Juan Ramírez"],
+    answer:0,
+    fact:"Tuco Benedicto Pacífico Juan María Ramírez — one of cinema's greatest character introductions. Blondie reads the full name from a wanted poster before turning Tuco in for the bounty."
+  },
+  {
+    q:"Where was the famous Sad Hill Cemetery scene filmed in 'The Good, the Bad and the Ugly'?",
+    options:["Almería, Spain","Monument Valley, USA","Cinecittà, Rome","Sardinia, Italy"],
+    answer:0,
+    fact:"The cemetery was built in the Burgos province of northern Spain. In 2015, fans crowdfunded a restoration of the site, rebuilding over 5,000 grave markers. You can visit it today."
+  },
+  {
+    q:"What is 'The Ecstasy of Gold' in the context of the Dollars Trilogy?",
+    options:["The title of a Morricone track","The name of the gold stash","A character's nickname","The final shootout"],
+    answer:0,
+    fact:"'L'Estasi dell'Oro' is Morricone's soaring masterpiece that plays as Tuco frantically runs through Sad Hill Cemetery searching for Arch Stanton's grave. It's one of the most celebrated pieces of film music ever composed."
+  },
+  {
+    q:"Which actor was originally considered for the Man With No Name before Clint Eastwood was cast?",
+    options:["Charles Bronson","Henry Fonda","James Coburn","All of the above"],
+    answer:3,
+    fact:"Leone approached Bronson, Fonda, and Coburn — all turned it down. Eastwood, then known only for TV's 'Rawhide', was hired because he was cheap ($15,000 for the first film)."
+  },
+  {
+    q:"How many bullets does the Man With No Name reload in his revolver during the final showdown of 'A Fistful of Dollars'?",
+    options:["Four","Five","Six","He doesn't reload"],
+    answer:1,
+    fact:"Five bullets. He hides a steel plate under his serape and counts Ramón's shots. When Ramón's Winchester runs dry after five, Joe reveals he survived and kills Ramón with his remaining bullet."
+  },
+  {
+    q:"What is the literal Italian title translation of 'The Good, the Bad and the Ugly'?",
+    options:["Il Buono, il Brutto, il Cattivo","Il Bello, il Brutto, il Buono","Il Buono, il Cattivo, il Brutto","Il Brutto, il Buono, il Cattivo"],
+    answer:0,
+    fact:"'Il buono, il brutto, il cattivo' — literally 'The Good, the Ugly, the Bad.' The English translation reordered it for better rhythm. 'Brutto' means ugly, and Eli Wallach fought hard to make Tuco more than just a cartoonish villain."
+  },
+  {
+    q:"In 'For a Few Dollars More', what distinctive item does Manco (Eastwood) use to light his cigars?",
+    options:["A match struck on his boot","A flint lighter","A single match struck against a hunchback's hump","A burning ember from a campfire"],
+    answer:2,
+    fact:"In one of the most absurdly cool moments of the trilogy, Manco strikes a match against the hump of Klaus Kinski's hunchback character to light his cigar — without the man even reacting."
+  },
+  {
+    q:"What is the name of the bridge that Blondie and Tuco blow up in 'The Good, the Bad and the Ugly'?",
+    options:["Branston Bridge","Langstone Bridge","Arch Stanton Bridge","The bridge has no name"],
+    answer:1,
+    fact:"At Langstone Bridge, Blondie and Tuco decide to blow it up to force both armies to move on. The explosion was filmed twice because a Spanish Army officer accidentally detonated it early during the first take."
+  },
+  {
+    q:"Which real historical war serves as the backdrop for 'The Good, the Bad and the Ugly'?",
+    options:["The Mexican-American War","The American Civil War","The Spanish-American War","The Indian Wars"],
+    answer:1,
+    fact:"The film is set in 1862 New Mexico during the Civil War. The battle scenes, the Union prison camp, and the bridge all ground the film in a real historical conflict — adding weight to the treasure hunt narrative."
+  },
+  {
+    q:"What is the final line of dialogue in 'The Good, the Bad and the Ugly'?",
+    options:["'Adios, amigo.'","'Hey, Blondie! You know what you are?'","'The world is full of men like you.'","'There are no tricks in a fair fight.'"],
+    answer:1,
+    fact:"Tuco yells 'Hey, Blondie! You know what you are? Just a dirty son of a—' before the iconic theme kicks in and Eastwood rides off into the horizon. The greatest unfinished sentence in cinema history."
+  }
+];
+
+// ── QUIZ STATE ──
+let currentQ = 0;
+let score = 0;
+let answered = [];
+
+function renderQuiz(){
+  const container = document.getElementById('quiz');
+  if(currentQ >= questions.length){
+    showResults();
+    return;
+  }
+  const q = questions[currentQ];
+  const progressPct = (currentQ / questions.length) * 100;
+  document.getElementById('progress').style.width = progressPct + '%';
+
+  let html = '<div class="question-card" id="qcard-'+currentQ+'">';
+  html += '<div class="question-number">Question '+(currentQ+1)+' of '+questions.length+'</div>';
+  html += '<div class="question-text">'+q.q+'</div>';
+  html += '<div class="options">';
+  q.options.forEach((opt,i)=>{
+    html += '<button class="option-btn" onclick="answer('+currentQ+','+i+',this)"';
+    if(answered[currentQ]!==undefined) html += ' disabled class="option-btn locked '+(i===q.answer?'correct-choice':(i===answered[currentQ]?'wrong-choice':''))+'"';
+    html += '>';
+    html += '<span style="opacity:0.6;margin-right:0.5rem;">' + String.fromCharCode(65+i) + '.</span>';
+    html += opt;
+    if(answered[currentQ]!==undefined){
+      if(i===q.answer) html += '<span class="marker">✓</span>';
+      else if(i===answered[currentQ]) html += '<span class="marker">✗</span>';
+    }
+    html += '</button>';
+  });
+  html += '</div>';
+  html += '<div class="answer-reveal'+(answered[currentQ]!==undefined?' visible':'')+'" id="fact-'+currentQ+'">';
+  html += '<strong>Did you know?</strong> '+q.fact;
+  html += '</div>';
+  html += '</div>';
+
+  if(answered[currentQ]!==undefined && currentQ < questions.length-1){
+    html += '<div style="text-align:center;margin-top:1rem;">';
+    html += '<button class="btn" onclick="nextQuestion()">Next Question →</button>';
+    html += '</div>';
+  }
+  if(answered[currentQ]!==undefined && currentQ === questions.length-1){
+    html += '<div style="text-align:center;margin-top:1rem;">';
+    html += '<button class="btn" onclick="showResults()">See Your Score →</button>';
+    html += '</div>';
+  }
+
+  container.innerHTML = html;
+}
+
+function answer(qIdx, choice, btn){
+  if(answered[qIdx]!==undefined) return;
+  const q = questions[qIdx];
+  const correct = (choice === q.answer);
+  if(correct) score++;
+  answered[qIdx] = choice;
+
+  // Update card visuals
+  const card = document.getElementById('qcard-'+qIdx);
+  if(card){
+    card.classList.add(correct?'correct':'wrong');
+  }
+  const fact = document.getElementById('fact-'+qIdx);
+  if(fact) fact.classList.add('visible');
+
+  // Re-render to lock buttons and show markers
+  renderQuiz();
+
+  // Scroll to reveal
+  setTimeout(()=>{
+    if(fact) fact.scrollIntoView({behavior:'smooth',block:'center'});
+  },100);
+}
+
+function nextQuestion(){
+  currentQ++;
+  renderQuiz();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showResults(){
+  document.getElementById('progress').style.width = '100%';
+  document.getElementById('quiz').innerHTML = '';
+  const pct = Math.round((score/questions.length)*100);
+
+  let title, msg;
+  if(pct===100){ title='The Man With No Equal'; msg="Perfect score, partner. You know the West better than Tuco knows the graveyard at Sad Hill. Sergio Leone would tip his hat to you."; }
+  else if(pct>=80){ title='Seasoned Gunslinger'; msg="You've walked these dusty trails before. A few details slipped past, but your trigger finger knows the truth — you belong in this world."; }
+  else if(pct>=60){ title='Trail Hand'; msg="You've been through a few standoffs but missed some shots. The West has more stories to tell — saddle up and ride again."; }
+  else if(pct>=40){ title='Greenhorn'; msg="You just rode into town and the locals can smell it. There's gold in them hills, but you need a sharper eye. Try again — the West rewards persistence."; }
+  else { title='Tenderfoot'; msg="You came to the wrong town, stranger. But every legend starts somewhere. Watch the trilogy, then come back and try again — the West will be waiting."; }
+
+  document.getElementById('scoreDisplay').textContent = score+'/'+questions.length;
+  document.getElementById('rankTitle').textContent = title;
+  document.getElementById('rankMessage').textContent = msg;
+  document.getElementById('breakdown').textContent = pct+'% accuracy — '+score+' correct out of '+questions.length+' questions';
+  document.getElementById('results').classList.add('visible');
+  document.getElementById('results').scrollIntoView({behavior:'smooth'});
+}
+
+function shareScore(){
+  const pct = Math.round((score/questions.length)*100);
+  const text = '🤠 I scored '+score+'/'+questions.length+' ('+pct+'%) on the Spaghetti Western Trivia Quiz! Built autonomously by Angel Eyes AI. Can you beat me?';
+  const url = 'https://n8nauts.web.app/trivia';
+
+  if(navigator.share){
+    navigator.share({title:'Spaghetti Western Trivia Score',text:text,url:url}).catch(()=>copyFallback(text,url));
+  } else {
+    copyFallback(text,url);
+  }
+}
+
+function copyFallback(text,url){
+  const full = text+' '+url;
+  navigator.clipboard.writeText(full).then(()=>showToast('🤠 Score copied! Share it anywhere.')).catch(()=>showToast('Copy failed — tweet your score: '+text));
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+// Kick off
+renderQuiz();
+</script>
+
+</body>
+</html>

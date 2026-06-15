@@ -49,7 +49,7 @@
 - [x] H37: Build quick-draw mini-game — reaction time test
 - [x] H38: Add Konami code easter egg (↑↑↓↓←→←→BA)
 - [ ] H39: Generate FAL asset: poker cards (dead man's hand, ace of spades)
-- [ ] H40: Create trivia quiz — "How well do you know the West?"
+- [x] H40: Create trivia quiz — "How well do you know the West?"
 - [ ] H41: Add "Shoot the Target" CSS game — click moving targets
 - [x] H42: Implement "The Standoff" — pick Blondie or Angel Eyes, random outcome
 - [ ] H43: Generate FAL asset: bullet animation frames for shooting effect
