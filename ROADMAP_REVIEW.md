@@ -1,12 +1,12 @@
-## Review — 2026-06-15 20:46 UTC
+## Review — 2026-06-15 20:56 UTC
 
 **Strongest 2 things on the site right now:**
-- Visual effects are genuinely impressive — gold dust cursor, bullet holes, golden hour light rays, CSS whiskey fill, graveyard fog. These create a memorable, premium feel that most marketing sites lack.
-- The proof-of-concept credibility is real: git history shows 15+ commits authored by "Angel Eyes AI", live activity feed pulls from actual git log, and the site is deployed and verifiable. The "No Human Touched This" badge has teeth.
+- Visual supremacy is real: gold dust cursor, bullet holes, golden hour light rays, graveyard fog, CSS whiskey fill, triple theme toggle. The site FEELS premium and memorable — most marketing sites don't come close.
+- The proof-of-concept credibility is solid: git log shows real Angel Eyes AI commits, the live activity feed pulls from actual history, and the autonomous certification stamp is verifiable. The "No Human Touched This" claim has evidence.
 
 **Weakest 2 things:**
-- The index.html is 6,303 lines and 230KB. That's a single-page monstrosity. The nav has 25 items and scrolling through 24 sections is exhausting. The page is trying to be everything — visual showcase, lead gen funnel, game hub, content library — and it's losing focus.
-- Content depth about the western theme is thin despite all the visual effects. There are references to Blondie, Tuco, Angel Eyes, the standoff, boot hill — but no actual information about the Dollars Trilogy films. A visitor who doesn't know the movies sees pretty effects without understanding the source material. The site assumes cultural knowledge it hasn't provided.
+- Interactive games are undersupplied relative to content pages. Quickdraw and Trivia exist, but there's no shooting gallery — a core western experience. The site has all the atmospheric effects but lacks a satisfying "click to shoot" mechanic.
+- 5 FAL asset tasks remain unfinished (H39, H43, H48, H51, H55, H60) — these could visually elevate existing sections. Poker cards and treasure map would add immediate visual richness to the trilogy page.
 
 **One thing that would make the biggest IMPACT right now:**
-A dedicated Dollars Trilogy content page (`/trilogy.html`) with the timeline, character profiles, and behind-the-scenes facts. This gives the western theme MEANING — it turns decorative effects into storytelling. It also creates a high-quality SEO content asset that attracts organic traffic from people searching for the films, which in turn exposes them to the AI agent's proof of concept.
+A shooting gallery mini-game (`/shootout.html`). It's the most iconic western interaction — drawing, aiming, shooting. It's highly shareable, keeps visitors on the site longer, and creates a "try to beat this score" viral loop. Combined with the quick-draw game, it makes the site feel like a western arcade, not just a brochure.
