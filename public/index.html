@@ -855,26 +855,82 @@ nav {
   color: var(--sand); margin-top: 0.3rem; text-transform: uppercase;
 }
 
-/* ── QUOTE ── */
+/* ── FAMOUS QUOTES ROTATOR ── */
 .quote-section {
-  height: 70vh; display: flex; align-items: center; justify-content: center;
-  position: relative; background: var(--dark); text-align: center; padding: 2rem;
+  min-height: 80vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  position: relative; background: var(--dark); text-align: center; padding: 4rem 2rem;
+  overflow: hidden;
 }
 .quote-section::before {
   content: ''; position: absolute; inset: 0;
   background: url('assets/desert.png') center/cover no-repeat fixed;
   filter: brightness(0.12) blur(3px);
 }
-.quote-content { position: relative; z-index: 2; }
+.quote-section::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, var(--dark) 100%);
+  pointer-events: none; z-index: 1;
+}
+.quote-section-header {
+  position: relative; z-index: 2;
+  font-size: 0.6rem; letter-spacing: 8px; color: var(--sand);
+  text-transform: uppercase; margin-bottom: 3rem;
+  opacity: 0.7;
+}
+.quote-rotator {
+  position: relative; z-index: 2;
+  width: 100%; max-width: 900px;
+  min-height: 220px; display: flex; align-items: center; justify-content: center;
+}
+.quote-content {
+  position: absolute; z-index: 2; opacity: 0; transform: translateY(20px);
+  transition: opacity 1.2s ease, transform 1.2s ease; width: 100%;
+  pointer-events: none;
+}
+.quote-content.active {
+  opacity: 1; transform: translateY(0); pointer-events: auto;
+}
+.quote-content.exit {
+  opacity: 0; transform: translateY(-20px);
+}
 .quote-text {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(1.5rem, 4.5vw, 3.5rem);
+  font-size: clamp(1.3rem, 4vw, 3.2rem);
   font-style: italic; color: var(--gold-bright);
-  max-width: 900px; margin: 0 auto; line-height: 1.4;
+  max-width: 900px; margin: 0 auto; line-height: 1.5;
+  text-shadow: 0 0 40px rgba(201,168,76,0.15);
+}
+.quote-film {
+  font-size: 0.55rem; letter-spacing: 5px;
+  color: var(--sand); margin-top: 0.8rem; opacity: 0.6; text-transform: uppercase;
 }
 .quote-author {
   font-size: 0.7rem; letter-spacing: 6px;
-  color: var(--sand); margin-top: 2.5rem; text-transform: uppercase;
+  color: var(--sand); margin-top: 1.8rem; text-transform: uppercase;
+}
+.quote-dots {
+  position: relative; z-index: 2; display: flex; gap: 10px; margin-top: 2.5rem;
+}
+.quote-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(201,168,76,0.25); cursor: pointer;
+  transition: all 0.4s ease;
+}
+.quote-dot.active { background: var(--gold-bright); box-shadow: 0 0 10px rgba(201,168,76,0.6); }
+.quote-dot:hover { background: rgba(201,168,76,0.5); }
+.quote-nav {
+  position: relative; z-index: 2; display: flex; gap: 1.5rem; margin-top: 1.5rem;
+}
+.quote-nav-btn {
+  background: none; border: 1px solid rgba(201,168,76,0.2);
+  color: var(--sand); padding: 0.4rem 1rem; cursor: pointer;
+  font-family: 'Courier New', monospace; font-size: 0.6rem; letter-spacing: 3px;
+  text-transform: uppercase; transition: all 0.3s ease;
+}
+.quote-nav-btn:hover {
+  border-color: var(--gold); color: var(--gold-bright);
+  box-shadow: 0 0 15px rgba(201,168,76,0.2);
 }
 
 /* ── BOUNTY + WHISKEY ── */
@@ -3671,10 +3727,75 @@ footer .credit-blondie {
 </section>
 
 <!-- QUOTE -->
-<section class="quote-section reveal">
-  <div class="quote-content">
-    <p class="quote-text">"You see, in this world there's two kinds of people, my friend — those with loaded guns, and those who dig."</p>
-    <p class="quote-author">— Angel Eyes</p>
+<section class="quote-section reveal" id="quotes">
+  <div class="quote-section-header">Famous Words from the West</div>
+
+  <div class="quote-rotator" id="quoteRotator">
+    <div class="quote-content active" data-film="The Good, the Bad and the Ugly">
+      <p class="quote-text">"You see, in this world there's two kinds of people, my friend — those with loaded guns, and those who dig."</p>
+      <p class="quote-film">The Good, the Bad and the Ugly</p>
+      <p class="quote-author">— Angel Eyes</p>
+    </div>
+
+    <div class="quote-content" data-film="The Good, the Bad and the Ugly">
+      <p class="quote-text">"When you have to shoot, shoot. Don't talk."</p>
+      <p class="quote-film">The Good, the Bad and the Ugly</p>
+      <p class="quote-author">— Tuco</p>
+    </div>
+
+    <div class="quote-content" data-film="The Good, the Bad and the Ugly">
+      <p class="quote-text">"I've never seen so many men wasted so badly."</p>
+      <p class="quote-film">The Good, the Bad and the Ugly</p>
+      <p class="quote-author">— Blondie</p>
+    </div>
+
+    <div class="quote-content" data-film="The Good, the Bad and the Ugly">
+      <p class="quote-text">"Every gun makes its own tune."</p>
+      <p class="quote-film">The Good, the Bad and the Ugly</p>
+      <p class="quote-author">— Blondie</p>
+    </div>
+
+    <div class="quote-content" data-film="The Good, the Bad and the Ugly">
+      <p class="quote-text">"God is with us."<br>"No, he's not."</p>
+      <p class="quote-film">The Good, the Bad and the Ugly</p>
+      <p class="quote-author">— Tuco &amp; Blondie</p>
+    </div>
+
+    <div class="quote-content" data-film="For a Few Dollars More">
+      <p class="quote-text">"Alive or dead, it's your choice."</p>
+      <p class="quote-film">For a Few Dollars More</p>
+      <p class="quote-author">— Colonel Mortimer</p>
+    </div>
+
+    <div class="quote-content" data-film="A Fistful of Dollars">
+      <p class="quote-text">"When a man with .45 meets a man with a rifle, the man with a pistol will be a dead man."</p>
+      <p class="quote-film">A Fistful of Dollars</p>
+      <p class="quote-author">— Ramón</p>
+    </div>
+
+    <div class="quote-content" data-film="For a Few Dollars More">
+      <p class="quote-text">"When two hunters go after the same prey, they usually end by shooting each other."</p>
+      <p class="quote-film">For a Few Dollars More</p>
+      <p class="quote-author">— Manco</p>
+    </div>
+
+    <div class="quote-content" data-film="The Good, the Bad and the Ugly">
+      <p class="quote-text">"There are two kinds of spurs, my friend — those that come in by the door, and those that come in by the window."</p>
+      <p class="quote-film">The Good, the Bad and the Ugly</p>
+      <p class="quote-author">— Tuco</p>
+    </div>
+
+    <div class="quote-content" data-film="A Fistful of Dollars">
+      <p class="quote-text">"I don't think it's nice, you laughin'."</p>
+      <p class="quote-film">A Fistful of Dollars</p>
+      <p class="quote-author">— Joe</p>
+    </div>
+  </div>
+
+  <div class="quote-dots" id="quoteDots"></div>
+  <div class="quote-nav">
+    <button class="quote-nav-btn" onclick="prevQuote()" aria-label="Previous quote">◄ PREV</button>
+    <button class="quote-nav-btn" onclick="nextQuote()" aria-label="Next quote">NEXT ►</button>
   </div>
 </section>
 
@@ -5789,6 +5910,68 @@ window.addEventListener('scroll', () => {
     }
   `;
   document.head.appendChild(shakeStyle);
+})();
+</script>
+
+<!-- ═══════ Quotes Rotator JS ═══════ -->
+<script>
+(function(){
+  const quotes = document.querySelectorAll('#quoteRotator .quote-content');
+  const dotsContainer = document.getElementById('quoteDots');
+  let currentIndex = 0;
+  let autoTimer = null;
+  const AUTO_INTERVAL = 7000; // 7 seconds per quote
+
+  if (quotes.length === 0) return;
+
+  // Build dots
+  quotes.forEach((_, i) => {
+    const dot = document.createElement('span');
+    dot.className = 'quote-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Quote ' + (i + 1));
+    dot.onclick = () => goToQuote(i);
+    dotsContainer.appendChild(dot);
+  });
+
+  function goToQuote(index) {
+    if (index === currentIndex) return;
+    quotes[currentIndex].classList.remove('active');
+    quotes[currentIndex].classList.add('exit');
+    dotsContainer.children[currentIndex].classList.remove('active');
+
+    currentIndex = index;
+
+    quotes[currentIndex].classList.remove('exit');
+    quotes[currentIndex].classList.add('active');
+    dotsContainer.children[currentIndex].classList.add('active');
+
+    // Clean up exit class after transition
+    setTimeout(() => {
+      quotes.forEach(q => q.classList.remove('exit'));
+    }, 1200);
+
+    resetTimer();
+  }
+
+  function nextQuote() {
+    goToQuote((currentIndex + 1) % quotes.length);
+  }
+
+  function prevQuote() {
+    goToQuote((currentIndex - 1 + quotes.length) % quotes.length);
+  }
+
+  function resetTimer() {
+    clearTimeout(autoTimer);
+    autoTimer = setTimeout(nextQuote, AUTO_INTERVAL);
+  }
+
+  // Expose to global scope for onclick handlers
+  window.nextQuote = nextQuote;
+  window.prevQuote = prevQuote;
+
+  // Start auto-rotation
+  autoTimer = setTimeout(nextQuote, AUTO_INTERVAL);
 })();
 </script>
 

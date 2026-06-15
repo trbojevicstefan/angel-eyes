@@ -67,7 +67,7 @@
 - [ ] H53: Add Ennio Morricone tribute section
 - [x] H54: Create "The Agent's Journey" — story of how the AI built this site
 - [ ] H55: Generate FAL asset: Angel Eyes pocket watch decorative element
-- [ ] H56: Add famous quotes rotator
+- [x] H56: Add famous quotes rotator
 - [ ] H57: Create "Spaghetti Western Dictionary" with tooltip terms
 - [x] H58: SEO: Add blog-style article "How an AI Agent Built This Website in 7 Days"
 - [ ] H59: Create changelog section pulled from git history
