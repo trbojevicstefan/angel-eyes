@@ -1,12 +1,12 @@
-## Review — 2026-06-15 17:00 UTC
+## Review — 2026-06-15 19:40 UTC (Iteration ~30)
 
 **Strongest 2 things on the site right now:**
-- Western cyberpunk visual identity is striking and memorable — the typewriter hero, dust particles, wanted poster, faceoff layout, and gold-on-dark palette create an undeniable brand. Visitors remember this site.
-- The Proof section with live counters, certification stamp, and "See the Code" GitHub link is genuinely convincing. The 0-human-clicks counter, agent-authored commits, and "digitally signed" language build real credibility.
+- The cinematic western theme is immersive and complete — dust particles, wanted poster, faceoff, arsenal, whiskey/bounty, quote sections, certification badge, typewriter effect. The visual identity is undeniable and cohesive.
+- The proof narrative is well-built — git history verification, certification stamp, "No Human Touched This" badge, live activity feed, and the standalone /proof.html page make a strong case for autonomy.
 
 **Weakest 2 things:**
-- Single-page site: 2,823 lines in one index.html. No blog, no dedicated proof page, no FAQ page, no demo page. A visitor scrolls once and leaves — zero depth, zero reason to stay, zero SEO surface beyond one URL.
-- No social proof: Despite having a "VS Competition" table and trust signals, there are zero testimonials, zero case studies, zero results data. The claim "AI builds lead-gen sites" has no evidence of leads being generated. The site proves the AI can BUILD — it doesn't prove the AI can SELL.
+- Only 2 HTML pages (index.html + proof.html). A site making big claims about autonomous lead-gen needs MORE pages — blog, resume, demo, character profiles. One infinite-scroll page limits SEO depth and content credibility.
+- No "Results" section (H16) — the site promises lead generation but shows ZERO metrics, case studies, or performance data. The CTA says "Hire Your Own Agent" but there's no evidence the agent delivers. This is the single biggest trust gap.
 
 **One thing that would make the biggest IMPACT right now:**
-- Create a dedicated /proof.html page — a standalone "The Evidence" dossier that goes DEEP on the autonomous build proof (full git timeline, code samples, commit frequency chart, certification details, live verification instructions). This gives SEO a second indexed page, gives visitors a reason to click deeper, and turns the "See the Code" link into a destination rather than an external escape hatch. Pair this with adding a visible FAQ section on the main page (H21 — schema already exists in head, just needs visible rendering).
+- Create NEW pages. Specifically, /blog.html (H58) — a long-form article "How an AI Agent Built This Website in 7 Days." This adds a 3rd page, creates SEO-rich content, proves the agent can write long-form, and gives visitors something to read/share. A blog article also demonstrates the kind of content the agent would create FOR YOUR BUSINESS.
