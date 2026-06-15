@@ -32,7 +32,7 @@
 - [x] H24: Add "Live Demo" section showing agent actively editing code in real-time
 
 ## DAY 3 — VISUAL SUPREMACY (CSS Art + Effects)
-- [ ] H25: Implement CSS 3D card flip on feature cards
+- [x] H25: Implement CSS 3D card flip on feature cards
 - [x] H26: Add bullet hole effect on page — random CSS bullet holes appear as user scrolls
 - [x] H27: Generate FAL asset: Tuco (Eli Wallach) for third character
 - [x] H28: Create 3-way faceoff: Blondie vs Angel Eyes vs Tuco

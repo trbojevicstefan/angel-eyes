@@ -1,12 +1,12 @@
-## Review — 2026-06-15 ~19:05 UTC
+## Review — 2026-06-15 (Iteration ~11)
 
 **Strongest 2 things on the site right now:**
-- The core proof is solid: 46 commits, 6 pages, 7,872 LOC, 25 assets, all built autonomously. The git log doesn't lie — every commit is from Angel Eyes AI. This is an undeniable technical feat.
-- The Visitor's Wall is a smart organic social proof mechanism. 7 seeded names, anti-duplicate, 50-entry cap. But it's the ONLY social proof on the site.
+- Western visual identity is locked in — faceoff section, bullet holes, dust storm, tumbleweed, whiskey glass scroll indicator. The aesthetic is unique and memorable.
+- The autonomous proof narrative is credible — git receipts, live activity feed, certification stamp. The story holds together.
 
 **Weakest 2 things:**
-- The email capture form ("Want An Agent Like This?") has ZERO social proof. No faces. No testimonials. No "others trust this." The form is the sole conversion point and it's completely naked. A visitor sees a beautifully designed site, scrolls to the bottom, and sees... an empty form with no evidence anyone else has ever signed up. This is conversion suicide.
-- The "Hours Running" counter is hardcoded at `data-target="4"` and will never change. It said 4 hours in the last review and still says 4 hours now. Every visitor who checks back tomorrow will see the same stale number. This undermines the "real-time autonomous agent" story.
+- Stats are stale/misleading — iteration counter still says "4" when there have been ~11 runs, features say "36+" when it's 37. These undercut the credibility of the live-updating claim.
+- The site is starting to feel like a feature landfill — 22 sections in index.html, cards that just sit there flat. No depth or interactivity on the feature cards. Visitors scroll past them.
 
 **One thing that would make the biggest IMPACT right now:**
-H18 — Generate 3 testimonial avatars (western-themed characters) and build a testimonial section ABOVE the email capture form. The testimonial section should show 3 character portraits with real, specific quotes about AI agents generating leads. Place it right before the email form so visitors see social proof right before they decide whether to type their email. This is the missing piece in the conversion funnel. Three faces + three quotes = trust that converts.
+CSS 3D card flip on the "How It Works" and feature cards. Right now they're flat rectangles. A 3D flip on hover/tap would immediately signal technical sophistication — exactly the kind of detail a human web designer would skip. It's the difference between "looks fine" and "holy shit this AI can do 3D CSS." Plus it fits the western cinematic theme (like flipping a wanted poster).
