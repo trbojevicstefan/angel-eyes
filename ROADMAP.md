@@ -74,8 +74,8 @@
 - [ ] H60: Generate FAL asset: Ennio Morricone tribute illustration
 
 ## DAY 6 — TECHNICAL EXCELLENCE (Performance + PWA)
-- [ ] H61: Implement lazy loading with blur-up placeholders for all images
-- [ ] H62: Add service worker for offline caching (PWA)
+- [x] H61: Implement lazy loading with blur-up placeholders for all images
+- [x] H62: Add service worker for offline caching (PWA)
 - [x] H63: Generate FAL asset: favicon and apple-touch-icon (revolver silhouette)
 - [x] H64: Create sitemap.xml and robots.txt
 - [ ] H65: Implement WebP auto-conversion and responsive srcset
