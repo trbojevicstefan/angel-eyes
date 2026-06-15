@@ -3047,6 +3047,133 @@ footer .credit-blondie {
   .soundtrack-card { padding: 1rem; }
   .soundtrack-icon { font-size: 1.6rem; width: 40px; }
 }
+
+/* ── STANDOFF GAME ── */
+.standoff-game-cta {
+  text-align: center; margin-top: 2.5rem;
+}
+.standoff-start-btn {
+  display: inline-block; padding: 1rem 2.5rem;
+  background: transparent;
+  border: 2px solid var(--gold);
+  color: var(--gold);
+  font-family: 'Special Elite', monospace;
+  font-size: 1.1rem; letter-spacing: 6px;
+  text-transform: uppercase; cursor: pointer;
+  transition: all 0.3s; position: relative;
+}
+.standoff-start-btn:hover {
+  background: var(--gold); color: var(--dark);
+  box-shadow: 0 0 40px rgba(201,168,76,0.4);
+  transform: scale(1.05);
+}
+.standoff-start-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+.faceoff-player.selectable {
+  cursor: pointer; position: relative;
+}
+.faceoff-player.selectable::after {
+  content: 'CLICK TO CHOOSE';
+  position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%);
+  font-family: 'Special Elite', monospace; font-size: 0.55rem;
+  letter-spacing: 4px; color: var(--gold);
+  opacity: 0; transition: opacity 0.3s;
+  white-space: nowrap;
+}
+.faceoff-player.selectable:hover::after { opacity: 1; }
+.faceoff-player.selectable:hover { transform: scale(1.06); }
+.faceoff-player.selectable:hover img {
+  filter: drop-shadow(0 10px 50px rgba(201,168,76,0.5));
+}
+.faceoff-player.selected {
+  transform: scale(1.08);
+  box-shadow: 0 0 60px rgba(201,168,76,0.6);
+}
+.faceoff-player.selected img {
+  filter: drop-shadow(0 15px 60px rgba(201,168,76,0.7));
+}
+.faceoff-player.opponent {
+  opacity: 0.5; filter: grayscale(0.3);
+}
+
+.standoff-result {
+  text-align: center; margin-top: 3rem;
+  opacity: 0; transform: translateY(20px);
+  transition: all 0.6s;
+}
+.standoff-result.visible { opacity: 1; transform: translateY(0); }
+
+.standoff-countdown {
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem; color: var(--gold);
+  text-shadow: 0 0 80px rgba(201,168,76,0.6);
+  animation: standoff-pulse 0.5s ease-in-out;
+}
+@keyframes standoff-pulse {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.standoff-outcome {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  margin: 1rem 0; letter-spacing: 3px;
+}
+.standoff-outcome.win { color: #4caf50; text-shadow: 0 0 30px rgba(76,175,80,0.5); }
+.standoff-outcome.lose { color: var(--blood); text-shadow: 0 0 30px rgba(139,37,0,0.5); }
+.standoff-outcome.draw { color: var(--gold); text-shadow: 0 0 30px rgba(201,168,76,0.4); }
+
+.standoff-flavor {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.9rem; color: var(--sand);
+  max-width: 600px; margin: 1rem auto; line-height: 1.8;
+}
+.standoff-flavor em { color: var(--gold); font-style: italic; }
+
+.standoff-stats {
+  display: flex; justify-content: center; gap: 3rem;
+  margin-top: 2rem; flex-wrap: wrap;
+}
+.standoff-stat {
+  text-align: center;
+  font-family: 'Special Elite', monospace;
+}
+.standoff-stat-value {
+  font-size: 2rem; font-weight: 700; color: var(--gold);
+}
+.standoff-stat-label {
+  font-size: 0.55rem; letter-spacing: 4px; color: var(--smoke);
+  text-transform: uppercase; margin-top: 0.3rem;
+}
+
+.standoff-play-again {
+  display: inline-block; margin-top: 2rem; padding: 0.7rem 2rem;
+  background: transparent; border: 1px solid rgba(201,168,76,0.4);
+  color: var(--gold); font-family: 'Special Elite', monospace;
+  font-size: 0.8rem; letter-spacing: 4px; cursor: pointer;
+  transition: all 0.3s;
+}
+.standoff-play-again:hover {
+  background: rgba(201,168,76,0.1);
+  border-color: var(--gold);
+}
+
+.standoff-bullet-flash {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(201,168,76,0.15); pointer-events: none;
+  z-index: 9999; animation: gun-flash 0.15s ease-out forwards;
+}
+@keyframes gun-flash {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@media (max-width: 768px) {
+  .standoff-stats { gap: 1.5rem; }
+  .standoff-stat-value { font-size: 1.5rem; }
+  .standoff-countdown { font-size: 3.5rem; }
+}
 </style>
 </head>
 <body>
@@ -3438,8 +3565,8 @@ footer .credit-blondie {
       <h2>The Standoff</h2>
       <p>Il Buono &bull; Il Brutto &bull; Il Cattivo</p>
     </div>
-    <div class="faceoff-grid">
-      <div class="faceoff-player">
+    <div class="faceoff-grid" id="faceoffGrid">
+      <div class="faceoff-player" data-gunslinger="tuco">
         <img loading="lazy" src="assets/tuco.png" alt="Tuco — Eli Wallach">
         <div class="faceoff-label">Tuco</div>
         <div class="faceoff-alias">The Ugly &bull; The Rat</div>
@@ -3449,7 +3576,7 @@ footer .credit-blondie {
         <div class="faceoff-line"></div>
         <div class="faceoff-time">Three Men</div>
       </div>
-      <div class="faceoff-player">
+      <div class="faceoff-player" data-gunslinger="blondie">
         <img loading="lazy" src="assets/blondie.png" alt="Blondie — Clint Eastwood">
         <div class="faceoff-label">Blondie</div>
         <div class="faceoff-alias">The Good &bull; Man with No Name</div>
@@ -3459,11 +3586,42 @@ footer .credit-blondie {
         <div class="faceoff-line"></div>
         <div class="faceoff-time">One Grave</div>
       </div>
-      <div class="faceoff-player">
+      <div class="faceoff-player" data-gunslinger="angel-eyes">
         <img loading="lazy" src="assets/angel-eyes-real.jpg" alt="Angel Eyes — Lee Van Cleef">
         <div class="faceoff-label">Angel Eyes</div>
         <div class="faceoff-alias">The Bad &bull; Sentenza</div>
       </div>
+    </div>
+
+    <!-- STANDOFF GAME UI -->
+    <div class="standoff-game-cta" id="standoffCta">
+      <button class="standoff-start-btn" id="standoffStartBtn" onclick="startStandoff()">⚡ FACE THE STANDOFF ⚡</button>
+      <p style="color:var(--smoke);font-size:0.6rem;letter-spacing:3px;margin-top:0.8rem;">PICK A GUNSLINGER. FACE THE CONSEQUENCES.</p>
+    </div>
+
+    <div class="standoff-result" id="standoffResult">
+      <div class="standoff-countdown" id="standoffCountdown"></div>
+      <div class="standoff-outcome" id="standoffOutcome"></div>
+      <div class="standoff-flavor" id="standoffFlavor"></div>
+      <div class="standoff-stats" id="standoffStats">
+        <div class="standoff-stat">
+          <div class="standoff-stat-value" id="statWins">0</div>
+          <div class="standoff-stat-label">Victories</div>
+        </div>
+        <div class="standoff-stat">
+          <div class="standoff-stat-value" id="statLosses">0</div>
+          <div class="standoff-stat-label">Defeats</div>
+        </div>
+        <div class="standoff-stat">
+          <div class="standoff-stat-value" id="statDraws">0</div>
+          <div class="standoff-stat-label">Draws</div>
+        </div>
+        <div class="standoff-stat">
+          <div class="standoff-stat-value" id="statStreak">—</div>
+          <div class="standoff-stat-label">Streak</div>
+        </div>
+      </div>
+      <button class="standoff-play-again" id="standoffPlayAgain" onclick="resetStandoff()">⚡ DRAW AGAIN ⚡</button>
     </div>
   </div>
 </section>
@@ -4878,8 +5036,280 @@ window.addEventListener('scroll', () => {
 </script>
 
 <!-- ════════════════════════════════════════════ -->
-<!-- THEME TOGGLE — Dark / Sepia / Night -->
+<!-- STANDOFF GAME — Interactive gunslinger duel -->
 <!-- ════════════════════════════════════════════ -->
+<script>
+(function() {
+  const GUNSLINGERS = ['tuco', 'blondie', 'angel-eyes'];
+
+  // Weighted win probabilities: [win%, lose%, draw%]
+  const ODDS = {
+    'blondie': [45, 30, 25],     // The Good — fastest draw
+    'angel-eyes': [40, 35, 25],  // The Bad — cold precision
+    'tuco': [35, 40, 25]         // The Ugly — lucky but clumsy
+  };
+
+  const flavor = {
+    win: {
+      'blondie': [
+        'Blondie\'s hand never left the holster. Your opponent is staring at the sky wondering what happened.',
+        'The Man with No Name doesn\'t miss. Never has. Your opponent learned that the hard way.',
+        'Two shots. Only one body drops. Blondie tips his hat and walks away. Justice, delivered.',
+        'You blinked. Your opponent blinked too — forever. That\'s the difference between a gunslinger and a corpse.'
+      ],
+      'angel-eyes': [
+        'Angel Eyes doesn\'t shoot first. He shoots <em>last</em>. Your opponent drew fast — and died faster.',
+        'Cold. Methodical. Inevitable. Angel Eyes collected his $500 and walked into the sunset.',
+        'No warning. No mercy. No witnesses. Angel Eyes always sees the job through.',
+        'Your opponent thought they were fast. Angel Eyes proved they were just <em>loud</em>.'
+      ],
+      'tuco': [
+        'Tuco fired wildly — and somehow hit the target. Nobody is more surprised than Tuco himself.',
+        '\"If you\'re going to shoot, shoot! Don\'t talk!\" Tuco finally took his own advice. It worked.',
+        'By pure luck, Tuco\'s bullet found its mark. He\'s already rifling through the pockets.',
+        'The rat survives again! Tuco grins through broken teeth. Lady Luck has a soft spot for ugly men.'
+      ]
+    },
+    lose: {
+      'blondie': [
+        'Even the fastest hand catches a bullet sometimes. Blondie falls — but the legend lives on.',
+        'A rare miss for the Man with No Name. Even legends have bad days in the West.',
+        'Your opponent\'s bullet found its mark first. Blondie tips his hat one last time.',
+        'The Good die young. Blondie\'s poncho will be worn by another gunslinger someday.'
+      ],
+      'angel-eyes': [
+        'Angel Eyes watches the blood pool beneath him with cold fascination. Even mercenaries have limits.',
+        '\"When I\'m paid, I always see the job through.\" But today, the job saw through him.',
+        'The $200,000 will go unclaimed. Angel Eyes closes his eyes — for the last time.',
+        'Even the coldest killer meets a warmer end. The West claims another soul.'
+      ],
+      'tuco': [
+        'Tuco\'s luck finally ran out. He died as he lived — screaming, running, and very, very ugly.',
+        'The rat got cornered. Your opponent\'s bullet found Tuco before he could find cover.',
+        '\"Blondieeeee!\" No answer. Tuco collapses in the dust. Even rats can\'t run forever.',
+        'Tuco\'s final thought: he should\'ve stayed in the bathtub.'
+      ]
+    },
+    draw: {
+      'blondie': [
+        'Two guns fire. Two bodies still standing. The wind howls. Nobody wins a draw.',
+        'Blondie\'s bullet grazes a shoulder. Your opponent\'s clips an ear. Mutual respect. Walk away.',
+        'The standoff stretches into eternity. Both gunslingers lower their weapons. The desert wins this round.',
+        'Bullets cross in mid-air. Both miss. The Coyote howls. Some days, the West just wants you to live.'
+      ],
+      'angel-eyes': [
+        'Two shots. Two misses. Angel Eyes stares at his opponent with something resembling respect.',
+        'Even Angel Eyes can be surprised. The draw ends in a stalemate. The cemetery will have to wait.',
+        'The mercenary holsters his weapon. \"Not today.\" He walks away. The job remains unfinished.',
+        'Bullets pass like strangers in the night. Angel Eyes tips his hat. A draw — for now.'
+      ],
+      'tuco': [
+        'Tuco fires! And fires! And fires! All six rounds miss. His opponent is too busy laughing to shoot back.',
+        'Both guns jam. Tuco curses in Spanish. His opponent shrugs. The West has a sense of humor.',
+        'Tuco\'s bullet hits a cactus. Your opponent\'s hits a bottle of whiskey. Everyone loses.',
+        'The rat and the cat circle each other. Neither pounces. Tuco lives to run another day.'
+      ]
+    }
+  };
+
+  const statsKey = 'angel-eyes-standoff-stats';
+
+  function loadStats() {
+    try {
+      return JSON.parse(localStorage.getItem(statsKey)) || { wins: 0, losses: 0, draws: 0, streak: 0, bestStreak: 0, lastResult: null };
+    } catch(e) { return { wins: 0, losses: 0, draws: 0, streak: 0, bestStreak: 0, lastResult: null }; }
+  }
+
+  function saveStats(s) {
+    localStorage.setItem(statsKey, JSON.stringify(s));
+  }
+
+  function updateStatDisplay(s) {
+    document.getElementById('statWins').textContent = s.wins;
+    document.getElementById('statLosses').textContent = s.losses;
+    document.getElementById('statDraws').textContent = s.draws;
+    const streakEl = document.getElementById('statStreak');
+    if (s.streak === 0) {
+      streakEl.textContent = '—';
+    } else if (s.streak > 0) {
+      streakEl.textContent = 'W' + s.streak;
+      streakEl.style.color = '#4caf50';
+    } else {
+      streakEl.textContent = 'L' + Math.abs(s.streak);
+      streakEl.style.color = 'var(--blood)';
+    }
+  }
+
+  // Initialize stats display
+  const stats = loadStats();
+  updateStatDisplay(stats);
+
+  window.startStandoff = function() {
+    const cta = document.getElementById('standoffCta');
+    const result = document.getElementById('standoffResult');
+    const btn = document.getElementById('standoffStartBtn');
+    const grid = document.getElementById('faceoffGrid');
+
+    // Hide CTA, show selection mode
+    cta.style.display = 'none';
+    result.classList.remove('visible');
+    result.style.display = 'block';
+    btn.disabled = true;
+
+    // Make players selectable
+    const players = grid.querySelectorAll('.faceoff-player');
+    players.forEach(p => {
+      p.classList.add('selectable');
+      p.classList.remove('selected', 'opponent');
+      p.onclick = function() { chooseGunslinger(p.dataset.gunslinger, players); };
+    });
+
+    document.getElementById('standoffCountdown').textContent = 'CHOOSE';
+    document.getElementById('standoffOutcome').textContent = '';
+    document.getElementById('standoffOutcome').className = 'standoff-outcome';
+    document.getElementById('standoffFlavor').textContent = '';
+    document.getElementById('standoffPlayAgain').style.display = 'none';
+    document.getElementById('standoffStats').style.opacity = '0.6';
+  };
+
+  window.chooseGunslinger = function(chosen, players) {
+    // Disable further selection
+    players.forEach(p => {
+      p.onclick = null;
+      p.classList.remove('selectable');
+    });
+
+    // Highlight chosen
+    const chosenEl = grid.querySelector(`[data-gunslinger="${chosen}"]`);
+    chosenEl.classList.add('selected');
+
+    // Pick random opponent (not the chosen one)
+    const opponents = GUNSLINGERS.filter(g => g !== chosen);
+    const opponent = opponents[Math.floor(Math.random() * opponents.length)];
+    const opponentEl = grid.querySelector(`[data-gunslinger="${opponent}"]`);
+    opponentEl.classList.add('opponent');
+
+    // Gray out the unchosen third
+    const third = GUNSLINGERS.find(g => g !== chosen && g !== opponent);
+    const thirdEl = grid.querySelector(`[data-gunslinger="${third}"]`);
+    thirdEl.style.opacity = '0.25';
+
+    // Dramatic countdown
+    const countdownEl = document.getElementById('standoffCountdown');
+    const outcomeEl = document.getElementById('standoffOutcome');
+    const flavorEl = document.getElementById('standoffFlavor');
+    const playAgain = document.getElementById('standoffPlayAgain');
+    const resultDiv = document.getElementById('standoffResult');
+    const statsDiv = document.getElementById('standoffStats');
+
+    resultDiv.classList.add('visible');
+    playAgain.style.display = 'none';
+    countdownEl.style.animation = 'none';
+    countdownEl.offsetHeight; // reflow
+    countdownEl.style.animation = 'standoff-pulse 0.5s ease-in-out';
+
+    let count = 3;
+    countdownEl.textContent = count;
+
+    const countdownInterval = setInterval(() => {
+      count--;
+      if (count > 0) {
+        countdownEl.style.animation = 'none';
+        countdownEl.offsetHeight;
+        countdownEl.style.animation = 'standoff-pulse 0.5s ease-in-out';
+        countdownEl.textContent = count;
+      } else {
+        clearInterval(countdownInterval);
+        countdownEl.style.animation = 'none';
+        countdownEl.offsetHeight;
+        countdownEl.style.animation = 'standoff-pulse 0.5s ease-in-out';
+        countdownEl.textContent = '💥';
+
+        // Gun flash effect
+        const flash = document.createElement('div');
+        flash.className = 'standoff-bullet-flash';
+        document.body.appendChild(flash);
+        setTimeout(() => flash.remove(), 200);
+
+        resolveOutcome(chosen, opponent, outcomeEl, flavorEl, playAgain, statsDiv);
+      }
+    }, 700);
+  };
+
+  function resolveOutcome(chosen, opponent, outcomeEl, flavorEl, playAgain, statsDiv) {
+    const odds = ODDS[chosen];
+    const roll = Math.random() * 100;
+
+    let result, resultClass;
+    if (roll < odds[0]) {
+      result = 'win';
+      resultClass = 'win';
+    } else if (roll < odds[0] + odds[1]) {
+      result = 'lose';
+      resultClass = 'lose';
+    } else {
+      result = 'draw';
+      resultClass = 'draw';
+    }
+
+    const opponentNames = { tuco: 'Tuco', blondie: 'Blondie', 'angel-eyes': 'Angel Eyes' };
+
+    // Update stats
+    const s = loadStats();
+    if (result === 'win') {
+      s.wins++;
+      s.streak = s.streak >= 0 ? s.streak + 1 : 1;
+    } else if (result === 'lose') {
+      s.losses++;
+      s.streak = s.streak <= 0 ? s.streak - 1 : -1;
+    } else {
+      s.draws++;
+    }
+    if (s.streak > s.bestStreak) s.bestStreak = s.streak;
+    if (s.streak < -s.bestStreak && Math.abs(s.streak) > s.bestStreak) s.bestStreak = s.streak;
+    s.lastResult = result;
+    saveStats(s);
+    updateStatDisplay(s);
+
+    // Pick random flavor text
+    const flavors = flavor[result][chosen];
+    const pickedFlavor = flavors[Math.floor(Math.random() * flavors.length)];
+
+    // Display
+    const labels = { win: 'VICTORY', lose: 'DEFEATED', draw: 'DRAW' };
+    outcomeEl.textContent = labels[result];
+    outcomeEl.className = 'standoff-outcome ' + resultClass;
+    flavorEl.innerHTML = pickedFlavor + ' <br><span style="color:var(--smoke);font-size:0.65rem;">VS ' + opponentNames[opponent] + '</span>';
+    playAgain.style.display = 'inline-block';
+    statsDiv.style.opacity = '1';
+  }
+
+  window.resetStandoff = function() {
+    const cta = document.getElementById('standoffCta');
+    const result = document.getElementById('standoffResult');
+    const btn = document.getElementById('standoffStartBtn');
+    const grid = document.getElementById('faceoffGrid');
+
+    // Reset all player states
+    const players = grid.querySelectorAll('.faceoff-player');
+    players.forEach(p => {
+      p.classList.remove('selectable', 'selected', 'opponent');
+      p.onclick = null;
+      p.style.opacity = '';
+    });
+
+    result.classList.remove('visible');
+    result.style.display = 'none';
+    document.getElementById('standoffCountdown').textContent = '';
+    document.getElementById('standoffOutcome').textContent = '';
+    document.getElementById('standoffOutcome').className = 'standoff-outcome';
+    document.getElementById('standoffFlavor').textContent = '';
+
+    cta.style.display = 'block';
+    btn.disabled = false;
+  };
+})();
+</script>
 <script>
 (function() {
   const THEMES = ['dark', 'sepia', 'night'];
