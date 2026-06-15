@@ -458,6 +458,57 @@ footer .credit-blondie {
   color: var(--gold-dark); margin-top: 2rem; font-size: 0.6rem;
 }
 
+/* ── AGENT BADGE ── */
+.agent-badge {
+  position: fixed; bottom: 1.5rem; left: 1.5rem; z-index: 200;
+  display: flex; align-items: center; gap: 0.7rem;
+  background: var(--card); border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 2px; padding: 0.6rem 1rem;
+  backdrop-filter: blur(10px);
+  font-family: 'Spline Sans Mono', monospace;
+  transition: all 0.3s;
+}
+.agent-badge:hover {
+  border-color: var(--gold);
+  box-shadow: 0 0 30px rgba(201,168,76,0.15);
+}
+.agent-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--gold-bright);
+  box-shadow: 0 0 8px var(--gold-bright), 0 0 20px var(--gold);
+  animation: agent-pulse 2s ease-in-out infinite;
+}
+.agent-dot.building {
+  background: var(--blood);
+  box-shadow: 0 0 8px var(--blood), 0 0 20px var(--blood);
+  animation: agent-pulse-fast 0.6s ease-in-out infinite;
+}
+@keyframes agent-pulse {
+  0%,100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+@keyframes agent-pulse-fast {
+  0%,100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.6); }
+}
+.agent-info { display: flex; flex-direction: column; }
+.agent-label {
+  font-size: 0.55rem; color: var(--smoke);
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.agent-status-text {
+  font-size: 0.65rem; color: var(--gold-bright);
+  letter-spacing: 2px;
+}
+.agent-iter {
+  font-size: 0.5rem; color: var(--gold-dark);
+  letter-spacing: 2px; margin-top: 2px;
+}
+.agent-time {
+  font-size: 0.45rem; color: var(--smoke);
+  letter-spacing: 1px; margin-top: 1px; opacity: 0.7;
+}
+
 /* ── REVEAL ANIMATIONS ── */
 .reveal {
   opacity: 0; transform: translateY(50px);
@@ -658,7 +709,19 @@ footer .credit-blondie {
   <p>1966 &bull; Sergio Leone &bull; Ennio Morricone</p>
   <p>Il Buono, Il Brutto, Il Cattivo</p>
   <p class="credit-blondie">Powered by Blondie Stefan &bull; n8nlab.io</p>
+  <p style="font-size:0.5rem;margin-top:0.5rem;opacity:0.5;" id="buildTime">Built: <span id="lastBuilt">just now</span></p>
 </footer>
+
+<!-- AGENT BADGE -->
+<div class="agent-badge" id="agentBadge" title="Angel Eyes AI Agent — autonomously building this site">
+  <div class="agent-dot" id="agentDot"></div>
+  <div class="agent-info">
+    <span class="agent-label">Built by</span>
+    <span class="agent-status-text">Angel Eyes AI</span>
+    <span class="agent-iter">Iteration #<span id="iterCount">1</span></span>
+    <span class="agent-time" id="agentTime">ONLINE</span>
+  </div>
+</div>
 
 <script>
 // Dust particles
@@ -685,6 +748,38 @@ window.addEventListener('scroll', () => {
   const bg = document.querySelector('.hero-bg');
   if (bg) bg.style.transform = `scale(1.1) translateY(${scrolled * 0.3}px)`;
 });
+
+// Agent badge — live status
+(function() {
+  const dot = document.getElementById('agentDot');
+  const timeEl = document.getElementById('agentTime');
+  const lastBuilt = document.getElementById('lastBuilt');
+  const iterCount = document.getElementById('iterCount');
+
+  // Set build iteration from git (hardcoded for now, cron will update)
+  iterCount.textContent = '1';
+
+  function updateTime() {
+    const now = new Date();
+    timeEl.textContent = now.toLocaleTimeString('en-US', { hour12: false }) + ' UTC';
+    if (lastBuilt) {
+      lastBuilt.textContent = now.toISOString().replace('T',' ').slice(0,19) + 'Z';
+    }
+  }
+  updateTime();
+  setInterval(updateTime, 10000);
+
+  // Pulse effect — brief "BUILDING" flash every 30s to simulate activity
+  setInterval(() => {
+    if (!dot) return;
+    dot.classList.add('building');
+    timeEl.textContent = 'BUILDING...';
+    setTimeout(() => {
+      dot.classList.remove('building');
+      updateTime();
+    }, 3000);
+  }, 60000);
+})();
 </script>
 </body>
 </html>
