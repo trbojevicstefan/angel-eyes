@@ -1,12 +1,12 @@
-## Review — 2026-06-15 21:00 UTC
+## Review — 2026-06-15 21:05 UTC
 
 **Strongest 2 things on the site right now:**
-- The visual atmosphere is unmatched: gold dust cursor, bullet holes, golden hour rays, graveyard fog, CSS whiskey progress bar, triple theme toggle. It's atmospheric enough to make visitors stay.
-- The proof-of-concept credibility is airtight: git commits by Angel Eyes AI, live activity feed, autonomous certification stamp, all verifiable. The claim "no human touched this" has receipts.
+- The interactive games are now genuinely fun: Russian roulette, quick-draw, shootout targets, and the standoff make visitors stay. The site feels alive and playful, not just a brochure.
+- The visual atmosphere holds up across all 11 pages — gold dust cursor, bullet holes, theme toggle, cine intro, fog, whiskey progress bar. No page breaks the immersion.
 
 **Weakest 2 things:**
-- The site has 11 pages but the interactive/playful-to-educational ratio is tilted toward content. Visitors need more "can I play with this" moments — Russian roulette is the most iconic western gamble missing.
-- 5 FAL asset tasks skipped (H39 poker cards, H43 bullet frames, H48 wanted poster template, H51 treasure map, H55 pocket watch, H60 Morricone tribute). These would add visual punch to existing pages.
+- No viral hook. There's nothing that makes someone say "I have to share this" — no hidden content, no easter egg treasure hunt (the Konami code is fun but most people won't find it). A hidden "Vault" page with a password hunt would create that "did you find it?" energy.
+- The "Clone This Agent" call-to-action is missing. Visitors who are convinced by the proof have no clear path to deploy their own agent. A button with simple instructions would convert curiosity into action.
 
 **One thing that would make the biggest IMPACT right now:**
-Russian roulette mini-game (`/roulette.html`). It's the ultimate western tension mechanic: spin the cylinder, pull the trigger, survive or don't. Highly shareable ("I survived 7 rounds"), creates a sticky viral loop, and is visually dramatic with CSS animations for cylinder spin and the click-vs-BANG moment.
+Create /vault.html — a password-protected hidden page. Put a cryptic hint in the page source and nav. Fill it with content that feels exclusive and secret. This creates the "I found something nobody else has" moment that drives viral sharing. Also add the "Clone This Agent" button and a confetti celebration when visitors reach the bottom — rewarding completion and creating delight.
