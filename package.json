@@ -1,0 +1,13 @@
+{
+  "name": "angel-eyes",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Angel Eyes — The autonomous AI-built western website",
+  "scripts": {
+    "build": "mkdir -p dist && cp -r public/* dist/",
+    "start": "echo 'Static site — use Firebase App Hosting'"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

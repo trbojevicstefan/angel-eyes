@@ -1,11 +1,13 @@
-# Firebase App Hosting configuration for Angel Eyes website
-# Static site — no build step needed
+# Firebase App Hosting configuration
+# Static website — no server-side runtime needed
+# Build script in package.json copies public/ → dist/
 
 outputFiles:
-  - public/**
+  - dist/**
 
 runConfig:
-  # Static file serving, no server needed
-  # Files are served directly from the public/ directory
-
-env: []
+  minInstances: 0
+  maxInstances: 1
+  concurrency: 80
+  cpu: 1
+  memoryMiB: 512
