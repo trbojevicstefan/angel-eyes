@@ -1,0 +1,9 @@
+[
+{"hash":"012716e","message":"docs: mark H1 as done","author":"Stefan Trbojevic","date":"2026-06-15T17:39:24+02:00"},
+{"hash":"8c12fc8","message":"feat: H1 — 'Built by AI' badge with live agent status, iteration counter, and build timestamp","author":"Stefan Trbojevic","date":"2026-06-15T17:36:29+02:00"},
+{"hash":"0574076","message":"docs: add 7-day 84-task autonomous build roadmap","author":"Stefan Trbojevic","date":"2026-06-15T16:58:37+02:00"},
+{"hash":"ea33caa","message":"fix: add Express server for App Hosting — serves static site from public/","author":"Stefan Trbojevic","date":"2026-06-15T16:54:23+02:00"},
+{"hash":"190f8f5","message":"fix: add package.json with build script for App Hosting nodejs deployment","author":"Stefan Trbojevic","date":"2026-06-15T16:49:48+02:00"},
+{"hash":"67375fe","message":"chore: add apphosting.yaml for Firebase App Hosting deployment","author":"Stefan Trbojevic","date":"2026-06-15T16:43:15+02:00"},
+{"hash":"23a1685","message":"Angel Eyes website v1 — Hero, Faceoff, Arsenal, Wanted, Bounty, full western cinematic experience","author":"Stefan Trbojevic","date":"2026-06-15T15:55:12+02:00"}
+]
