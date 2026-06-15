@@ -374,6 +374,51 @@ nav {
 .nav-links a:hover { color: var(--gold-bright); }
 .nav-links a:hover::after { width: 100%; }
 
+/* ── WHISKEY GLASS SCROLL PROGRESS ── */
+.whiskey-glass {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 90;
+  width: 28px; height: 52px;
+  cursor: pointer;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.whiskey-glass:hover { transform: scale(1.15); }
+.whiskey-glass-body {
+  position: relative; width: 100%; height: 100%;
+}
+.glass-svg { width: 100%; height: 100%; overflow: visible; }
+.glass-outline {
+  fill: none; stroke: var(--gold-dark); stroke-width: 1.5;
+  opacity: 0.6;
+}
+.glass-fill {
+  fill: var(--gold);
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 0.15s linear;
+  opacity: 0.8;
+}
+.glass-ice {
+  fill: rgba(201,168,76,0.15);
+}
+.glass-progress-text {
+  position: absolute; bottom: -1.4rem; left: 50%; transform: translateX(-50%);
+  font-family: 'Special Elite', monospace;
+  font-size: 0.45rem; color: var(--gold-dark);
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+.whiskey-tooltip {
+  position: absolute; right: 3.5rem; top: 50%; transform: translateY(-50%);
+  background: var(--dark2); color: var(--gold);
+  border: 1px solid var(--gold-dark);
+  padding: 0.4rem 0.8rem;
+  font-family: 'Spline Sans Mono', monospace;
+  font-size: 0.5rem; letter-spacing: 2px;
+  white-space: nowrap;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+}
+.whiskey-glass:hover .whiskey-tooltip { opacity: 1; }
+
 /* ── SECTION DIVIDERS ── */
 .section-divider {
   height: 1px; width: 60%; margin: 0 auto;
@@ -2337,6 +2382,7 @@ footer .credit-blondie {
     <li><a href="/hire.html">Hire</a></li>
     <li><a href="/proof.html">Evidence</a></li>
     <li><a href="/blog.html">Blog</a></li>
+    <li><a href="/journey.html">Journey</a></li>
     <li><a href="https://github.com/trbojevicstefan/angel-eyes" target="_blank" rel="noopener" style="color:var(--gold-bright);">CODE ↗</a></li>
   </ul>
 </nav>
@@ -3916,6 +3962,54 @@ window.addEventListener('scroll', () => {
     if (el) observer.observe(el);
   });
 })();
+
+// ── WHISKEY GLASS SCROLL PROGRESS ──
+(function() {
+  const glass = document.getElementById('whiskeyGlass');
+  const fill = document.getElementById('whiskeyFill');
+  const label = document.getElementById('whiskeyLabel');
+
+  function updateFill() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? Math.min(100, Math.round((scrollTop / docHeight) * 100)) : 0;
+    fill.style.clipPath = `inset(${100 - pct}% 0 0 0)`;
+    label.textContent = `${pct}%`;
+  }
+
+  window.addEventListener('scroll', updateFill, { passive: true });
+  updateFill();
+
+  // Click to scroll to top
+  glass.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
 </script>
+
+<!-- WHISKEY GLASS SCROLL INDICATOR -->
+<div class="whiskey-glass" id="whiskeyGlass" title="Scroll progress — click to return to top">
+  <div class="whiskey-tooltip">Pour complete</div>
+  <div class="whiskey-glass-body">
+    <svg class="glass-svg" viewBox="0 0 28 52" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <clipPath id="whiskeyClip"><rect x="3" y="6" width="22" height="42" rx="1"/></clipPath>
+      </defs>
+      <!-- Glass outline -->
+      <path class="glass-outline" d="M5,4 h18 l2,2 l0,40 l-2,2 h-18 l-2,-2 l0,-40 z"/>
+      <path class="glass-outline" d="M7,2 h14 l1,2 l0,2 l-1,1 h-14 l-1,-1 l0,-2 z" opacity="0.4"/>
+      <!-- Whiskey fill (clipped) -->
+      <rect class="glass-fill" id="whiskeyFill" x="3" y="6" width="22" height="42"/>
+      <!-- Ice cubes -->
+      <rect class="glass-ice" x="9" y="15" width="6" height="5" rx="1"/>
+      <rect class="glass-ice" x="16" y="22" width="5" height="4" rx="1"/>
+      <!-- Glass shine -->
+      <line x1="7" y1="8" x2="7" y2="44" stroke="rgba(201,168,76,0.15)" stroke-width="0.5"/>
+      <line x1="10" y1="4" x2="10" y2="6" stroke="rgba(201,168,76,0.1)" stroke-width="0.5"/>
+    </svg>
+    <div class="glass-progress-text" id="whiskeyLabel">0%</div>
+  </div>
+</div>
+
 </body>
 </html>

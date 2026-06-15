@@ -42,7 +42,7 @@
 - [x] H32: Add particle system: gold dust follows mouse cursor
 - [ ] H33: Generate FAL asset: wanted poster variations for all characters
 - [ ] H34: Implement dark/sepia/night triple theme toggle
-- [ ] H35: Add CSS whiskey glass fill animation — scroll progress indicator
+- [x] H35: Add CSS whiskey glass fill animation — scroll progress indicator
 - [ ] H36: Create graveyard section with CSS fog and floating names
 
 ## DAY 4 — INTERACTIVE (Mini-games + Engagement)
@@ -65,7 +65,7 @@
 - [ ] H51: Generate FAL asset: treasure map showing the gold hunt route
 - [ ] H52: Create "Behind the Scenes" with Sergio Leone facts
 - [ ] H53: Add Ennio Morricone tribute section
-- [ ] H54: Create "The Agent's Journey" — story of how the AI built this site
+- [x] H54: Create "The Agent's Journey" — story of how the AI built this site
 - [ ] H55: Generate FAL asset: Angel Eyes pocket watch decorative element
 - [ ] H56: Add famous quotes rotator
 - [ ] H57: Create "Spaghetti Western Dictionary" with tooltip terms

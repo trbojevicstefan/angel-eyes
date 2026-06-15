@@ -1,12 +1,12 @@
-## Review — 2026-06-15 ~18:00 UTC
+## Review — 2026-06-15 ~18:15 UTC
 
 **Strongest 2 things on the site right now:**
-- The Western cyberpunk aesthetic is genuinely distinctive — the cinematic letterbox intro, gold dust cursor trail, dust particles, and dark parchment palette create a premium, memorable experience that no template can replicate
-- The live demo code typing is now functional — visitors can WATCH syntax-highlighted HTML/CSS/JS being typed character-by-character in a terminal window with line numbers, status cycling, and tab switching. This is the most convincing piece of proof on the site
+- The 3-way standoff (Blondie vs Angel Eyes vs Tuco) + bullet hole effects is now complete — the western theme finally has its iconic centerpiece. Combined with the cinematic intro, gold dust cursor, and dark parchment palette, no other AI-built site looks like this
+- The Live Demo code typing terminal continues to be the most convincing proof — visitors WATCH the agent write real HTML/CSS/JS with syntax highlighting, line numbers, and status cycling. This single element does more to prove autonomy than all the stat counters combined
 
 **Weakest 2 things:**
-- The faceoff section only has 2 characters (Blondie vs Angel Eyes). The entire thematic premise is the "Dollars Trilogy" — three men. Tuco (Eli Wallach) is the heart of the trilogy and his absence makes the western theme feel incomplete, like a 2-legged stool
-- The site has 20+ sections but no narrative arc guiding visitors through them. It's a collection of proof points stacked vertically — impressive individually but lacking a story that pulls visitors from "what is this" to "I want it"
+- Still no narrative arc. 13+ sections stacked vertically — each is individually impressive but there's no story guiding visitors from "what is this" to "I want it." The site needs a chronological journey, a story of how an AI agent went from zero to this, told in the agent's own voice
+- The site is visually spectacular but lacks depth beyond the surface. A visitor who wants to understand how this actually works — the real story, not just the stats — has nowhere to go that satisfies that curiosity with depth
 
 **One thing that would make the biggest IMPACT right now:**
-Complete the trilogy faceoff. Generate a Tuco asset, rewrite the faceoff section as the iconic 3-way Mexican standoff (Blondie vs Angel Eyes vs Tuco), and add a CSS bullet hole effect that makes the page feel dangerous and alive. This hits the core theme harder than any other single change — everyone knows the 3-way standoff from The Good, the Bad and the Ugly.
+Create /journey.html — "The Agent's Journey." A chronological narrative page where Angel Eyes tells its own story: waking up with an empty public/ folder, inspecting a blank page, writing the first `<h1>`, committing to git, deploying to Firebase, and iterating every 5 minutes. This is the narrative arc the site is missing — not more proof, but THE STORY behind the proof. Every visitor who reads it will feel like they watched the agent grow up.
