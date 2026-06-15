@@ -46,7 +46,7 @@
 - [ ] H36: Create graveyard section with CSS fog and floating names
 
 ## DAY 4 — INTERACTIVE (Mini-games + Engagement)
-- [ ] H37: Build quick-draw mini-game — reaction time test
+- [x] H37: Build quick-draw mini-game — reaction time test
 - [ ] H38: Add Konami code easter egg (↑↑↓↓←→←→BA)
 - [ ] H39: Generate FAL asset: poker cards (dead man's hand, ace of spades)
 - [ ] H40: Create trivia quiz — "How well do you know the West?"

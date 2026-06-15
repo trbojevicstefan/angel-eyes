@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Quick-Draw Showdown — Test your reaction time in a high-noon western duel. Built autonomously by Angel Eyes AI.">
+<title>Quick-Draw Showdown — Angel Eyes AI</title>
+<meta property="og:title" content="Quick-Draw Showdown — Angel Eyes AI">
+<meta property="og:description" content="How fast can you draw? A western quick-draw reaction-time duel built autonomously by Angel Eyes AI. Face the fastest guns in the West.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://n8nauts.web.app/assets/angel-eyes-cyber.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Quick-Draw Showdown — Angel Eyes AI">
+<meta name="twitter:description" content="High-noon duel. Test your reaction time. Built autonomously by Angel Eyes AI.">
+<meta name="twitter:image" content="https://n8nauts.web.app/assets/angel-eyes-cyber.png">
+<meta name="keywords" content="quick draw game, reaction time test, western duel, AI built game, Angel Eyes AI, autonomous website, high noon">
+<meta name="theme-color" content="#1a0a00">
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Spline+Sans+Mono:wght@300;400;500;700&family=UnifrakturMaguntia&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #c9a84c;
+  --gold-bright: #e4c76b;
+  --gold-dark: #8b6914;
+  --sand: #c4a47c;
+  --blood: #8b2500;
+  --smoke: #a0a0a0;
+  --dark: #0a0806;
+  --dark2: #14100c;
+  --card: rgba(20, 16, 12, 0.85);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--dark);
+  color: #d4c4a8;
+  font-family: 'Spline Sans Mono', monospace;
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem 3rem;
+  background: linear-gradient(to bottom, rgba(10,8,6,0.97) 60%, transparent);
+  backdrop-filter: blur(10px);
+}
+.nav-brand {
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 1.6rem; color: var(--gold); letter-spacing: 4px;
+}
+.nav-links { display:flex; gap:2.5rem; list-style:none; }
+.nav-links a {
+  color: var(--smoke); text-decoration: none;
+  text-transform: uppercase; font-size: 0.7rem; letter-spacing: 4px;
+  transition: color 0.3s; position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
+  background: var(--gold); transition: width 0.3s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--gold-bright); }
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+/* ── PAGE CONTAINER ── */
+.page-wrap {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 2rem 4rem;
+  position: relative;
+  background: radial-gradient(ellipse at center, #1a1208 0%, var(--dark) 70%);
+}
+
+/* ── HEADER ── */
+.game-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.game-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.game-header .sub {
+  font-size: 0.7rem;
+  letter-spacing: 8px;
+  color: var(--sand);
+  text-transform: uppercase;
+}
+
+/* ── DUEL ARENA ── */
+.duel-arena {
+  width: 100%;
+  max-width: 700px;
+  min-height: 420px;
+  background: rgba(20,16,12,0.8);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 0 60px rgba(0,0,0,0.4);
+}
+.duel-arena.draw-ready {
+  cursor: crosshair;
+  border-color: rgba(201,168,76,0.5);
+}
+.duel-arena.draw-go {
+  border-color: var(--blood);
+  box-shadow: 0 0 80px rgba(139,37,0,0.3), 0 0 60px rgba(0,0,0,0.4);
+}
+
+/* ── ARENA BACKGROUND ── */
+.arena-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10,8,6,0.3) 0%,
+    rgba(20,12,6,0.5) 40%,
+    rgba(30,20,10,0.6) 70%,
+    rgba(10,8,6,0.8) 100%
+  );
+  z-index: 0;
+}
+.arena-sun {
+  position: absolute; top: 5%; left: 50%; transform: translateX(-50%);
+  width: 120px; height: 120px;
+  background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, rgba(201,168,76,0.05) 30%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+}
+.arena-ground {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 30%;
+  background: linear-gradient(to bottom, transparent, rgba(10,8,6,0.6));
+  border-top: 1px solid rgba(201,168,76,0.05);
+  z-index: 0;
+}
+
+/* ── STAGE CONTENT ── */
+.stage-content {
+  position: relative; z-index: 1;
+  text-align: center; padding: 2rem;
+  width: 100%;
+}
+.stage-phase {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 8px;
+  color: var(--gold-dark);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  transition: all 0.4s;
+}
+.stage-message {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+  transition: all 0.3s;
+}
+.stage-hint {
+  font-size: 0.6rem;
+  color: var(--smoke);
+  letter-spacing: 3px;
+  transition: all 0.3s;
+}
+
+/* ── DRAW STATE ── */
+.duel-arena.draw-go .stage-message {
+  color: var(--blood);
+  font-size: clamp(3rem, 7vw, 5rem);
+  animation: draw-pulse 0.15s ease-in-out;
+  text-shadow: 0 0 30px rgba(139,37,0,0.6);
+}
+@keyframes draw-pulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* ── RESULT OVERLAY ── */
+.result-panel {
+  text-align: center;
+  animation: result-appear 0.5s ease-out;
+}
+@keyframes result-appear {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.result-time {
+  font-family: 'Special Elite', monospace;
+  font-size: clamp(4rem, 10vw, 7rem);
+  color: var(--gold-bright);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+  text-shadow: 0 0 30px rgba(201,168,76,0.3);
+}
+.result-unit {
+  font-size: 0.7rem;
+  letter-spacing: 6px;
+  color: var(--gold-dark);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.result-rank {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  color: var(--sand);
+  margin-bottom: 0.5rem;
+}
+.result-flavor {
+  font-size: 0.65rem;
+  color: var(--smoke);
+  letter-spacing: 2px;
+  font-style: italic;
+  margin-bottom: 2rem;
+  max-width: 400px;
+  margin-left: auto; margin-right: auto;
+}
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-block;
+  padding: 0.9rem 2rem;
+  border: 1px solid var(--gold-dark);
+  background: transparent;
+  color: var(--gold);
+  font-family: 'Spline Sans Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 2px;
+  text-decoration: none;
+}
+.btn:hover {
+  background: rgba(201,168,76,0.08);
+  border-color: var(--gold);
+  box-shadow: 0 0 20px rgba(201,168,76,0.12);
+}
+.btn-primary {
+  background: var(--gold-dark);
+  border-color: var(--gold);
+  color: var(--dark);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 6px;
+  padding: 1rem 2.8rem;
+}
+.btn-primary:hover {
+  background: var(--gold);
+  box-shadow: 0 0 30px rgba(201,168,76,0.3);
+}
+
+/* ── STATS BAR ── */
+.stats-bar {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+  padding: 1.5rem 2.5rem;
+  background: rgba(20,16,12,0.6);
+  border: 1px solid rgba(201,168,76,0.1);
+  border-radius: 4px;
+  max-width: 600px;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.stat-item {
+  text-align: center;
+}
+.stat-value {
+  font-family: 'Special Elite', monospace;
+  font-size: 1.8rem;
+  color: var(--gold);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.5rem;
+  letter-spacing: 4px;
+  color: var(--gold-dark);
+  text-transform: uppercase;
+  margin-top: 0.3rem;
+}
+
+/* ── LEADERBOARD / CHARACTER REFERENCE ── */
+.char-ref {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 650px;
+}
+.char-card {
+  background: rgba(20,16,12,0.5);
+  border: 1px solid rgba(201,168,76,0.08);
+  border-radius: 4px;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  flex: 1 1 150px;
+  max-width: 180px;
+  transition: all 0.3s;
+}
+.char-card:hover {
+  border-color: rgba(201,168,76,0.25);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.char-card.your-rank {
+  border-color: var(--blood);
+  box-shadow: 0 0 20px rgba(139,37,0,0.2);
+}
+.char-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.char-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--gold);
+  margin-bottom: 0.2rem;
+}
+.char-speed {
+  font-size: 0.55rem;
+  color: var(--gold-dark);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* ── BADGE ── */
+.ai-badge {
+  position: fixed; bottom: 1rem; left: 1rem;
+  z-index: 99;
+  display: flex; align-items: center; gap: 0.6rem;
+  background: rgba(10,8,6,0.8);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-size: 0.5rem;
+  letter-spacing: 3px;
+  color: var(--gold-dark);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s;
+}
+.ai-badge:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.ai-badge .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: dot-pulse 2s ease-in-out infinite;
+}
+@keyframes dot-pulse {
+  0%,100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--gold-dark);
+  font-size: 0.5rem;
+  letter-spacing: 3px;
+  opacity: 0.6;
+}
+
+/* ── SCREEN FLASH ON DRAW ── */
+.flash-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  pointer-events: none;
+  background: rgba(201,168,76,0.08);
+  animation: flash-burst 0.3s ease-out forwards;
+}
+@keyframes flash-burst {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+.flash-overlay.draw-flash {
+  background: rgba(255,68,51,0.06);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.2rem; }
+  .nav-links a { font-size: 0.6rem; letter-spacing: 2px; }
+  .duel-arena { min-height: 350px; }
+  .stats-bar { gap: 1.5rem; padding: 1.2rem 1.5rem; }
+  .char-ref { gap: 0.8rem; }
+  .char-card { flex: 1 1 120px; max-width: 140px; padding: 0.8rem; }
+}
+@media (max-width: 480px) {
+  nav { flex-direction: column; gap: 0.8rem; }
+  .nav-brand { font-size: 1.3rem; }
+  .nav-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .page-wrap { padding: 10rem 1rem 3rem; }
+  .duel-arena { min-height: 300px; }
+  .stats-bar { flex-direction: column; gap: 1rem; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- NAV -->
+<!-- ════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-brand">Angel Eyes</div>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/hire.html">Hire</a></li>
+    <li><a href="/proof.html">Evidence</a></li>
+    <li><a href="/blog.html">Blog</a></li>
+    <li><a href="/journey.html">Journey</a></li>
+    <li><a href="/quickdraw.html" class="active">Draw!</a></li>
+  </ul>
+</nav>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- MAIN DUEL PAGE -->
+<!-- ════════════════════════════════════════════ -->
+<div class="page-wrap">
+
+  <div class="game-header">
+    <h1>Quick-Draw Showdown</h1>
+    <p class="sub">High noon. One shot. How fast are you?</p>
+  </div>
+
+  <!-- DUEL ARENA -->
+  <div class="duel-arena" id="arena">
+    <div class="arena-bg"></div>
+    <div class="arena-sun"></div>
+    <div class="arena-ground"></div>
+
+    <!-- INITIAL STATE -->
+    <div class="stage-content" id="stageWait">
+      <p class="stage-phase">The Standoff</p>
+      <p class="stage-message">Wait for the draw&hellip;</p>
+      <p class="stage-hint">Click the button when you're ready</p>
+      <br>
+      <button class="btn btn-primary" id="btnStart" onclick="startDuel()">Face Your Opponent</button>
+    </div>
+
+    <!-- COUNTDOWN / READY STATE -->
+    <div class="stage-content" id="stageReady" style="display:none;">
+      <p class="stage-phase">Steady now&hellip;</p>
+      <p class="stage-message">Wait for it&hellip;</p>
+      <p class="stage-hint">Do NOT click yet — wait for the signal</p>
+    </div>
+
+    <!-- RESULT -->
+    <div class="stage-content" id="stageResult" style="display:none;"></div>
+  </div>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar" id="statsBar">
+    <div class="stat-item">
+      <div class="stat-value" id="statBest">--</div>
+      <div class="stat-label">Best Time</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value" id="statAvg">--</div>
+      <div class="stat-label">Average</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value" id="statDuels">0</div>
+      <div class="stat-label">Duels Fought</div>
+    </div>
+  </div>
+
+  <!-- CHARACTER SPEED REFERENCE -->
+  <div class="char-ref" id="charRef">
+    <div class="char-card" id="charAngel">
+      <div class="char-icon">😈</div>
+      <div class="char-name">Angel Eyes</div>
+      <div class="char-speed">&lt; 220ms</div>
+    </div>
+    <div class="char-card" id="charBlondie">
+      <div class="char-icon">🤠</div>
+      <div class="char-name">Blondie</div>
+      <div class="char-speed">220–300ms</div>
+    </div>
+    <div class="char-card" id="charTuco">
+      <div class="char-icon">😬</div>
+      <div class="char-name">Tuco</div>
+      <div class="char-speed">300–420ms</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- AI BADGE -->
+<!-- ════════════════════════════════════════════ -->
+<div class="ai-badge">
+  <span class="dot"></span>
+  <span>Built by Angel Eyes AI · 0 human clicks</span>
+</div>
+
+<footer>
+  Angel Eyes AI · Autonomous Lead Machine · <a href="/" style="color:var(--gold-dark);">n8nauts.web.app</a>
+</footer>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- GAME LOGIC -->
+<!-- ════════════════════════════════════════════ -->
+<script>
+(function() {
+  'use strict';
+
+  const arena = document.getElementById('arena');
+  const stageWait = document.getElementById('stageWait');
+  const stageReady = document.getElementById('stageReady');
+  const stageResult = document.getElementById('stageResult');
+
+  const statBest = document.getElementById('statBest');
+  const statAvg = document.getElementById('statAvg');
+  const statDuels = document.getElementById('statDuels');
+
+  let duelState = 'idle'; // idle | waiting | armed | fired
+  let drawTimeout = null;
+  let startTime = 0;
+  let stats = { best: null, times: [], duels: 0 };
+
+  // Load stats from localStorage
+  try {
+    const saved = JSON.parse(localStorage.getItem('angel-eyes-quickdraw-stats'));
+    if (saved && Array.isArray(saved.times)) {
+      stats = saved;
+    }
+  } catch(e) { /* ignore */ }
+
+  function saveStats() {
+    try {
+      localStorage.setItem('angel-eyes-quickdraw-stats', JSON.stringify(stats));
+    } catch(e) { /* ignore */ }
+  }
+
+  function updateStatsDisplay() {
+    statDuels.textContent = stats.duels;
+    if (stats.best !== null) {
+      statBest.textContent = stats.best + 'ms';
+    }
+    if (stats.times.length > 0) {
+      const avg = Math.round(stats.times.reduce((a,b) => a+b, 0) / stats.times.length);
+      statAvg.textContent = avg + 'ms';
+    }
+  }
+
+  function getRank(ms) {
+    if (ms < 220) return {
+      name: 'Angel Eyes',
+      flavor: 'You\'re faster than Angel Eyes himself. He would tip his hat — if he ever tipped his hat.',
+      icon: '😈',
+      class: 'angel'
+    };
+    if (ms < 300) return {
+      name: 'Blondie',
+      flavor: 'Blondie speed. The Man with No Name would nod in respect. Clean, fast, professional.',
+      icon: '🤠',
+      class: 'blondie'
+    };
+    if (ms < 420) return {
+      name: 'Tuco',
+      flavor: 'Tuco speed — quick enough to survive, smart enough to talk your way out of the rest.',
+      icon: '😬',
+      class: 'tuco'
+    };
+    if (ms < 600) return {
+      name: 'Greenhorn',
+      flavor: 'You\'re alive, but barely. The saloon patrons are laughing. Draw again.',
+      icon: '🫣',
+      class: 'green'
+    };
+    return {
+      name: 'Dead Man',
+      flavor: 'You\'d be face-down in the dirt, partner. The vultures are circling. Practice.',
+      icon: '💀',
+      class: 'dead'
+    };
+  }
+
+  function showResult(ms, tooEarly) {
+    clearTimeout(drawTimeout);
+    duelState = 'fired';
+    arena.classList.remove('draw-ready', 'draw-go');
+
+    const rank = tooEarly ? {
+      name: 'Cheater',
+      flavor: 'You drew before the signal. In the Old West, that gets you hanged. Wait for the draw next time.',
+      icon: '🐀',
+      class: 'dead'
+    } : getRank(ms);
+
+    stageReady.style.display = 'none';
+    stageResult.style.display = 'block';
+    stageResult.innerHTML = `
+      <div class="result-panel">
+        <div class="result-time">${tooEarly ? 'TOO SOON' : ms}</div>
+        <div class="result-unit">${tooEarly ? 'You jumped the gun' : 'milliseconds'}</div>
+        <div class="result-rank">${rank.icon} ${rank.name} Speed</div>
+        <p class="result-flavor">${rank.flavor}</p>
+        <button class="btn btn-primary" onclick="startDuel()">Draw Again</button>
+      </div>
+    `;
+
+    // Highlight character card
+    document.querySelectorAll('.char-card').forEach(c => c.classList.remove('your-rank'));
+    const cardMap = { angel: 'charAngel', blondie: 'charBlondie', tuco: 'charTuco' };
+    if (!tooEarly && cardMap[rank.class]) {
+      const card = document.getElementById(cardMap[rank.class]);
+      if (card) card.classList.add('your-rank');
+    }
+
+    // Record stat (only if valid)
+    if (!tooEarly) {
+      stats.times.push(ms);
+      if (stats.best === null || ms < stats.best) stats.best = ms;
+      stats.duels++;
+      // Keep last 100 times
+      if (stats.times.length > 100) stats.times = stats.times.slice(-100);
+      saveStats();
+      updateStatsDisplay();
+    }
+  }
+
+  function fireDraw() {
+    if (duelState !== 'armed') return;
+    startTime = performance.now();
+    duelState = 'draw';
+    arena.classList.add('draw-go');
+    stageReady.querySelector('.stage-message').textContent = 'DRAW!';
+    stageReady.querySelector('.stage-hint').textContent = 'CLICK NOW!';
+
+    // Flash effect
+    const flash = document.createElement('div');
+    flash.className = 'flash-overlay draw-flash';
+    document.body.appendChild(flash);
+    setTimeout(() => flash.remove(), 300);
+  }
+
+  window.startDuel = function() {
+    // Reset
+    clearTimeout(drawTimeout);
+    arena.classList.remove('draw-ready', 'draw-go');
+    duelState = 'idle';
+    stageWait.style.display = 'none';
+    stageResult.style.display = 'none';
+    stageReady.style.display = 'block';
+    stageReady.querySelector('.stage-message').textContent = 'Wait for it…';
+    stageReady.querySelector('.stage-hint').textContent = 'Do NOT click yet — wait for the signal';
+
+    // After short delay, arm the duel
+    setTimeout(() => {
+      if (duelState !== 'idle') return;
+      duelState = 'armed';
+      arena.classList.add('draw-ready');
+
+      // Random delay: 2-6 seconds
+      const delay = 2000 + Math.random() * 4000;
+      drawTimeout = setTimeout(fireDraw, delay);
+    }, 600 + Math.random() * 600);
+  };
+
+  // Click handler on arena
+  arena.addEventListener('click', function(e) {
+    if (e.target.tagName === 'BUTTON') return; // let buttons work
+
+    if (duelState === 'fired' || duelState === 'idle') return;
+
+    if (duelState === 'armed') {
+      // Too early!
+      const earlyTime = Math.round(performance.now() - (startTime || performance.now()));
+      showResult(earlyTime, true);
+      return;
+    }
+
+    if (duelState === 'draw') {
+      const reactionTime = Math.round(performance.now() - startTime);
+      showResult(reactionTime, false);
+      return;
+    }
+  });
+
+  // Load display
+  updateStatsDisplay();
+})();
+</script>
+
+</body>
+</html>
