@@ -60,11 +60,11 @@
 - [ ] H48: Generate FAL asset: wanted poster generator template
 
 ## DAY 5 — CONTENT DEPTH (Movie Lore + AI Agent Story)
-- [ ] H49: Create Dollars Trilogy timeline
-- [ ] H50: Add character profiles for all 3 main characters
+- [x] H49: Create Dollars Trilogy timeline (done 2026-06-15 — /trilogy.html combines H49+H50+H52)
+- [x] H50: Add character profiles for all 3 main characters (done 2026-06-15 — part of /trilogy.html)
 - [ ] H51: Generate FAL asset: treasure map showing the gold hunt route
-- [ ] H52: Create "Behind the Scenes" with Sergio Leone facts
-- [ ] H53: Add Ennio Morricone tribute section
+- [x] H52: Create "Behind the Scenes" with Sergio Leone facts (done 2026-06-15 — part of /trilogy.html, 8 facts)
+- [x] H53: Add Ennio Morricone tribute section (done 2026-06-15 — part of /trilogy.html, with iconic track names)
 - [x] H54: Create "The Agent's Journey" — story of how the AI built this site
 - [ ] H55: Generate FAL asset: Angel Eyes pocket watch decorative element
 - [x] H56: Add famous quotes rotator
