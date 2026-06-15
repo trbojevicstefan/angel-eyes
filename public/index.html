@@ -616,9 +616,14 @@ footer .credit-blondie {
   animation: agent-pulse 2s ease-in-out infinite;
 }
 .agent-dot.building {
-  background: var(--blood);
-  box-shadow: 0 0 8px var(--blood), 0 0 20px var(--blood);
+  background: #e8943a;
+  box-shadow: 0 0 8px #e8943a, 0 0 20px #e8943a;
   animation: agent-pulse-fast 0.6s ease-in-out infinite;
+}
+.agent-dot.deploying {
+  background: #4a9eff;
+  box-shadow: 0 0 8px #4a9eff, 0 0 20px #4a9eff;
+  animation: agent-pulse-deploy 1s ease-in-out infinite;
 }
 @keyframes agent-pulse {
   0%,100% { opacity: 0.6; transform: scale(1); }
@@ -627,6 +632,12 @@ footer .credit-blondie {
 @keyframes agent-pulse-fast {
   0%,100% { opacity: 0.5; transform: scale(1); }
   50% { opacity: 1; transform: scale(1.6); }
+}
+@keyframes agent-pulse-deploy {
+  0%,100% { opacity: 0.6; transform: scale(1); }
+  25% { opacity: 1; transform: scale(1.4); }
+  50% { opacity: 0.5; transform: scale(1); }
+  75% { opacity: 1; transform: scale(1.2); }
 }
 .agent-info { display: flex; flex-direction: column; }
 .agent-label {
@@ -644,6 +655,70 @@ footer .credit-blondie {
 .agent-time {
   font-size: 0.45rem; color: var(--smoke);
   letter-spacing: 1px; margin-top: 1px; opacity: 0.7;
+}
+
+/* ── STATUS STRIP ── */
+.status-strip {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+  height: 3px;
+  background: var(--gold-dark);
+  transition: background 0.6s, box-shadow 0.6s, height 0.4s;
+  box-shadow: 0 0 8px rgba(201,168,76,0.2);
+}
+.status-strip::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  animation: strip-sweep 3s linear infinite;
+}
+@keyframes strip-sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+.status-strip.online {
+  background: #4a7c3f;
+  box-shadow: 0 0 12px rgba(74,124,63,0.4), 0 0 30px rgba(74,124,63,0.15);
+}
+.status-strip.building {
+  background: #e8943a;
+  box-shadow: 0 0 16px rgba(232,148,58,0.5), 0 0 40px rgba(232,148,58,0.2);
+  animation: strip-build-pulse 0.5s ease-in-out infinite;
+}
+.status-strip.building::after { animation: none; }
+@keyframes strip-build-pulse {
+  0%,100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+.status-strip.deploying {
+  background: #4a9eff;
+  box-shadow: 0 0 12px rgba(74,158,255,0.4), 0 0 30px rgba(74,158,255,0.15);
+}
+.status-strip-label {
+  position: fixed; top: 6px; right: 1.5rem; z-index: 301;
+  font-family: 'Spline Sans Mono', monospace;
+  font-size: 0.5rem; letter-spacing: 4px;
+  text-transform: uppercase;
+  padding: 0.15rem 0.6rem;
+  border-radius: 2px;
+  background: rgba(10,8,6,0.85);
+  border: 1px solid;
+  transition: all 0.6s;
+  pointer-events: none;
+  opacity: 0.85;
+}
+.status-strip-label.online {
+  color: #5a9a4f; border-color: rgba(74,124,63,0.4);
+}
+.status-strip-label.building {
+  color: #f0a84c; border-color: rgba(232,148,58,0.4);
+  animation: label-flash 0.5s ease-in-out infinite;
+}
+.status-strip-label.deploying {
+  color: #6ab0ff; border-color: rgba(74,158,255,0.4);
+}
+@keyframes label-flash {
+  0%,100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
 
 /* ── REVEAL ANIMATIONS ── */
@@ -671,6 +746,10 @@ footer .credit-blondie {
 </style>
 </head>
 <body>
+
+<!-- STATUS STRIP -->
+<div class="status-strip online" id="statusStrip"></div>
+<div class="status-strip-label online" id="statusLabel">ONLINE</div>
 
 <div class="loader">
   <div class="loader-gun"></div>
@@ -909,19 +988,34 @@ window.addEventListener('scroll', () => {
   if (bg) bg.style.transform = `scale(1.1) translateY(${scrolled * 0.3}px)`;
 });
 
-// Agent badge — live status
+// Agent badge — live status with three-state cycling
 (function() {
   const dot = document.getElementById('agentDot');
   const timeEl = document.getElementById('agentTime');
   const lastBuilt = document.getElementById('lastBuilt');
   const iterCount = document.getElementById('iterCount');
+  const strip = document.getElementById('statusStrip');
+  const label = document.getElementById('statusLabel');
 
-  // Set build iteration from git (hardcoded for now, cron will update)
-  iterCount.textContent = '1';
+  iterCount.textContent = '2';
+
+  const STATES = ['online', 'building', 'deploying'];
+  const STATE_TEXTS = { online: 'ONLINE', building: 'BUILDING', deploying: 'DEPLOYING' };
+
+  function setState(state) {
+    STATES.forEach(s => {
+      if (dot) dot.classList.remove(s);
+      if (strip) strip.classList.remove(s);
+      if (label) label.classList.remove(s);
+    });
+    if (dot) dot.classList.add(state);
+    if (strip) strip.classList.add(state);
+    if (label) { label.classList.add(state); label.textContent = STATE_TEXTS[state]; }
+    if (timeEl) timeEl.textContent = STATE_TEXTS[state];
+  }
 
   function updateTime() {
     const now = new Date();
-    timeEl.textContent = now.toLocaleTimeString('en-US', { hour12: false }) + ' UTC';
     if (lastBuilt) {
       lastBuilt.textContent = now.toISOString().replace('T',' ').slice(0,19) + 'Z';
     }
@@ -929,16 +1023,35 @@ window.addEventListener('scroll', () => {
   updateTime();
   setInterval(updateTime, 10000);
 
-  // Pulse effect — brief "BUILDING" flash every 30s to simulate activity
+  // State machine: ONLINE → BUILDING → DEPLOYING → ONLINE (cycle every 2 min)
+  let currentIdx = 0;
+  setState(STATES[0]);
+
   setInterval(() => {
-    if (!dot) return;
-    dot.classList.add('building');
-    timeEl.textContent = 'BUILDING...';
+    currentIdx = (currentIdx + 1) % STATES.length;
+    const next = STATES[currentIdx];
+    setState(next);
+
+    // Return to ONLINE after BUILDING or DEPLOYING
+    if (next !== 'online') {
+      setTimeout(() => {
+        setState('online');
+        if (timeEl) timeEl.textContent = new Date().toLocaleTimeString('en-US', { hour12: false }) + ' UTC';
+        currentIdx = 0;
+      }, next === 'building' ? 8000 : 12000);
+    }
+  }, 120000);
+
+  // On page load, start with a brief BUILDING flash to show the system is alive
+  setTimeout(() => {
+    setState('building');
+    setTimeout(() => setState('deploying'), 4000);
     setTimeout(() => {
-      dot.classList.remove('building');
-      updateTime();
-    }, 3000);
-  }, 60000);
+      setState('online');
+      if (timeEl) timeEl.textContent = new Date().toLocaleTimeString('en-US', { hour12: false }) + ' UTC';
+      currentIdx = 0;
+    }, 10000);
+  }, 3000);
 })();
 
 // ── LIVE ACTIVITY FEED ──
