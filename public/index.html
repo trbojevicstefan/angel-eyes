@@ -5173,6 +5173,7 @@ window.addEventListener('scroll', () => {
   };
 
   window.chooseGunslinger = function(chosen, players) {
+    const grid = document.getElementById('faceoffGrid');
     // Disable further selection
     players.forEach(p => {
       p.onclick = null;

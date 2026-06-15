@@ -51,7 +51,7 @@
 - [ ] H39: Generate FAL asset: poker cards (dead man's hand, ace of spades)
 - [ ] H40: Create trivia quiz — "How well do you know the West?"
 - [ ] H41: Add "Shoot the Target" CSS game — click moving targets
-- [ ] H42: Implement "The Standoff" — pick Blondie or Angel Eyes, random outcome
+- [x] H42: Implement "The Standoff" — pick Blondie or Angel Eyes, random outcome
 - [ ] H43: Generate FAL asset: bullet animation frames for shooting effect
 - [x] H44: Create "Visitor's Wall" — leave your alias carved in wood (localStorage)
 - [x] H45: Add Ennio Morricone soundtrack buttons with YouTube links
