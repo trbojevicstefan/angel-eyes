@@ -29,7 +29,7 @@
 - [x] H21: SEO: Add FAQ section with schema markup — 5 questions about AI agents (schema already in head, now visible FAQ section with accordion toggle + nav link)
 - [x] H22: Create "The Agent's Resume" — fictional CV of the AI showing capabilities
 - [ ] H23: Generate FAL asset: "Get Your Own Agent" lead magnet mockup (ebook/guide cover)
-- [ ] H24: Add "Live Demo" section showing agent actively editing code in real-time
+- [x] H24: Add "Live Demo" section showing agent actively editing code in real-time
 
 ## DAY 3 — VISUAL SUPREMACY (CSS Art + Effects)
 - [ ] H25: Implement CSS 3D card flip on feature cards

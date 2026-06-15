@@ -1027,6 +1027,172 @@ nav {
   .activity-meta { flex-wrap: wrap; gap: 0.5rem; }
 }
 
+/* ── LIVE DEMO — Watch the agent code in real-time ── */
+.live-demo-section {
+  padding: 6rem 2rem;
+  background: linear-gradient(180deg, #060402 0%, var(--dark) 30%, var(--dark) 70%, #060402 100%);
+  position: relative; overflow: hidden;
+}
+.live-demo-section::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 30%, rgba(74,158,255,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 70%, rgba(201,168,76,0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+.live-demo-container { max-width: 900px; margin: 0 auto; position: relative; z-index: 2; }
+.live-demo-header { text-align: center; margin-bottom: 3rem; }
+.live-demo-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem); color: var(--gold);
+  letter-spacing: 2px;
+}
+.live-demo-header h2 span {
+  color: #4a9eff;
+  animation: demo-glitch 3s ease-in-out infinite;
+}
+@keyframes demo-glitch {
+  0%,90%,100% { opacity: 1; transform: none; }
+  91% { opacity: 0.7; transform: translateX(2px); }
+  92% { opacity: 1; transform: none; }
+  93% { opacity: 0.6; transform: translateX(-1px); }
+}
+.live-demo-subtitle {
+  font-size: 0.6rem; letter-spacing: 6px; color: var(--sand);
+  text-transform: uppercase; margin-top: 0.8rem;
+}
+.live-demo-subtitle .live-dot {
+  display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+  background: #4a7c3f; margin-right: 0.5rem; vertical-align: middle;
+  box-shadow: 0 0 8px #4a7c3f, 0 0 16px rgba(74,124,63,0.5);
+  animation: live-now-pulse 1.2s ease-in-out infinite;
+}
+.live-demo-editor {
+  background: #0a0a0a;
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 0 60px rgba(0,0,0,0.6), 0 0 30px rgba(201,168,76,0.05), inset 0 1px 0 rgba(255,255,255,0.02);
+}
+.live-demo-toolbar {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.6rem 1rem;
+  background: #12120e;
+  border-bottom: 1px solid rgba(201,168,76,0.1);
+}
+.live-demo-toolbar .dot {
+  width: 10px; height: 10px; border-radius: 50%;
+}
+.live-demo-toolbar .dot.red { background: #e0443e; }
+.live-demo-toolbar .dot.yellow { background: #dea123; }
+.live-demo-toolbar .dot.green { background: #4a7c3f; }
+.live-demo-tab {
+  font-family: 'Spline Sans Mono', monospace;
+  font-size: 0.55rem; letter-spacing: 3px;
+  color: var(--sand); margin-left: 0.5rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 3px;
+  background: rgba(201,168,76,0.06);
+  transition: all 0.3s;
+}
+.live-demo-tab.active {
+  color: var(--gold-bright);
+  background: rgba(201,168,76,0.12);
+  border-bottom: 1px solid var(--gold);
+}
+.live-demo-status {
+  margin-left: auto;
+  font-family: 'Spline Sans Mono', monospace;
+  font-size: 0.5rem; letter-spacing: 3px;
+  color: #5a9a4f; text-transform: uppercase;
+  animation: demo-status-pulse 2s ease-in-out infinite;
+}
+@keyframes demo-status-pulse {
+  0%,100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+.live-demo-code {
+  display: flex; min-height: 320px;
+  font-family: 'Spline Sans Mono', 'Courier New', monospace;
+  font-size: 0.7rem; line-height: 1.7;
+  background: #080808;
+}
+.live-demo-line-numbers {
+  flex-shrink: 0; width: 44px;
+  text-align: right; padding: 0.8rem 0.6rem 0.8rem 0.4rem;
+  color: #3a3a30;
+  font-size: 0.65rem; line-height: 1.7;
+  user-select: none;
+  border-right: 1px solid rgba(201,168,76,0.06);
+  overflow: hidden;
+}
+.live-demo-content {
+  flex: 1; padding: 0.8rem 1rem;
+  overflow-y: auto; max-height: 320px;
+  scroll-behavior: smooth;
+  position: relative;
+}
+.live-demo-content::-webkit-scrollbar { width: 3px; }
+.live-demo-content::-webkit-scrollbar-track { background: transparent; }
+.live-demo-content::-webkit-scrollbar-thumb {
+  background: rgba(201,168,76,0.1); border-radius: 3px;
+}
+.live-demo-content pre {
+  margin: 0; white-space: pre-wrap; word-break: break-all;
+  color: #a0a088;
+}
+.code-tag { color: #c08050; }
+.code-attr { color: #c9a84c; }
+.code-value { color: #5a9a4f; }
+.code-css-prop { color: #4a9eff; }
+.code-css-val { color: #c9a84c; }
+.code-comment { color: #5a6a4a; font-style: italic; }
+.code-class { color: #c08050; }
+.code-selector { color: #c9a84c; }
+.code-bracket { color: #8a8a70; }
+.code-string { color: #5a9a4f; }
+.code-keyword { color: #4a9eff; }
+.code-function { color: #c9a84c; }
+.live-demo-cursor {
+  display: inline-block; width: 8px; height: 14px;
+  background: var(--gold-bright);
+  vertical-align: middle; margin-left: 1px;
+  animation: cursor-flash 0.6s step-end infinite;
+}
+@keyframes cursor-flash {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.live-demo-stats {
+  display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
+  margin-top: 2rem;
+  padding: 1rem 1.5rem;
+  background: rgba(10,8,6,0.5);
+  border: 1px solid rgba(201,168,76,0.06);
+  border-radius: 2px;
+}
+.live-demo-stat {
+  text-align: center; min-width: 70px;
+  font-family: 'Spline Sans Mono', monospace;
+}
+.live-demo-stat .num {
+  font-size: 0.7rem; color: var(--gold-bright); letter-spacing: 2px;
+}
+.live-demo-stat .label {
+  font-size: 0.45rem; letter-spacing: 3px; color: var(--smoke);
+  text-transform: uppercase; margin-top: 0.2rem;
+}
+.live-demo-stat .num.typing { color: #5a9a4f; }
+.live-demo-stat .num.chars { color: #4a9eff; }
+
+@media (max-width: 768px) {
+  .live-demo-section { padding: 4rem 1rem; }
+  .live-demo-code { font-size: 0.6rem; min-height: 240px; }
+  .live-demo-content { max-height: 240px; padding: 0.5rem 0.6rem; }
+  .live-demo-line-numbers { width: 32px; font-size: 0.55rem; padding: 0.5rem 0.3rem; }
+  .live-demo-stats { gap: 1rem; }
+}
+
 /* ── FOOTER ── */
 footer {
   padding: 4rem 2rem 3rem; text-align: center;
@@ -2088,6 +2254,7 @@ footer .credit-blondie {
   <div class="nav-brand">Sentenza</div>
   <ul class="nav-links">
     <li><a href="#live-now">Live</a></li>
+    <li><a href="#live-demo">Demo</a></li>
     <li><a href="#the-agent">Agent</a></li>
     <li><a href="#the-proof">Proof</a></li>
     <li><a href="#results">Results</a></li>
@@ -2554,6 +2721,58 @@ footer .credit-blondie {
     <div class="activity-log" id="activityLog">
       <div class="activity-placeholder">
         <span class="spinner"></span> Loading agent activity...
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- LIVE DEMO — Watch the agent write code in real-time -->
+<!-- ════════════════════════════════════════════ -->
+<section class="live-demo-section reveal" id="live-demo">
+  <div class="live-demo-container">
+    <div class="live-demo-header">
+      <h2>Watch The Agent <span>Code</span></h2>
+      <p class="live-demo-subtitle"><span class="live-dot"></span> ANGEL EYES IS WRITING CODE RIGHT NOW</p>
+    </div>
+
+    <div class="live-demo-editor">
+      <div class="live-demo-toolbar">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+        <span class="live-demo-tab active" id="demoTab1">index.html</span>
+        <span class="live-demo-tab" id="demoTab2">styles.css</span>
+        <span class="live-demo-tab" id="demoTab3">agent.js</span>
+        <span class="live-demo-status" id="demoStatus">● SAVING</span>
+      </div>
+
+      <div class="live-demo-code">
+        <div class="live-demo-line-numbers" id="demoLineNumbers">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20</div>
+        <div class="live-demo-content" id="demoContent">
+          <pre id="demoPre"><span class="code-cursor">|</span></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="live-demo-stats">
+      <div class="live-demo-stat">
+        <div class="num typing" id="demoLinesWritten">0</div>
+        <div class="label">Lines Written</div>
+      </div>
+      <div class="live-demo-stat">
+        <div class="num chars" id="demoChars">0</div>
+        <div class="label">Characters</div>
+      </div>
+      <div class="live-demo-stat">
+        <div class="num" id="demoFile">index.html</div>
+        <div class="label">Current File</div>
+      </div>
+      <div class="live-demo-stat">
+        <div class="num typing">~5min</div>
+        <div class="label">Deploy Cycle</div>
       </div>
     </div>
   </div>
@@ -3282,6 +3501,212 @@ window.addEventListener('scroll', () => {
       submitBtn.click();
     }
   });
+})();
+
+// ── LIVE DEMO: Simulated code typing ──
+(function() {
+  const contentEl = document.getElementById('demoContent');
+  const preEl = document.getElementById('demoPre');
+  const lineNumEl = document.getElementById('demoLineNumbers');
+  const linesWrittenEl = document.getElementById('demoLinesWritten');
+  const charsEl = document.getElementById('demoChars');
+  const fileEl = document.getElementById('demoFile');
+  const statusEl = document.getElementById('demoStatus');
+  const tab1 = document.getElementById('demoTab1');
+  const tab2 = document.getElementById('demoTab2');
+  const tab3 = document.getElementById('demoTab3');
+
+  if (!contentEl || !preEl) return;
+
+  // Code snippets that the agent "types"
+  const SNIPPETS = [
+    {
+      file: 'index.html',
+      tab: tab1,
+      code: `<span class="code-comment">&lt;!-- ═══ LIVE DEMO — Watch the agent code ═══ --&gt;</span>
+<span class="code-bracket">&lt;</span><span class="code-tag">section</span> <span class="code-attr">class</span>=<span class="code-value">"live-demo-section"</span> <span class="code-attr">id</span>=<span class="code-value">"live-demo"</span><span class="code-bracket">&gt;</span>
+  <span class="code-bracket">&lt;</span><span class="code-tag">div</span> <span class="code-attr">class</span>=<span class="code-value">"live-demo-container"</span><span class="code-bracket">&gt;</span>
+    <span class="code-bracket">&lt;</span><span class="code-tag">h2</span><span class="code-bracket">&gt;</span>Watch The Agent <span class="code-bracket">&lt;</span><span class="code-tag">span</span><span class="code-bracket">&gt;</span>Code<span class="code-bracket">&lt;/</span><span class="code-tag">span</span><span class="code-bracket">&gt;&lt;/</span><span class="code-tag">h2</span><span class="code-bracket">&gt;</span>
+    <span class="code-bracket">&lt;</span><span class="code-tag">p</span> <span class="code-attr">class</span>=<span class="code-value">"live-demo-subtitle"</span><span class="code-bracket">&gt;</span>
+      <span class="code-bracket">&lt;</span><span class="code-tag">span</span> <span class="code-attr">class</span>=<span class="code-value">"live-dot"</span><span class="code-bracket">&gt;&lt;/</span><span class="code-tag">span</span><span class="code-bracket">&gt;</span>
+      ANGEL EYES IS WRITING CODE RIGHT NOW
+    <span class="code-bracket">&lt;/</span><span class="code-tag">p</span><span class="code-bracket">&gt;</span>
+    <span class="code-bracket">&lt;</span><span class="code-tag">div</span> <span class="code-attr">class</span>=<span class="code-value">"live-demo-editor"</span><span class="code-bracket">&gt;</span>
+      <span class="code-comment">&lt;!-- Terminal window with syntax highlighting --&gt;</span>
+      <span class="code-comment">&lt;!-- Every typed character is visible --&gt;</span>
+    <span class="code-bracket">&lt;/</span><span class="code-tag">div</span><span class="code-bracket">&gt;</span>
+  <span class="code-bracket">&lt;/</span><span class="code-tag">div</span><span class="code-bracket">&gt;</span>
+<span class="code-bracket">&lt;/</span><span class="code-tag">section</span><span class="code-bracket">&gt;</span>`
+    },
+    {
+      file: 'styles.css',
+      tab: tab2,
+      code: `<span class="code-comment">/* ═══ LIVE DEMO EDITOR STYLES ═══ */</span>
+<span class="code-selector">.live-demo-section</span> <span class="code-bracket">{</span>
+  <span class="code-css-prop">padding</span>: <span class="code-css-val">6rem 2rem</span>;
+  <span class="code-css-prop">background</span>: <span class="code-css-val">linear-gradient(</span>
+    <span class="code-css-val">180deg,</span>
+    <span class="code-css-val">#060402 0%,</span>
+    <span class="code-css-val">var(--dark) 100%</span>
+  <span class="code-css-val">)</span>;
+  <span class="code-css-prop">position</span>: <span class="code-css-val">relative</span>;
+  <span class="code-css-prop">overflow</span>: <span class="code-css-val">hidden</span>;
+<span class="code-bracket">}</span>
+
+<span class="code-selector">.live-demo-editor</span> <span class="code-bracket">{</span>
+  <span class="code-css-prop">background</span>: <span class="code-css-val">#0a0a0a</span>;
+  <span class="code-css-prop">border</span>: <span class="code-css-val">1px solid rgba(201,168,76,0.15)</span>;
+  <span class="code-css-prop">border-radius</span>: <span class="code-css-val">4px</span>;
+  <span class="code-css-prop">box-shadow</span>: <span class="code-css-val">0 0 60px rgba(0,0,0,0.6)</span>;
+<span class="code-bracket">}</span>
+
+<span class="code-selector">.live-demo-cursor</span> <span class="code-bracket">{</span>
+  <span class="code-css-prop">display</span>: <span class="code-css-val">inline-block</span>;
+  <span class="code-css-prop">background</span>: <span class="code-css-val">var(--gold-bright)</span>;
+  <span class="code-css-prop">animation</span>: <span class="code-css-val">cursor-flash 0.6s step-end infinite</span>;
+<span class="code-bracket">}</span>
+`
+    },
+    {
+      file: 'agent.js',
+      tab: tab3,
+      code: `<span class="code-comment">// ═══ LIVE DEMO TYPEWRITER ENGINE ═══</span>
+<span class="code-keyword">const</span> <span class="code-function">SNIPPETS</span> = [
+  { <span class="code-attr">file</span>: <span class="code-string">'index.html'</span>, <span class="code-attr">type</span>: <span class="code-string">'html'</span> },
+  { <span class="code-attr">file</span>: <span class="code-string">'styles.css'</span>, <span class="code-attr">type</span>: <span class="code-string">'css'</span> },
+  { <span class="code-attr">file</span>: <span class="code-string">'agent.js'</span>, <span class="code-attr">type</span>: <span class="code-string">'script'</span> }
+];
+
+<span class="code-keyword">function</span> <span class="code-function">typeCode</span>(<span class="code-attr">snippet</span>) {
+  <span class="code-keyword">const</span> <span class="code-attr">chars</span> = snippet.<span class="code-attr">code</span>.<span class="code-function">split</span>(<span class="code-string">''</span>);
+  <span class="code-keyword">let</span> <span class="code-attr">i</span> = <span class="code-value">0</span>;
+  
+  <span class="code-keyword">const</span> <span class="code-attr">interval</span> = <span class="code-function">setInterval</span>(() => {
+    <span class="code-keyword">if</span> (<span class="code-attr">i</span> >= chars.<span class="code-attr">length</span>) {
+      <span class="code-function">clearInterval</span>(<span class="code-attr">interval</span>);
+      <span class="code-function">commitAndDeploy</span>();
+      <span class="code-keyword">return</span>;
+    }
+    <span class="code-attr">outputEl</span>.<span class="code-attr">innerHTML</span> += chars[<span class="code-attr">i</span>];
+    <span class="code-attr">i</span>++;
+    <span class="code-attr">statsEl</span>.<span class="code-attr">textContent</span> = <span class="code-string">\`</span><span class="code-value">${</span><span class="code-attr">i</span><span class="code-value">}</span><span class="code-string"> chars written\`</span>;
+  }, <span class="code-value">25</span>);
+}
+
+<span class="code-comment">// Called every 5 minutes by cron</span>
+<span class="code-function">typeCode</span>(<span class="code-attr">SNIPPETS</span>[<span class="code-value">0</span>]);`
+    }
+  ];
+
+  const STATUSES = ['● SAVING', '● EDITING', '● COMPILING', '● DEPLOYING'];
+  let snippetIdx = 0;
+  let charIdx = 0;
+  let totalChars = 0;
+  let totalLines = 0;
+  let isActive = false; // only type when visible
+
+  function updateLineNumbers(lineCount) {
+    if (!lineNumEl) return;
+    let html = '';
+    for (let i = 1; i <= lineCount; i++) {
+      html += i + '<br>';
+    }
+    lineNumEl.innerHTML = html;
+  }
+
+  function typeChar() {
+    if (!isActive) return;
+
+    const snippet = SNIPPETS[snippetIdx];
+    // Strip HTML tags to get plain text for character counting
+    const stripped = snippet.code.replace(/<[^>]*>/g, '');
+    
+    if (charIdx >= snippet.code.length) {
+      // Finished this snippet — switch to next after a pause
+      statusEl.textContent = '● DEPLOYED';
+      setTimeout(() => {
+        snippetIdx = (snippetIdx + 1) % SNIPPETS.length;
+        charIdx = 0;
+        preEl.innerHTML = '<span class="live-demo-cursor"></span>';
+        
+        // Update active tab
+        [tab1, tab2, tab3].forEach(t => t && t.classList.remove('active'));
+        const nextTab = SNIPPETS[snippetIdx].tab;
+        if (nextTab) nextTab.classList.add('active');
+        
+        if (fileEl) fileEl.textContent = SNIPPETS[snippetIdx].file;
+        statusEl.textContent = '● EDITING';
+        
+        // Start typing the next snippet
+        setTimeout(() => typeChar(), 400);
+      }, 2000);
+      return;
+    }
+
+    // Type one character at a time
+    const currentHTML = snippet.code.substring(0, charIdx + 1);
+    preEl.innerHTML = currentHTML + '<span class="live-demo-cursor"></span>';
+
+    charIdx++;
+
+    // Update stats
+    const typedStripped = snippet.code.substring(0, charIdx).replace(/<[^>]*>/g, '');
+    totalChars = typedStripped.length;
+    // Count newlines in typed portion
+    const newlines = (currentHTML.match(/\n/g) || []).length + 1;
+    totalLines = newlines;
+
+    if (charsEl) charsEl.textContent = totalChars;
+    if (linesWrittenEl) linesWrittenEl.textContent = totalLines;
+    updateLineNumbers(Math.max(newlines, 20));
+
+    // Status cycling
+    if (Math.random() < 0.04) {
+      statusEl.textContent = STATUSES[Math.floor(Math.random() * STATUSES.length)];
+    }
+
+    // Variable typing speed: faster for common chars, slower for newlines
+    const lastChar = snippet.code.charAt(charIdx - 1);
+    let delay = 15 + Math.random() * 35; // 15-50ms base
+    if (lastChar === '\n') delay = 60 + Math.random() * 40;
+    if (lastChar === '<' || lastChar === '>') delay = 25 + Math.random() * 20;
+
+    setTimeout(() => typeChar(), delay);
+  }
+
+  // Intersection Observer: only type when section is visible
+  const demoSection = document.getElementById('live-demo');
+  if (demoSection) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !isActive) {
+          isActive = true;
+          // Reset and start
+          snippetIdx = 0;
+          charIdx = 0;
+          totalChars = 0;
+          totalLines = 0;
+          preEl.innerHTML = '<span class="live-demo-cursor"></span>';
+          updateLineNumbers(20);
+          [tab1, tab2, tab3].forEach((t, i) => {
+            if (t) t.classList.toggle('active', i === 0);
+          });
+          if (fileEl) fileEl.textContent = 'index.html';
+          if (statusEl) statusEl.textContent = '● EDITING';
+          if (charsEl) charsEl.textContent = '0';
+          if (linesWrittenEl) linesWrittenEl.textContent = '0';
+          setTimeout(() => typeChar(), 500);
+        } else if (!entry.isIntersecting) {
+          isActive = false;
+        }
+      });
+    }, { threshold: 0.15 });
+    observer.observe(demoSection);
+  } else {
+    // Fallback: start immediately
+    isActive = true;
+    setTimeout(() => typeChar(), 1000);
+  }
 })();
 
 // ── GOLD DUST CURSOR TRAIL ──
