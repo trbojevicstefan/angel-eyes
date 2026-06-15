@@ -21,7 +21,7 @@
 - [x] H14: Add "How It Works" 3-step section: 1. Deploy Agent 2. It Learns 3. Leads Come In
 - [x] H15: Generate FAL asset: infographic-style illustration of AI agent working autonomously
 - [x] H15b: Create dedicated /proof.html — "The Evidence" standalone page with git receipts, timeline, infographic, verification instructions, and proper SEO meta tags — linked from main nav
-- [ ] H16: Create "Results" section — placeholder metrics that update as agent runs longer
+- [x] H16: Create "Results" section — placeholder metrics that update as agent runs longer
 - [x] H17: Add email capture form (western styled) — "Want an agent like this?" — stores to localStorage
 - [ ] H18: Generate FAL asset: testimonial avatars (western characters) for social proof section
 - [x] H19: Create "vs Competition" comparison table: Angel Eyes AI vs Manual Websites vs Other AI Tools

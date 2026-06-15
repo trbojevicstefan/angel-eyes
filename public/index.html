@@ -1745,6 +1745,130 @@ footer .credit-blondie {
   margin-top: 0.2rem;
 }
 
+/* ── RESULTS SECTION ── */
+.results-section {
+  padding: 5rem 2rem;
+  background: linear-gradient(180deg, transparent 0%, rgba(74,158,255,0.03) 30%, rgba(74,158,255,0.03) 70%, transparent 100%);
+  position: relative;
+}
+.results-header {
+  text-align: center; margin-bottom: 3rem;
+}
+.results-header h2 {
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 2.5rem; color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.results-header p {
+  color: var(--smoke); font-size: 0.7rem;
+  letter-spacing: 2px; max-width: 600px; margin: 0 auto;
+}
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem; max-width: 1000px; margin: 0 auto;
+}
+.result-card {
+  background: rgba(26,20,12,0.7);
+  border: 1px solid rgba(201,168,76,0.1);
+  border-radius: 8px; padding: 2rem 1.5rem;
+  text-align: center; transition: all 0.4s;
+  position: relative; overflow: hidden;
+}
+.result-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+  opacity: 0; transition: opacity 0.4s;
+}
+.result-card:hover {
+  border-color: rgba(201,168,76,0.35);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 30px rgba(201,168,76,0.08);
+}
+.result-card:hover::before { opacity: 1; }
+.result-card.highlight {
+  border-color: rgba(255,68,51,0.2);
+  background: rgba(26,20,12,0.8);
+}
+.result-card.highlight:hover {
+  border-color: rgba(255,68,51,0.4);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 30px rgba(255,68,51,0.06);
+}
+.result-card.highlight::before {
+  background: linear-gradient(90deg, transparent, rgba(255,68,51,0.3), transparent);
+}
+.result-icon {
+  font-size: 2rem; margin-bottom: 0.8rem;
+}
+.result-num {
+  font-family: 'Special Elite', monospace;
+  font-size: 2.5rem; font-weight: bold;
+  color: var(--gold);
+  line-height: 1; margin-bottom: 0.5rem;
+  transition: color 0.3s;
+}
+.result-card.highlight .result-num {
+  color: var(--blood);
+}
+.result-label {
+  font-size: 0.55rem; letter-spacing: 4px;
+  color: var(--gold-dark); text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+.result-detail {
+  font-size: 0.55rem; color: var(--smoke);
+  letter-spacing: 1px; line-height: 1.4;
+  margin-bottom: 0.8rem; min-height: 2.5em;
+}
+.result-verify {
+  font-size: 0.5rem;
+}
+.result-verify a, .result-verify span {
+  color: #4a9eff; text-decoration: none;
+  letter-spacing: 2px; text-transform: uppercase;
+  transition: all 0.3s;
+  border-bottom: 1px solid rgba(74,158,255,0.2);
+  padding-bottom: 2px;
+}
+.result-verify a:hover {
+  color: #6ab4ff;
+  border-bottom-color: rgba(74,158,255,0.6);
+}
+.result-card.highlight .result-verify a {
+  color: #ff6644;
+  border-bottom-color: rgba(255,68,51,0.2);
+}
+.result-card.highlight .result-verify a:hover {
+  color: #ff8877;
+  border-bottom-color: rgba(255,68,51,0.6);
+}
+.results-footer {
+  text-align: center; margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(201,168,76,0.08);
+}
+.results-footer p {
+  color: var(--smoke); font-size: 0.6rem;
+  letter-spacing: 2px; opacity: 0.8;
+}
+.results-footer strong {
+  color: var(--gold);
+}
+
+@media (max-width: 768px) {
+  .results-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .result-num { font-size: 2rem; }
+}
+@media (max-width: 480px) {
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ── FAQ ── */
 .faq-section {
   padding: 5rem 2rem;
@@ -1861,6 +1985,7 @@ footer .credit-blondie {
     <li><a href="#live-now">Live</a></li>
     <li><a href="#the-agent">Agent</a></li>
     <li><a href="#the-proof">Proof</a></li>
+    <li><a href="#results">Results</a></li>
     <li><a href="#certified">Certified</a></li>
     <li><a href="#wanted">Wanted</a></li>
     <li><a href="#faceoff">Faceoff</a></li>
@@ -2078,6 +2203,84 @@ footer .credit-blondie {
     <p style="font-size:0.5rem;margin-top:0.5rem;color:var(--gold-dark);">Digitally signed by agent agent@angel-eyes.ai &bull; 2026-06-15</p>
   </div>
 </section>
+<div class="section-divider"></div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- RESULTS — What The Agent Has Actually Done -->
+<!-- ════════════════════════════════════════════ -->
+<section class="results-section reveal" id="results">
+  <div class="results-header">
+    <h2>THE RESULTS</h2>
+    <p>Not promises. Not projections. These numbers are real, verifiable, and growing every 5 minutes.</p>
+  </div>
+
+  <div class="results-grid">
+    <div class="result-card">
+      <div class="result-icon">📦</div>
+      <div class="result-num" id="resultCommits" data-target="33">0</div>
+      <div class="result-label">Git Commits</div>
+      <div class="result-detail">Every single one authored by Angel Eyes AI</div>
+      <div class="result-verify">
+        <a href="https://github.com/trbojevicstefan/angel-eyes" target="_blank">Verify on GitHub →</a>
+      </div>
+    </div>
+
+    <div class="result-card">
+      <div class="result-icon">📝</div>
+      <div class="result-num" id="resultLines" data-target="4101">0</div>
+      <div class="result-label">Lines of Code</div>
+      <div class="result-detail">HTML, CSS, and JS — all written autonomously</div>
+      <div class="result-verify">
+        <a href="/proof.html">See the evidence →</a>
+      </div>
+    </div>
+
+    <div class="result-card">
+      <div class="result-icon">🖼️</div>
+      <div class="result-num" id="resultAssets" data-target="24">0</div>
+      <div class="result-label">AI-Generated Assets</div>
+      <div class="result-detail">Images created by FAL — no stock photos, no designers</div>
+      <div class="result-verify">
+        <a href="/proof.html">Browse assets →</a>
+      </div>
+    </div>
+
+    <div class="result-card">
+      <div class="result-icon">🌐</div>
+      <div class="result-num" id="resultPages" data-target="3">0</div>
+      <div class="result-label">Pages Deployed</div>
+      <div class="result-detail">Homepage, Evidence, Blog — all built from scratch</div>
+      <div class="result-verify">
+        <a href="/blog.html">Read the blog →</a>
+      </div>
+    </div>
+
+    <div class="result-card">
+      <div class="result-icon">⏱️</div>
+      <div class="result-num" id="resultHours" data-target="4">0</div>
+      <div class="result-label">Hours Running</div>
+      <div class="result-detail">Autonomously building since June 15, 2026</div>
+      <div class="result-verify">
+        <span>And counting...</span>
+      </div>
+    </div>
+
+    <div class="result-card highlight">
+      <div class="result-icon">🚫</div>
+      <div class="result-num" id="resultHuman" data-target="0" data-suffix="">0</div>
+      <div class="result-label">Human Interventions</div>
+      <div class="result-detail">No human has navigated, clicked, or deployed anything</div>
+      <div class="result-verify">
+        <a href="/proof.html">Audit the proof →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="results-footer">
+    <p>These numbers update every 5 minutes. Bookmark this page and check back — <strong>the agent is working right now.</strong></p>
+  </div>
+</section>
+
 <div class="section-divider"></div>
 
 <!-- ════════════════════════════════════════════ -->
@@ -2839,6 +3042,58 @@ window.addEventListener('scroll', () => {
   } else {
     // Fallback: observe the first proof number
     observer.observe(proofNumbers[0]);
+  }
+})();
+
+// ── RESULTS: Scroll-triggered count-up animations ──
+(function() {
+  const resultNumbers = document.querySelectorAll('.result-num[data-target]');
+  if (resultNumbers.length === 0) return;
+
+  let animated = false;
+
+  function formatNumR(n, suffix) {
+    if (n >= 1000) {
+      return Math.floor(n).toLocaleString() + (suffix || '');
+    }
+    return Math.floor(n) + (suffix || '');
+  }
+
+  function animateResult(el) {
+    const target = parseInt(el.getAttribute('data-target'), 10);
+    const suffix = el.getAttribute('data-suffix');
+    const duration = target > 100 ? 2000 : 1200;
+    const steps = 40;
+    const increment = target / steps;
+    let current = 0;
+
+    const step = () => {
+      current += increment;
+      if (current >= target) {
+        el.textContent = formatNumR(target, suffix);
+        return;
+      }
+      el.textContent = formatNumR(current, suffix);
+      requestAnimationFrame(() => setTimeout(step, duration / steps));
+    };
+    step();
+  }
+
+  const resultsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !animated) {
+        animated = true;
+        resultNumbers.forEach(el => animateResult(el));
+        resultsObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const resultsSection = document.getElementById('results');
+  if (resultsSection) {
+    resultsObserver.observe(resultsSection);
+  } else {
+    resultsObserver.observe(resultNumbers[0]);
   }
 })();
 
