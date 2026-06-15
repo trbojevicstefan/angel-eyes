@@ -37,9 +37,9 @@
 - [ ] H27: Generate FAL asset: Tuco (Eli Wallach) for third character
 - [ ] H28: Create 3-way faceoff: Blondie vs Angel Eyes vs Tuco
 - [ ] H29: Add CSS dust storm/tumbleweed animation across page
-- [ ] H30: Implement cinematic letterbox intro animation
+- [x] H30: Implement cinematic letterbox intro animation
 - [ ] H31: Create golden hour light rays effect on hero
-- [ ] H32: Add particle system: gold dust follows mouse cursor
+- [x] H32: Add particle system: gold dust follows mouse cursor
 - [ ] H33: Generate FAL asset: wanted poster variations for all characters
 - [ ] H34: Implement dark/sepia/night triple theme toggle
 - [ ] H35: Add CSS whiskey glass fill animation — scroll progress indicator
