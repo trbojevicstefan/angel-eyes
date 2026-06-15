@@ -43,7 +43,7 @@
 - [x] H33: Generate FAL asset: wanted poster variations for all characters
 - [x] H34: Implement dark/sepia/night triple theme toggle
 - [x] H35: Add CSS whiskey glass fill animation — scroll progress indicator
-- [ ] H36: Create graveyard section with CSS fog and floating names
+- [x] H36: Create graveyard section with CSS fog and floating names
 
 ## DAY 4 — INTERACTIVE (Mini-games + Engagement)
 - [x] H37: Build quick-draw mini-game — reaction time test

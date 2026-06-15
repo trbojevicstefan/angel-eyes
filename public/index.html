@@ -3104,6 +3104,189 @@ footer .credit-blondie {
   .soundtrack-icon { font-size: 1.6rem; width: 40px; }
 }
 
+/* ── BOOT HILL GRAVEYARD ── */
+.graveyard-section {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 2rem;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 120%, rgba(20,40,20,0.6) 0%, transparent 60%),
+              linear-gradient(180deg, #0a0806 0%, #0e0c08 30%, #12100a 60%, #0a0806 100%);
+  border-top: 1px solid rgba(201,168,76,0.08);
+  border-bottom: 1px solid rgba(201,168,76,0.08);
+}
+.graveyard-fog-layer {
+  position: absolute; inset: 0; pointer-events: none; z-index: 1;
+}
+.fog-back {
+  background: radial-gradient(ellipse at 30% 80%, rgba(180,180,180,0.06) 0%, transparent 70%);
+  animation: fogDriftBack 18s linear infinite;
+}
+.fog-mid {
+  background: radial-gradient(ellipse at 60% 70%, rgba(160,160,160,0.08) 0%, transparent 60%),
+              radial-gradient(ellipse at 20% 90%, rgba(140,140,140,0.05) 0%, transparent 50%);
+  animation: fogDriftMid 14s linear infinite;
+}
+.fog-front {
+  background: radial-gradient(ellipse at 50% 85%, rgba(200,200,200,0.07) 0%, transparent 65%);
+  animation: fogDriftFront 20s linear infinite;
+}
+@keyframes fogDriftBack { 0% { transform: translateX(-5%) scale(1); } 50% { transform: translateX(5%) scale(1.05); } 100% { transform: translateX(-5%) scale(1); } }
+@keyframes fogDriftMid { 0% { transform: translateX(3%) scale(1.02); } 50% { transform: translateX(-3%) scale(0.98); } 100% { transform: translateX(3%) scale(1.02); } }
+@keyframes fogDriftFront { 0% { transform: translateX(0%) scale(1); } 33% { transform: translateX(4%) scale(1.03); } 66% { transform: translateX(-2%) scale(0.99); } 100% { transform: translateX(0%) scale(1); } }
+
+.graveyard-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  color: var(--gold);
+  letter-spacing: 12px;
+  text-shadow: 0 0 40px rgba(201,168,76,0.3), 0 4px 8px rgba(0,0,0,0.8);
+  margin-bottom: 0.3rem;
+  z-index: 2;
+  position: relative;
+  animation: graveyardTitleIn 2s ease-out both;
+}
+@keyframes graveyardTitleIn { 0% { opacity: 0; transform: translateY(-30px); filter: blur(6px); } 100% { opacity: 1; transform: translateY(0); filter: blur(0); } }
+.graveyard-sub {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 8px;
+  color: rgba(160,160,160,0.6);
+  margin-bottom: 4rem;
+  z-index: 2;
+  position: relative;
+}
+.graveyard-ground {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem 3rem;
+  max-width: 900px;
+  width: 100%;
+  z-index: 2;
+  position: relative;
+}
+.headstone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: rotate(var(--rotate, 0deg));
+  animation: headstoneRise 1s ease-out var(--delay, 0s) both;
+  transition: transform 0.4s, filter 0.4s;
+}
+.headstone:hover {
+  transform: rotate(var(--rotate, 0deg)) scale(1.08);
+  filter: brightness(1.2);
+}
+@keyframes headstoneRise {
+  0% { opacity: 0; transform: rotate(var(--rotate, 0deg)) translateY(40px); }
+  100% { opacity: 1; transform: rotate(var(--rotate, 0deg)) translateY(0); }
+}
+.headstone-shape {
+  width: 100px;
+  height: 110px;
+  background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 30%, #1f1f1f 60%, #1a1a1a 100%);
+  clip-path: polygon(20% 0%, 80% 0%, 100% 15%, 100% 100%, 0% 100%, 0% 15%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0.5rem 0.5rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+  position: relative;
+  border: 1px solid rgba(80,80,80,0.4);
+}
+.headstone-shape::after {
+  content: '';
+  position: absolute;
+  top: 8px; left: 8px; right: 8px; bottom: 8px;
+  border: 1px solid rgba(255,255,255,0.03);
+  border-radius: 2px;
+  pointer-events: none;
+}
+.headstone.broken .headstone-shape {
+  clip-path: polygon(20% 0%, 80% 0%, 100% 15%, 85% 45%, 60% 60%, 100% 100%, 0% 100%, 0% 15%);
+  background: linear-gradient(180deg, #444 0%, #333 40%, #222 100%);
+}
+.headstone.broken .broken-top {
+  clip-path: polygon(20% 0%, 80% 0%, 100% 15%, 85% 45%, 60% 60%, 100% 100%, 0% 100%, 0% 15%);
+}
+.headstone-name {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  color: rgba(201,168,76,0.7);
+  text-transform: uppercase;
+  text-shadow: 0 0 8px rgba(201,168,76,0.2);
+  text-align: center;
+  line-height: 1.2;
+}
+.headstone-date {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.5rem;
+  letter-spacing: 3px;
+  color: rgba(160,160,160,0.5);
+  margin-top: 2px;
+}
+.headstone-epitaph {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.5rem;
+  color: rgba(180,180,180,0.4);
+  font-style: italic;
+  margin-top: 0.6rem;
+  text-align: center;
+  max-width: 100px;
+  letter-spacing: 1px;
+  line-height: 1.4;
+}
+.graveyard-footer {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  color: rgba(201,168,76,0.25);
+  margin-top: 4rem;
+  z-index: 2;
+  position: relative;
+  font-style: italic;
+}
+
+/* Floating names */
+.floating-names {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.float-name {
+  position: absolute;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 3px;
+  color: rgba(201,168,76,0.15);
+  animation: floatNameUp 12s linear infinite;
+  white-space: nowrap;
+}
+@keyframes floatNameUp {
+  0% { opacity: 0; transform: translateY(0) translateX(0); filter: blur(2px); }
+  15% { opacity: 0.3; }
+  50% { opacity: 0.12; }
+  85% { opacity: 0.25; }
+  100% { opacity: 0; transform: translateY(-120px) translateX(20px); filter: blur(4px); }
+}
+
+@media (max-width: 768px) {
+  .graveyard-section { min-height: 50vh; padding: 4rem 1rem; }
+  .graveyard-ground { gap: 1.5rem 1.5rem; }
+  .headstone-shape { width: 80px; height: 90px; }
+  .headstone-name { font-size: 0.5rem; }
+  .headstone-epitaph { font-size: 0.45rem; max-width: 80px; }
+}
+
 /* ── STANDOFF GAME ── */
 .standoff-game-cta {
   text-align: center; margin-top: 2.5rem;
@@ -3274,6 +3457,7 @@ footer .credit-blondie {
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#visitor-wall">Wall</a></li>
     <li><a href="#soundtrack">Soundtrack</a></li>
+    <li><a href="#boot-hill">Boot Hill</a></li>
     <li><a href="/hire.html">Hire</a></li>
     <li><a href="/proof.html">Evidence</a></li>
     <li><a href="/blog.html">Blog</a></li>
@@ -4215,6 +4399,67 @@ footer .credit-blondie {
 </section>
 
 <div class="section-divider"></div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- BOOT HILL — The Graveyard -->
+<!-- ════════════════════════════════════════════ -->
+<section class="graveyard-section reveal" id="boot-hill">
+  <div class="graveyard-fog-layer fog-back"></div>
+  <div class="graveyard-fog-layer fog-mid"></div>
+  <div class="graveyard-fog-layer fog-front"></div>
+  
+  <h2 class="graveyard-title">Boot Hill</h2>
+  <p class="graveyard-sub">HERE LIE THOSE WHO DREW TOO SLOW</p>
+  
+  <div class="graveyard-ground">
+    <div class="headstone" style="--rotate:-3deg;--delay:0s;">
+      <div class="headstone-shape">
+        <span class="headstone-name">Paco</span>
+        <span class="headstone-date">1872</span>
+      </div>
+      <p class="headstone-epitaph">Didn't listen</p>
+    </div>
+    <div class="headstone" style="--rotate:2deg;--delay:0.8s;">
+      <div class="headstone-shape">
+        <span class="headstone-name">El Manco</span>
+        <span class="headstone-date">1874</span>
+      </div>
+      <p class="headstone-epitaph">Two hands, still too slow</p>
+    </div>
+    <div class="headstone" style="--rotate:-1deg;--delay:1.6s;">
+      <div class="headstone-shape">
+        <span class="headstone-name">Laredo Kid</span>
+        <span class="headstone-date">1876</span>
+      </div>
+      <p class="headstone-epitaph">Flinched</p>
+    </div>
+    <div class="headstone" style="--rotate:4deg;--delay:2.4s;">
+      <div class="headstone-shape">
+        <span class="headstone-name">Slim</span>
+        <span class="headstone-date">1871</span>
+      </div>
+      <p class="headstone-epitaph">Should've walked away</p>
+    </div>
+    <div class="headstone broken" style="--rotate:-5deg;--delay:3.2s;">
+      <div class="headstone-shape broken-top">
+        <span class="headstone-name">???</span>
+        <span class="headstone-date">???</span>
+      </div>
+      <p class="headstone-epitaph">Unknown. No one claimed the body.</p>
+    </div>
+    <div class="headstone" style="--rotate:1deg;--delay:4.0s;">
+      <div class="headstone-shape">
+        <span class="headstone-name">Black Jack</span>
+        <span class="headstone-date">1878</span>
+      </div>
+      <p class="headstone-epitaph">Cheated at cards. Paid in lead.</p>
+    </div>
+  </div>
+  
+  <div class="floating-names" id="floatingNames"></div>
+  
+  <p class="graveyard-footer">Some made their peace. Most didn't get the chance.</p>
+</section>
 
 <!-- FAQ -->
 <section class="faq-section reveal" id="faq">
@@ -5972,6 +6217,65 @@ window.addEventListener('scroll', () => {
 
   // Start auto-rotation
   autoTimer = setTimeout(nextQuote, AUTO_INTERVAL);
+})();
+</script>
+
+<!-- ═══════ Boot Hill Graveyard: Floating Names ═══════ -->
+<script>
+(function(){
+  const graveyard = document.getElementById('boot-hill');
+  const namesContainer = document.getElementById('floatingNames');
+  if (!graveyard || !namesContainer) return;
+
+  const FLOATING_NAMES = [
+    'Paco Ramirez', 'El Manco', 'Laredo Kid', 'Slim Hawkins',
+    'Black Jack McCoy', 'Two-Gun Pete', 'Cactus Jack',
+    'El Diablo', 'Whiskey Bill', 'Mad Dog Morgan',
+    'Cherokee Dan', 'Rattlesnake Jake', 'Dusty Rhodes',
+    'One-Eye Willie', 'Billy No-Name', 'The Stranger'
+  ];
+
+  function spawnName() {
+    const name = FLOATING_NAMES[Math.floor(Math.random() * FLOATING_NAMES.length)];
+    const el = document.createElement('span');
+    el.className = 'float-name';
+    el.textContent = name;
+    el.style.left = (5 + Math.random() * 85) + '%';
+    el.style.bottom = (10 + Math.random() * 60) + '%';
+    el.style.animationDuration = (10 + Math.random() * 12) + 's';
+    el.style.animationDelay = '0s';
+    namesContainer.appendChild(el);
+
+    // Remove after animation completes
+    const duration = parseFloat(el.style.animationDuration) * 1000;
+    setTimeout(() => {
+      if (el.parentNode) el.parentNode.removeChild(el);
+    }, duration + 200);
+  }
+
+  // Spawn names periodically
+  function scheduleNext() {
+    const delay = 1500 + Math.random() * 4000;
+    setTimeout(() => {
+      spawnName();
+      scheduleNext();
+    }, delay);
+  }
+
+  // Start spawning when graveyard is visible
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        scheduleNext();
+        // Also spawn a batch immediately
+        for (let i = 0; i < 4; i++) {
+          setTimeout(() => spawnName(), i * 600);
+        }
+      }
+    });
+  }, { threshold: 0.2 });
+
+  observer.observe(graveyard);
 })();
 </script>
 

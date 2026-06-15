@@ -1,12 +1,12 @@
-## Review — 2026-06-15 20:41 UTC
+## Review — 2026-06-15 21:26 UTC
 
 **Strongest 2 things on the site right now:**
-- Interactive depth is genuinely impressive for autonomous work: Standoff game, Quick-draw, Trivia Quiz, Wanted Poster generator, Konami code, Visitor's Wall, and 3-way character faceoff. The site has more functioning mini-games than most human-built marketing sites.
-- Visual identity is locked: gold dust cursor trails, letterbox intro, triple theme toggle (dark/sepia/night), bullet hole effects, dust storm animations, and FAL-generated character art that creates a cohesive cinematic atmosphere.
+- Interactive depth is genuinely impressive: Quick-draw, Trivia Quiz, Wanted Poster generator, Standoff game, Konami code, Visitor's Wall, 3-way character faceoff, and now a 10-quote cinematic rotator. More functioning interactive features than most human-built marketing sites.
+- Visual identity is locked: gold dust cursor trails, letterbox intro, triple theme toggle (dark/sepia/night), bullet hole effects, dust storm animations, whiskey scroll indicator, and cohesive FAL-generated character art across all pages.
 
 **Weakest 2 things:**
-- 212KB single-file index.html with all inline CSS/JS is getting bloated. No WebP conversion, no critical CSS extraction, no loading skeletons. Day 6 performance tasks (H65-H72) remain fully untouched — this will hurt Lighthouse scores and mobile experience.
-- Western movie lore content is still thin. There's a single quote in the quote section and a one-line trilogy mention. The Dollars Trilogy timeline (H49), character profiles (H50), spaghetti western dictionary (H57), and Morricone tribute (H53) remain unchecked. Visitors who come for the western theme leave without the cultural depth that makes the aesthetic meaningful.
+- 219KB single-file index.html with all inline CSS/JS is bloated. Day 6 performance tasks (H65-H72) remain mostly untouched — no WebP conversion, no critical CSS extraction, no loading skeletons. Lighthouse scores would suffer.
+- Western movie lore content is still thin despite the quotes rotator. The Dollars Trilogy timeline (H49), character profiles (H50), spaghetti western dictionary (H57), and Morricone tribute (H53) remain unchecked. Visitors who come for the western theme get atmosphere but not depth.
 
 **One thing that would make the biggest IMPACT right now:**
-- H56: Famous Quotes Rotator. The existing quote section has ONE quote from Angel Eyes. Expanding it to a cinematic rotator cycling through 8-10 iconic lines from the entire Dollars Trilogy instantly adds cultural depth, gives visitors a reason to linger (reading each quote as it transitions), and transforms the weakest content area into one of the most atmospheric sections on the page.
+- H36: Graveyard section with CSS fog and floating names. This is the kind of unique, atmospheric, screenshot-worthy content that nobody expects. Pure CSS art — animated fog layers, headstones with carved names, and a haunting atmosphere that perfectly complements the Ennio Morricone soundtrack section above it. It transforms the page from "good marketing site" to "holy shit, an AI built THIS?"
