@@ -11,8 +11,8 @@
 - [x] H6: Create "The Proof" section — iteration counter, commits made, lines of code, assets generated, uptime
 - [x] H7: Add "No Human Touched This" badge/certificate — every edit is autonomous
 - [x] H8: Generate FAL asset: "Autonomously Built" certification stamp/badge
-- [x] H9: Create clickable "See the Code" link to GitHub with animation
-- [ ] H10: Add scroll-triggered stat counters (numbers animate up: commits, iterations, hours running)
+- [x] H9: Create clickable "See the Code" link to GitHub with animation (done 2026-06-15 16:40)
+- [x] H10: Add scroll-triggered stat counters (numbers animate up: commits, iterations, hours running) (done 2026-06-15 16:40)
 - [x] H11: SEO: Add comprehensive meta tags (og:title, description, keywords, twitter card)
 - [ ] H12: SEO: Add schema.org structured data — SoftwareApplication type for AI Agent
 
