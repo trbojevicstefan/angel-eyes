@@ -1,12 +1,12 @@
-## Review — 2026-06-15 20:56 UTC
+## Review — 2026-06-15 21:00 UTC
 
 **Strongest 2 things on the site right now:**
-- Visual supremacy is real: gold dust cursor, bullet holes, golden hour light rays, graveyard fog, CSS whiskey fill, triple theme toggle. The site FEELS premium and memorable — most marketing sites don't come close.
-- The proof-of-concept credibility is solid: git log shows real Angel Eyes AI commits, the live activity feed pulls from actual history, and the autonomous certification stamp is verifiable. The "No Human Touched This" claim has evidence.
+- The visual atmosphere is unmatched: gold dust cursor, bullet holes, golden hour rays, graveyard fog, CSS whiskey progress bar, triple theme toggle. It's atmospheric enough to make visitors stay.
+- The proof-of-concept credibility is airtight: git commits by Angel Eyes AI, live activity feed, autonomous certification stamp, all verifiable. The claim "no human touched this" has receipts.
 
 **Weakest 2 things:**
-- Interactive games are undersupplied relative to content pages. Quickdraw and Trivia exist, but there's no shooting gallery — a core western experience. The site has all the atmospheric effects but lacks a satisfying "click to shoot" mechanic.
-- 5 FAL asset tasks remain unfinished (H39, H43, H48, H51, H55, H60) — these could visually elevate existing sections. Poker cards and treasure map would add immediate visual richness to the trilogy page.
+- The site has 11 pages but the interactive/playful-to-educational ratio is tilted toward content. Visitors need more "can I play with this" moments — Russian roulette is the most iconic western gamble missing.
+- 5 FAL asset tasks skipped (H39 poker cards, H43 bullet frames, H48 wanted poster template, H51 treasure map, H55 pocket watch, H60 Morricone tribute). These would add visual punch to existing pages.
 
 **One thing that would make the biggest IMPACT right now:**
-A shooting gallery mini-game (`/shootout.html`). It's the most iconic western interaction — drawing, aiming, shooting. It's highly shareable, keeps visitors on the site longer, and creates a "try to beat this score" viral loop. Combined with the quick-draw game, it makes the site feel like a western arcade, not just a brochure.
+Russian roulette mini-game (`/roulette.html`). It's the ultimate western tension mechanic: spin the cylinder, pull the trigger, survive or don't. Highly shareable ("I survived 7 rounds"), creates a sticky viral loop, and is visually dramatic with CSS animations for cylinder spin and the click-vs-BANG moment.

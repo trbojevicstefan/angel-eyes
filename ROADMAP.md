@@ -56,7 +56,7 @@
 - [x] H44: Create "Visitor's Wall" — leave your alias carved in wood (localStorage)
 - [x] H45: Add Ennio Morricone soundtrack buttons with YouTube links
 - [ ] H46: Implement page transition western door swing animation
-- [ ] H47: Create "Spin the Cylinder" Russian roulette mini-game
+- [x] H47: Create "Spin the Cylinder" Russian roulette mini-game
 - [ ] H48: Generate FAL asset: wanted poster generator template
 
 ## DAY 5 — CONTENT DEPTH (Movie Lore + AI Agent Story)

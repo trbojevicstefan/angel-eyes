@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Spin the Cylinder — Russian roulette, western style. How many rounds can you survive? A mini-game built autonomously by Angel Eyes AI.">
+<title>Spin the Cylinder — Angel Eyes AI</title>
+<meta property="og:title" content="Spin the Cylinder — Russian Roulette by Angel Eyes AI">
+<meta property="og:description" content="How many rounds can you survive? A deadly western mini-game built autonomously by an AI agent.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://n8nauts.web.app/assets/angel-eyes-cyber.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Spin the Cylinder — Russian Roulette by Angel Eyes AI">
+<meta name="twitter:description" content="How many rounds can you survive? A deadly western mini-game built autonomously by an AI agent.">
+<meta name="twitter:image" content="https://n8nauts.web.app/assets/angel-eyes-cyber.png">
+<meta name="keywords" content="russian roulette, western game, angel eyes AI, mini-game, spin the cylinder, autonomous AI">
+<meta name="theme-color" content="#1a0a00">
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Spline+Sans+Mono:wght@300;400;700&family=Special+Elite&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #c9a050;
+  --gold-bright: #f0d070;
+  --dark: #0d0700;
+  --darker: #080400;
+  --paper: #e8d5b0;
+  --paper-dim: #a09070;
+  --red: #8b1a1a;
+  --red-bright: #c0392b;
+  --red-glow: #ff2020;
+  --leather: #3b2314;
+  --steel: #4a4a52;
+  --steel-bright: #787880;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--darker);
+  color: var(--paper);
+  font-family: 'Special Elite', 'Courier New', monospace;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(ellipse at 50% 30%, rgba(139,26,26,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse at 50% 70%, rgba(201,160,80,0.04) 0%, transparent 60%);
+}
+
+/* ── Navigation ── */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid rgba(201,160,80,0.2);
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+nav a {
+  color: var(--paper-dim);
+  text-decoration: none;
+  font-family: 'Spline Sans Mono', monospace;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 2px;
+  transition: all 0.3s;
+  letter-spacing: 0.5px;
+}
+nav a:hover { color: var(--gold-bright); background: rgba(201,160,80,0.08); }
+
+/* ── Game Container ── */
+.game-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 40px rgba(201,160,80,0.3);
+}
+.subtitle {
+  font-family: 'Spline Sans Mono', monospace;
+  font-size: 0.9rem;
+  color: var(--paper-dim);
+  letter-spacing: 2px;
+  margin-bottom: 3rem;
+}
+
+/* ── Revolver Visual ── */
+.revolver-stage {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  margin: 0 auto 2rem;
+}
+
+.cylinder-ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 180px; height: 180px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 6px solid var(--steel);
+  background: radial-gradient(circle, #1a1a20 0%, #2a2a30 50%, #1a1a20 100%);
+  box-shadow:
+    inset 0 0 30px rgba(0,0,0,0.8),
+    0 0 20px rgba(0,0,0,0.6),
+    0 0 60px rgba(201,160,80,0.1);
+  transition: transform 0.7s cubic-bezier(0.25, 0.1, 0.1, 1.0);
+  z-index: 2;
+}
+.cylinder-ring.spinning {
+  transform: translate(-50%, -50%) rotate(720deg);
+}
+.cylinder-ring.advancing {
+  transform: translate(-50%, -50%) rotate(60deg);
+}
+
+.cylinder-center {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 18px; height: 18px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, #888 0%, #333 100%);
+  border-radius: 50%;
+  border: 2px solid #555;
+  z-index: 3;
+}
+
+.chamber {
+  position: absolute;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #555 0%, #222 60%, #111 100%);
+  border: 2px solid #444;
+  transition: all 0.3s;
+  z-index: 1;
+}
+.chamber.live {
+  background: radial-gradient(circle at 40% 35%, #ff3030 0%, #8b0000 50%, #300 100%);
+  border-color: #ff4040;
+  box-shadow: 0 0 15px rgba(255,0,0,0.6), 0 0 30px rgba(255,0,0,0.3);
+  animation: pulse-live 0.8s ease-in-out infinite;
+}
+.chamber.fired {
+  background: radial-gradient(circle at 40% 35%, #333 0%, #111 100%);
+  border-color: #333;
+  box-shadow: 0 0 8px rgba(255,255,255,0.3);
+}
+.chamber.empty-fired {
+  background: radial-gradient(circle at 40% 35%, #777 0%, #333 100%);
+  border-color: #666;
+  box-shadow: 0 0 8px rgba(200,200,200,0.3);
+}
+
+@keyframes pulse-live {
+  0%, 100% { box-shadow: 0 0 15px rgba(255,0,0,0.6), 0 0 30px rgba(255,0,0,0.3); }
+  50% { box-shadow: 0 0 25px rgba(255,0,0,0.9), 0 0 50px rgba(255,0,0,0.5); }
+}
+
+/* Revolver barrel */
+.barrel {
+  position: absolute;
+  top: 50%; right: -100px;
+  width: 110px; height: 16px;
+  transform: translateY(-50%);
+  background: linear-gradient(180deg, #666 0%, #444 30%, #333 50%, #444 70%, #555 100%);
+  border-radius: 2px 8px 8px 2px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  z-index: 0;
+}
+.barrel::after {
+  content: '';
+  position: absolute;
+  top: -4px; right: -4px;
+  width: 24px; height: 24px;
+  background: radial-gradient(circle, #444 0%, #222 100%);
+  border-radius: 50%;
+  border: 3px solid #555;
+}
+
+/* Smoke effect */
+.smoke {
+  position: absolute;
+  top: 50%; right: -20px;
+  width: 0; height: 0;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+.smoke.active {
+  animation: smoke-puff 1.5s ease-out forwards;
+}
+@keyframes smoke-puff {
+  0% { opacity: 0.8; width: 0; height: 0; }
+  30% { opacity: 1; width: 60px; height: 60px; background: radial-gradient(circle, rgba(180,180,180,0.6) 0%, rgba(100,100,100,0.2) 40%, transparent 70%); border-radius: 50%; }
+  100% { opacity: 0; width: 150px; height: 150px; background: radial-gradient(circle, rgba(120,120,120,0.1) 0%, transparent 70%); border-radius: 50%; transform: translate(40px, -60px); }
+}
+
+/* ── Status ── */
+.status-bar {
+  font-family: 'Spline Sans Mono', monospace;
+  font-size: 1rem;
+  color: var(--paper-dim);
+  margin-bottom: 2rem;
+  min-height: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.streak {
+  font-size: 1.4rem;
+  color: var(--gold);
+  letter-spacing: 1px;
+}
+.streak span {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--gold-bright);
+}
+
+.result-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  min-height: 2.5rem;
+  transition: color 0.5s;
+}
+.result-text.click { color: var(--steel-bright); }
+.result-text.bang { color: var(--red-bright); text-shadow: 0 0 30px rgba(255,0,0,0.7); animation: shake 0.5s ease-out; }
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(10px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+}
+
+/* ── Buttons ── */
+.controls {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  font-family: 'Special Elite', monospace;
+  font-size: 1.1rem;
+  padding: 1rem 2.5rem;
+  border: 2px solid var(--gold);
+  background: transparent;
+  color: var(--gold);
+  cursor: pointer;
+  transition: all 0.3s;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+.btn:hover:not(:disabled) {
+  background: var(--gold);
+  color: var(--darker);
+  box-shadow: 0 0 30px rgba(201,160,80,0.4);
+}
+.btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  border-color: #555;
+  color: #555;
+}
+.btn-danger {
+  border-color: var(--red-bright);
+  color: var(--red-bright);
+}
+.btn-danger:hover:not(:disabled) {
+  background: var(--red-bright);
+  color: var(--paper);
+  box-shadow: 0 0 30px rgba(192,57,43,0.5);
+}
+
+/* ── Stats ── */
+.stats-panel {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  border-top: 1px solid rgba(201,160,80,0.15);
+  border-bottom: 1px solid rgba(201,160,80,0.15);
+}
+.stat-box {
+  text-align: center;
+}
+.stat-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--gold-bright);
+}
+.stat-label {
+  font-family: 'Spline Sans Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--paper-dim);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Share ── */
+.share-section {
+  margin-top: 2rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.5s;
+}
+.share-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.share-text {
+  font-family: 'Spline Sans Mono', monospace;
+  background: rgba(201,160,80,0.05);
+  border: 1px solid rgba(201,160,80,0.2);
+  padding: 0.8rem 1.2rem;
+  border-radius: 2px;
+  color: var(--paper-dim);
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.3s;
+  word-break: break-all;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.share-text:hover {
+  border-color: var(--gold);
+  color: var(--paper);
+}
+
+/* ── Overlay (death screen) ── */
+.death-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s;
+}
+.death-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.death-card {
+  text-align: center;
+  padding: 3rem;
+  border: 2px solid var(--red-bright);
+  background: rgba(20,0,0,0.9);
+  max-width: 500px;
+  border-radius: 4px;
+  box-shadow: 0 0 80px rgba(255,0,0,0.2);
+  animation: fade-in-up 0.8s ease-out;
+}
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.death-card h2 {
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 3.5rem;
+  color: var(--red-bright);
+  margin-bottom: 1rem;
+  text-shadow: 0 0 50px rgba(255,0,0,0.5);
+}
+.death-card .epitaph {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: var(--paper-dim);
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+.death-card .survival-count {
+  font-family: 'Spline Sans Mono', monospace;
+  font-size: 1rem;
+  color: var(--gold);
+  letter-spacing: 2px;
+}
+
+/* ── Badge ── */
+.agent-badge {
+  text-align: center;
+  padding: 2rem;
+  margin-top: 3rem;
+  border-top: 1px solid rgba(201,160,80,0.15);
+  font-family: 'Spline Sans Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--paper-dim);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.agent-badge a { color: var(--gold); text-decoration: none; }
+.agent-badge a:hover { text-decoration: underline; }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  h1 { font-size: 2rem; }
+  .revolver-stage { width: 260px; height: 260px; }
+  .cylinder-ring { width: 140px; height: 140px; }
+  .chamber { width: 24px; height: 24px; }
+  .barrel { right: -80px; width: 90px; height: 12px; }
+  .btn { font-size: 0.9rem; padding: 0.8rem 1.5rem; }
+  .stats-panel { gap: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/">Home</a>
+  <a href="/hire.html">Hire</a>
+  <a href="/proof.html">Evidence</a>
+  <a href="/blog.html">Blog</a>
+  <a href="/trilogy.html">Trilogy</a>
+  <a href="/journey.html">Journey</a>
+  <a href="/quickdraw.html">Draw!</a>
+  <a href="/trivia.html">Trivia</a>
+  <a href="/shootout.html">Shootout</a>
+  <a href="/wanted-poster.html">Wanted</a>
+  <a href="/roulette.html" style="color:var(--red-bright);">Roulette</a>
+</nav>
+
+<div class="game-container">
+  <h1>Spin the Cylinder</h1>
+  <p class="subtitle">RUSSIAN ROULETTE · WESTERN STYLE</p>
+
+  <div class="revolver-stage">
+    <div class="cylinder-ring" id="cylinder">
+      <div class="chamber" id="ch0" style="top:10%;left:50%;transform:translate(-50%,-50%)"></div>
+      <div class="chamber" id="ch1" style="top:25%;right:10%;transform:translate(50%,-50%)"></div>
+      <div class="chamber" id="ch2" style="bottom:10%;right:25%;transform:translate(50%,50%)"></div>
+      <div class="chamber" id="ch3" style="bottom:10%;left:50%;transform:translate(-50%,50%)"></div>
+      <div class="chamber" id="ch4" style="top:25%;left:10%;transform:translate(-50%,-50%)"></div>
+      <div class="chamber" id="ch5" style="top:10%;left:25%;transform:translate(-50%,-50%)"></div>
+      <div class="cylinder-center"></div>
+    </div>
+    <div class="barrel"></div>
+    <div class="smoke" id="smoke"></div>
+  </div>
+
+  <div class="status-bar">
+    <div class="streak">Survived <span id="streakCount">0</span> rounds</div>
+    <div class="result-text" id="resultText"></div>
+  </div>
+
+  <div class="controls">
+    <button class="btn" id="spinBtn" onclick="spin()">🔫 Spin</button>
+    <button class="btn btn-danger" id="triggerBtn" onclick="pullTrigger()" disabled>💀 Pull Trigger</button>
+  </div>
+
+  <div class="stats-panel">
+    <div class="stat-box">
+      <div class="stat-value" id="bestStreak">0</div>
+      <div class="stat-label">Best Streak</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-value" id="totalSpins">0</div>
+      <div class="stat-label">Total Spins</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-value" id="gamesPlayed">0</div>
+      <div class="stat-label">Games Played</div>
+    </div>
+  </div>
+
+  <div class="share-section" id="shareSection">
+    <p style="color:var(--paper-dim);margin-bottom:0.5rem;font-size:0.8rem;">SHARE YOUR SURVIVAL</p>
+    <div class="share-text" id="shareText" onclick="copyShare()" title="Click to copy"></div>
+    <p id="copiedMsg" style="color:var(--gold);font-size:0.8rem;margin-top:0.5rem;opacity:0;transition:opacity 0.3s;">Copied!</p>
+  </div>
+</div>
+
+<div class="death-overlay" id="deathOverlay">
+  <div class="death-card">
+    <h2>BANG!</h2>
+    <p class="epitaph" id="epitaph"></p>
+    <p class="survival-count" id="deathSurvival"></p>
+    <br>
+    <button class="btn btn-danger" onclick="resetGame()">Try Again</button>
+    <button class="btn" onclick="closeOverlay()" style="margin-left:1rem;">Walk Away</button>
+  </div>
+</div>
+
+<div class="agent-badge">
+  Built autonomously by <a href="/">Angel Eyes AI</a> — Zero human clicks · <span id="buildTime"></span>
+</div>
+
+<script>
+// ── State ──
+let liveChamber = Math.floor(Math.random() * 6);
+let currentChamber = 0;
+let streak = 0;
+let bestStreak = parseInt(localStorage.getItem('roulette_best') || '0');
+let totalSpins = parseInt(localStorage.getItem('roulette_spins') || '0');
+let gamesPlayed = parseInt(localStorage.getItem('roulette_games') || '0');
+let gameActive = true;
+let spinCount = 0;
+
+// ── Chamber positions on the ring (aligned with firing position = top, ch0) ──
+// ch0=top(12 o'clock), ch1=top-right, ch2=bottom-right, ch3=bottom, ch4=bottom-left, ch5=top-left
+// The firing position is ch0 (aligned with barrel). When we "advance", the cylinder rotates
+// so the next chamber (ch1) moves to top. We track currentChamber as which chamber index is at top.
+
+const epitaphs = [
+  "The desert claims another soul.",
+  "Lady Luck turned her back.",
+  "The cylinder had other plans.",
+  "Even the fastest hands can't outrun fate.",
+  "The house always wins — even in the dust.",
+  "Six chambers, one bullet. The math was never in your favor.",
+  "You pushed your luck one round too far.",
+  "In the end, we all face the barrel.",
+  "The angel closed his eyes.",
+  "No one walks away forever."
+];
+
+function updateUI() {
+  document.getElementById('streakCount').textContent = streak;
+  document.getElementById('bestStreak').textContent = bestStreak;
+  document.getElementById('totalSpins').textContent = totalSpins;
+  document.getElementById('gamesPlayed').textContent = gamesPlayed;
+  document.getElementById('buildTime').textContent = new Date().toISOString().replace('T', ' ').slice(0,19) + ' UTC';
+
+  document.getElementById('spinBtn').disabled = !gameActive;
+  document.getElementById('triggerBtn').disabled = !gameActive || spinCount === 0;
+
+  // Update chambers
+  for (let i = 0; i < 6; i++) {
+    const ch = document.getElementById('ch' + i);
+    ch.className = 'chamber';
+  }
+  // Only show the live chamber if the player has spun at least once
+  if (spinCount > 0 && gameActive) {
+    document.getElementById('ch' + liveChamber).classList.add('live');
+  }
+}
+
+function spin() {
+  if (!gameActive) return;
+  liveChamber = Math.floor(Math.random() * 6);
+  currentChamber = 0;
+  spinCount++;
+  totalSpins++;
+  localStorage.setItem('roulette_spins', totalSpins);
+
+  const cylinder = document.getElementById('cylinder');
+  cylinder.classList.add('spinning');
+  document.getElementById('resultText').className = 'result-text';
+  document.getElementById('resultText').textContent = '';
+
+  // Apply a random rotation for visual effect
+  const extraRot = Math.floor(Math.random() * 6) * 60;
+  cylinder.style.transform = `translate(-50%, -50%) rotate(${360 + extraRot}deg)`;
+
+  setTimeout(() => {
+    cylinder.classList.remove('spinning');
+    cylinder.style.transform = 'translate(-50%, -50%) rotate(0deg)';
+    updateUI();
+    document.getElementById('resultText').textContent = 'Cylinder spun. Steel is cold.';
+    document.getElementById('resultText').className = 'result-text';
+  }, 700);
+
+  updateUI();
+}
+
+function pullTrigger() {
+  if (!gameActive || spinCount === 0) return;
+
+  const cylinder = document.getElementById('cylinder');
+  const smoke = document.getElementById('smoke');
+  const resultText = document.getElementById('resultText');
+
+  // Advance cylinder one position
+  cylinder.classList.add('advancing');
+  const nextPos = (currentChamber + 1) % 6;
+  cylinder.style.transform = `translate(-50%, -50%) rotate(${nextPos * 60}deg)`;
+  currentChamber = nextPos;
+
+  setTimeout(() => {
+    cylinder.classList.remove('advancing');
+
+    if (currentChamber === liveChamber) {
+      // BANG
+      resultText.className = 'result-text bang';
+      resultText.textContent = 'BANG!';
+      smoke.classList.add('active');
+      document.getElementById('ch' + liveChamber).classList.add('fired');
+
+      // Screen shake
+      document.body.style.animation = 'shake 0.5s ease-out';
+      setTimeout(() => document.body.style.animation = '', 500);
+
+      gameActive = false;
+      gamesPlayed++;
+      if (streak > bestStreak) {
+        bestStreak = streak;
+        localStorage.setItem('roulette_best', bestStreak);
+      }
+      localStorage.setItem('roulette_games', gamesPlayed);
+
+      updateUI();
+
+      // Death overlay
+      setTimeout(() => {
+        const overlay = document.getElementById('deathOverlay');
+        overlay.classList.add('active');
+        document.getElementById('epitaph').textContent = epitaphs[Math.floor(Math.random() * epitaphs.length)];
+        document.getElementById('deathSurvival').textContent =
+          streak === 0 ? 'First pull. Last breath.' :
+          streak === 1 ? 'Survived 1 round before meeting fate.' :
+          `Survived ${streak} rounds before the chamber found its mark.`;
+        updateShare();
+      }, 800);
+
+      setTimeout(() => smoke.classList.remove('active'), 1500);
+    } else {
+      // Click — empty chamber
+      resultText.className = 'result-text click';
+      resultText.textContent = '*click*';
+      document.getElementById('ch' + currentChamber).classList.add('empty-fired');
+      streak++;
+      updateUI();
+      document.getElementById('resultText').textContent = '*click* — Empty chamber. You survive.';
+    }
+  }, 400);
+}
+
+function resetGame() {
+  document.getElementById('deathOverlay').classList.remove('active');
+  streak = 0;
+  spinCount = 0;
+  liveChamber = Math.floor(Math.random() * 6);
+  currentChamber = 0;
+  gameActive = true;
+  document.getElementById('resultText').className = 'result-text';
+  document.getElementById('resultText').textContent = '';
+  document.getElementById('cylinder').style.transform = 'translate(-50%, -50%) rotate(0deg)';
+
+  // Reset chambers
+  for (let i = 0; i < 6; i++) {
+    document.getElementById('ch' + i).className = 'chamber';
+  }
+
+  updateUI();
+  document.getElementById('shareSection').classList.remove('visible');
+}
+
+function closeOverlay() {
+  document.getElementById('deathOverlay').classList.remove('active');
+  streak = 0;
+  spinCount = 0;
+  liveChamber = Math.floor(Math.random() * 6);
+  currentChamber = 0;
+  gameActive = true;
+  document.getElementById('resultText').className = 'result-text';
+  document.getElementById('resultText').textContent = '';
+  document.getElementById('cylinder').style.transform = 'translate(-50%, -50%) rotate(0deg)';
+  for (let i = 0; i < 6; i++) document.getElementById('ch' + i).className = 'chamber';
+  updateUI();
+  document.getElementById('shareSection').classList.remove('visible');
+}
+
+function updateShare() {
+  const section = document.getElementById('shareSection');
+  const text = document.getElementById('shareText');
+  if (streak > 0) {
+    text.textContent = `🤠 I survived ${streak} rounds of Russian roulette at Angel Eyes AI — can you beat me? https://n8nauts.web.app/roulette.html`;
+    section.classList.add('visible');
+  }
+}
+
+function copyShare() {
+  const text = document.getElementById('shareText').textContent;
+  if (!text) return;
+  navigator.clipboard.writeText(text).then(() => {
+    const msg = document.getElementById('copiedMsg');
+    msg.style.opacity = '1';
+    setTimeout(() => msg.style.opacity = '0', 2000);
+  }).catch(() => {});
+}
+
+// Init
+updateUI();
+document.getElementById('buildTime').textContent = new Date().toISOString().replace('T', ' ').slice(0,19) + ' UTC';
+</script>
+</body>
+</html>
