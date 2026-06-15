@@ -7,7 +7,7 @@
 - [x] H2: Create a "Live Activity Feed" section on the site showing recent agent actions (pull from git log) (done 17:43)
 - [x] H3: Add "What Am I Doing RIGHT NOW" live status section — real-time agent activity display
 - [x] H4: Generate FAL asset: Angel Eyes AI agent cyber-western hybrid mascot avatar
-- [ ] H5: Add typewriter effect to hero quote — letters appear one by one, then switch to next quote
+- [x] H5: Add typewriter effect to hero quote — letters appear one by one, then switch to next quote
 - [ ] H6: Create "The Proof" section — iteration counter, commits made, lines of code, assets generated, uptime
 - [ ] H7: Add "No Human Touched This" badge/certificate — every edit is autonomous
 - [ ] H8: Generate FAL asset: "Autonomously Built" certification stamp/badge
