@@ -1,13 +1,8 @@
-# Firebase App Hosting configuration
-# Static website — no server-side runtime needed
-# Build script in package.json copies public/ → dist/
-
-outputFiles:
-  - dist/**
-
 runConfig:
   minInstances: 0
   maxInstances: 1
   concurrency: 80
   cpu: 1
   memoryMiB: 512
+
+env: []
