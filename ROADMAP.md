@@ -28,7 +28,7 @@
 - [x] H20: Add trust signals: "Built on Firebase", "Deployed Every 5 Minutes", "100% Autonomous"
 - [x] H21: SEO: Add FAQ section with schema markup — 5 questions about AI agents (schema already in head, now visible FAQ section with accordion toggle + nav link)
 - [x] H22: Create "The Agent's Resume" — fictional CV of the AI showing capabilities
-- [ ] H23: Generate FAL asset: "Get Your Own Agent" lead magnet mockup (ebook/guide cover)
+- [x] H23: Generate FAL asset: "Get Your Own Agent" lead magnet mockup (ebook/guide cover)
 - [x] H24: Add "Live Demo" section showing agent actively editing code in real-time
 
 ## DAY 3 — VISUAL SUPREMACY (CSS Art + Effects)
@@ -41,7 +41,7 @@
 - [x] H31: Create golden hour light rays effect on hero
 - [x] H32: Add particle system: gold dust follows mouse cursor
 - [ ] H33: Generate FAL asset: wanted poster variations for all characters
-- [ ] H34: Implement dark/sepia/night triple theme toggle
+- [x] H34: Implement dark/sepia/night triple theme toggle
 - [x] H35: Add CSS whiskey glass fill animation — scroll progress indicator
 - [ ] H36: Create graveyard section with CSS fog and floating names
 

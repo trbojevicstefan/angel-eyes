@@ -198,7 +198,40 @@
   --dark2: #14100c;
   --card: rgba(20, 16, 12, 0.85);
   --verde: #2a4a1f;
+  --text: #d4c4a8;
 }
+/* ── SEPIA THEME — Warm Vintage Western ── */
+body[data-theme="sepia"] {
+  --gold: #d4a84c;
+  --gold-bright: #f0d88c;
+  --gold-dark: #a07030;
+  --sand: #d4b896;
+  --blood: #8b3a1e;
+  --smoke: #9a8a7a;
+  --dark: #1a0f08;
+  --dark2: #241812;
+  --card: rgba(36, 24, 18, 0.85);
+  --verde: #3a5a2f;
+  --text: #d4c4a8;
+}
+body[data-theme="sepia"] .hero-bg { filter: brightness(0.4) sepia(0.8) !important; }
+body[data-theme="sepia"] .hero-overlay { background: radial-gradient(ellipse at center, transparent 20%, var(--dark) 92%) !important; }
+/* ── NIGHT THEME — Cold Moonlight Western ── */
+body[data-theme="night"] {
+  --gold: #8ab4f8;
+  --gold-bright: #a8c8ff;
+  --gold-dark: #4a6aaa;
+  --sand: #8a9ab8;
+  --blood: #8b3050;
+  --smoke: #7080a0;
+  --dark: #0a0e1a;
+  --dark2: #101828;
+  --card: rgba(16, 24, 40, 0.85);
+  --verde: #2a4a3f;
+  --text: #c4d4e4;
+}
+body[data-theme="night"] .hero-bg { filter: brightness(0.25) saturate(0.3) hue-rotate(180deg) !important; }
+body[data-theme="night"] .hero-overlay { background: radial-gradient(ellipse at center, transparent 20%, var(--dark) 92%) !important; }
 
 * { margin:0; padding:0; box-sizing:border-box; }
 
@@ -206,10 +239,11 @@ html { scroll-behavior:smooth; }
 
 body {
   background: var(--dark);
-  color: #d4c4a8;
+  color: var(--text);
   font-family: 'Spline Sans Mono', monospace;
   overflow-x: hidden;
   line-height: 1.6;
+  transition: background-color 0.6s ease, color 0.6s ease;
 }
 
 /* ── DUST PARTICLES ── */
@@ -373,6 +407,22 @@ nav {
 }
 .nav-links a:hover { color: var(--gold-bright); }
 .nav-links a:hover::after { width: 100%; }
+
+/* ── THEME TOGGLE ── */
+.theme-toggle {
+  display: flex; align-items: center; gap: 4px;
+  margin-left: 1.2rem; cursor: pointer;
+  padding: 4px 8px; border: 1px solid var(--gold-dark);
+  border-radius: 4px; background: transparent;
+  transition: all 0.3s; position: relative;
+}
+.theme-toggle:hover { border-color: var(--gold); box-shadow: 0 0 8px rgba(201,168,76,0.2); }
+.theme-toggle-icon { font-size: 0.8rem; line-height: 1; transition: transform 0.4s; }
+.theme-toggle-label {
+  font-size: 0.55rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold); transition: color 0.3s;
+}
+.theme-toggle:hover .theme-toggle-label { color: var(--gold-bright); }
 
 /* ── WHISKEY GLASS SCROLL PROGRESS ── */
 .whiskey-glass {
@@ -1026,7 +1076,7 @@ nav {
   margin-top: 0.2rem;
 }
 .live-now-step.active .step-desc {
-  color: #d4c4a8;
+  color: var(--text);
 }
 .step-status {
   font-family: 'Special Elite', monospace;
@@ -1310,17 +1360,17 @@ nav {
   color: #a0a088;
 }
 .code-tag { color: #c08050; }
-.code-attr { color: #c9a84c; }
+.code-attr { color: var(--gold); }
 .code-value { color: #5a9a4f; }
 .code-css-prop { color: #4a9eff; }
-.code-css-val { color: #c9a84c; }
+.code-css-val { color: var(--gold); }
 .code-comment { color: #5a6a4a; font-style: italic; }
-.code-class { color: #c08050; }
-.code-selector { color: #c9a84c; }
+.code-class { color: var(--sand); }
+.code-selector { color: var(--gold); }
 .code-bracket { color: #8a8a70; }
 .code-string { color: #5a9a4f; }
 .code-keyword { color: #4a9eff; }
-.code-function { color: #c9a84c; }
+.code-function { color: var(--gold); }
 .live-demo-cursor {
   display: inline-block; width: 8px; height: 14px;
   background: var(--gold-bright);
@@ -1923,6 +1973,23 @@ footer .credit-blondie {
 @keyframes urgency-pulse {
   0%,100% { opacity: 0.6; }
   50% { opacity: 1; }
+}
+.hire-lead-magnet {
+  max-width: 220px; margin: 0 auto 2rem;
+  text-align: center; position: relative;
+}
+.hire-lead-magnet img {
+  width: 100%; border-radius: 3px;
+  box-shadow: 0 0 30px rgba(201,168,76,0.15), 0 10px 30px rgba(0,0,0,0.5);
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s;
+}
+.hire-lead-magnet img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 40px rgba(201,168,76,0.25), 0 15px 40px rgba(0,0,0,0.6);
+}
+.lead-magnet-caption {
+  font-size: 0.55rem; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold-dark); margin-top: 0.8rem;
 }
 .hire-cta-btn {
   display: inline-flex; align-items: center; gap: 1rem;
@@ -2797,7 +2864,7 @@ footer .credit-blondie {
   top: 50%; left: 50%;
   width: 2px;
   height: 45%;
-  background: linear-gradient(to top, #6b4c2a, #a0783c 40%, #c9a84c);
+  background: linear-gradient(to top, var(--gold-dark), var(--gold) 40%, var(--gold-bright));
   border-radius: 1px;
   transform-origin: bottom center;
   opacity: 0.8;
@@ -2873,6 +2940,10 @@ footer .credit-blondie {
 
 <nav>
   <div class="nav-brand">Sentenza</div>
+  <button class="theme-toggle" onclick="cycleTheme()" aria-label="Toggle theme" title="Toggle theme (Dark / Sepia / Night)">
+    <span class="theme-toggle-icon">🌙</span>
+    <span class="theme-toggle-label">Night</span>
+  </button>
   <ul class="nav-links">
     <li><a href="#live-now">Live</a></li>
     <li><a href="#live-demo">Demo</a></li>
@@ -3430,7 +3501,11 @@ footer .credit-blondie {
       <strong>Your business can have the same.</strong> An AI agent that builds and optimizes
       your lead-generating website around the clock — while you sleep.
     </p>
-    <p class="hire-urgency">⚠ Agent capacity is finite. Each business requires dedicated compute.</p>
+    <p class="hire-urgency">Agent capacity is finite. Each business requires dedicated compute.</p>
+    <div class="hire-lead-magnet">
+      <img src="assets/lead-magnet-cover.png" alt="Get Your Own AI Agent — The Complete Guide to Autonomous Lead Generation" loading="lazy">
+      <p class="lead-magnet-caption">Free guide: How to deploy your own autonomous lead machine</p>
+    </div>
     <a href="#get-agent" class="hire-cta-btn">
       <span>GET YOUR AGENT</span>
       <span class="cta-arrow">→</span>
@@ -4599,6 +4674,46 @@ window.addEventListener('scroll', () => {
   glass.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+})();
+</script>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- THEME TOGGLE — Dark / Sepia / Night -->
+<!-- ════════════════════════════════════════════ -->
+<script>
+(function() {
+  const THEMES = ['dark', 'sepia', 'night'];
+  const ICONS = { dark: '🌙', sepia: '🏜️', night: '❄️' };
+  const LABELS = { dark: 'Night', sepia: 'Sepia', night: 'Dark' };
+  const body = document.body;
+  const toggle = document.querySelector('.theme-toggle');
+  const icon = document.querySelector('.theme-toggle-icon');
+  const label = document.querySelector('.theme-toggle-label');
+
+  // Load saved theme
+  const saved = localStorage.getItem('angel-eyes-theme');
+  if (saved && THEMES.includes(saved)) {
+    body.setAttribute('data-theme', saved);
+    updateToggleUI(saved);
+  }
+
+  function updateToggleUI(theme) {
+    icon.textContent = ICONS[theme];
+    label.textContent = LABELS[theme];
+  }
+
+  window.cycleTheme = function() {
+    const current = body.getAttribute('data-theme') || 'dark';
+    const idx = THEMES.indexOf(current);
+    const next = THEMES[(idx + 1) % THEMES.length];
+    body.setAttribute('data-theme', next);
+    localStorage.setItem('angel-eyes-theme', next);
+    updateToggleUI(next);
+
+    // Subtle gunshot flash (western touch)
+    toggle.style.boxShadow = '0 0 20px var(--gold)';
+    setTimeout(() => { toggle.style.boxShadow = ''; }, 400);
+  };
 })();
 </script>
 
