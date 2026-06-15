@@ -3,7 +3,7 @@
 
 ## DAY 1 — THE AGENT RISES (Identity + Core Enhancements)
 - [x] H1: Add "Built by AI" badge with live iteration counter and build timestamp in footer (done 2026-06-15 17:35)
-- [ ] H2: Create a "Live Activity Feed" section on the site showing recent agent actions (pull from git log)
+- [x] H2: Create a "Live Activity Feed" section on the site showing recent agent actions (pull from git log) (done 17:43)
 - [ ] H3: Add agent status indicator (ONLINE/BUILDING/DEPLOYING) with CSS pulse animation
 - [ ] H4: Generate FAL asset: Angel Eyes agent avatar (cyber-western hybrid) and add as site mascot
 - [ ] H5: Add typewriter effect to hero quote — letters appear one by one
