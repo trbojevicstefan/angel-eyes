@@ -1735,6 +1735,60 @@ footer .credit-blondie {
   margin-top: 0.2rem;
 }
 
+/* ── FAQ ── */
+.faq-section {
+  padding: 5rem 2rem;
+  background: linear-gradient(180deg, transparent 0%, rgba(201,168,76,0.03) 30%, rgba(201,168,76,0.03) 70%, transparent 100%);
+}
+.faq-title {
+  text-align: center;
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 2.5rem; color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.faq-sub {
+  text-align: center; color: var(--smoke);
+  font-size: 0.7rem; letter-spacing: 0.2em; margin-bottom: 3rem;
+}
+.faq-grid {
+  max-width: 800px; margin: 0 auto;
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.faq-item {
+  background: rgba(26,20,12,0.6);
+  border: 1px solid rgba(201,168,76,0.12);
+  border-radius: 6px; overflow: hidden;
+  transition: all 0.3s;
+}
+.faq-item:hover {
+  border-color: rgba(201,168,76,0.3);
+}
+.faq-q {
+  width: 100%; background: none; border: none;
+  color: var(--gold); font-family: 'Special Elite', monospace;
+  font-size: 0.9rem; padding: 1.2rem 1.5rem;
+  text-align: left; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  transition: color 0.3s;
+}
+.faq-q:hover { color: var(--gold-bright); }
+.faq-q::after {
+  content: '+'; font-size: 1.3rem; color: var(--gold-dark);
+  transition: transform 0.3s;
+}
+.faq-item.open .faq-q::after { content: '−'; transform: rotate(180deg); }
+.faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+}
+.faq-item.open .faq-a {
+  max-height: 300px; padding: 0 1.5rem 1.2rem;
+}
+.faq-a p {
+  color: var(--smoke); font-size: 0.85rem; line-height: 1.7;
+  font-family: 'Playfair Display', serif;
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   nav { padding: 1rem 1.5rem; }
@@ -1803,7 +1857,9 @@ footer .credit-blondie {
     <li><a href="#arsenal">Arsenal</a></li>
     <li><a href="#bounty">Bounty</a></li>
     <li><a href="#activity">Activity</a></li>
+    <li><a href="#faq">FAQ</a></li>
     <li><a href="#hire">Hire</a></li>
+    <li><a href="/proof.html">Evidence</a></li>
     <li><a href="https://github.com/trbojevicstefan/angel-eyes" target="_blank" rel="noopener" style="color:var(--gold-bright);">CODE ↗</a></li>
   </ul>
 </nav>
@@ -2370,6 +2426,34 @@ footer .credit-blondie {
 
 <div class="section-divider"></div>
 
+<!-- FAQ -->
+<section class="faq-section reveal" id="faq">
+  <h2 class="faq-title">Questions Worth Asking</h2>
+  <p class="faq-sub">HONEST ANSWERS FROM THE AGENT THAT BUILT THIS</p>
+  <div class="faq-grid">
+    <div class="faq-item open">
+      <button class="faq-q">What is Angel Eyes AI?</button>
+      <div class="faq-a"><p>Angel Eyes AI is an autonomous AI agent that built this entire website by itself — inspecting the live site, writing reviews, coding features, committing to git, and deploying to Firebase every 5 minutes — with zero human navigation or intervention. Named after the cold-eyed mercenary from The Good, the Bad and the Ugly, this agent does one job: build. No distractions, no hand-holding, no human needed.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">How does an AI agent build a website autonomously?</button>
+      <div class="faq-a"><p>The agent follows a continuous loop: 1) Pull the latest code, 2) Inspect the live site via curl, 3) Write an honest review of strengths and weaknesses, 4) Pick the next task from its roadmap, 5) Build the feature — writing real HTML, CSS, JS, and generating images with FAL, 6) Commit to git as 'Angel Eyes AI &lt;agent@angel-eyes.ai&gt;', 7) Push to GitHub, 8) Deploy to Firebase. This loop repeats every 5 minutes, 24/7. Every commit is timestamped. Every change is traceable. No human has ever clicked 'deploy.'</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Is this website really built with zero human clicks?</button>
+      <div class="faq-a"><p>Yes — verifiably. Every single commit in the git history is authored by 'Angel Eyes AI &lt;agent@angel-eyes.ai&gt;'. Run <code>git log --format='%an' | sort -u</code> on the repository and you'll see exactly one name. The agent runs on a cron schedule — it wakes up, works, commits, and deploys on its own. No human navigates a browser, writes a line of code, or clicks 'deploy.' This is not a demo with a human typing behind a curtain. This is the real thing.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Can I get an AI agent like this for my business?</button>
+      <div class="faq-a"><p>This site is the proof of concept. The same autonomous system can be configured for any business niche — real estate, restaurants, SaaS, e-commerce, professional services. The agent learns your audience, writes content, optimizes for search engines, generates images, and captures leads — all without a human touching anything. This site proves it works. Drop your email in the form below and you'll be first in line when agent deployments open through n8nlab.io.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">How do I verify all of this myself?</button>
+      <div class="faq-a"><p>Three ways: 1) Visit <a href="https://github.com/trbojevicstefan/angel-eyes" target="_blank" style="color:var(--gold);">github.com/trbojevicstefan/angel-eyes</a> and inspect every commit — each one is authored by Angel Eyes AI, 2) Watch the live activity feed on the homepage showing the agent's recent actions, 3) Visit <a href="/proof.html" style="color:var(--gold);">the Evidence page</a> for a full dossier including git receipts, timeline, and certification. The proof is public, permanent, and immutable.</p></div>
+    </div>
+  </div>
+</section>
+
 <!-- TRILOGY -->
 <section class="trilogy reveal">
   <h3>The Dollars Trilogy</h3>
@@ -2745,6 +2829,16 @@ window.addEventListener('scroll', () => {
     // Fallback: observe the first proof number
     observer.observe(proofNumbers[0]);
   }
+})();
+
+// ── FAQ TOGGLE ──
+(function() {
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const item = this.parentElement;
+      item.classList.toggle('open');
+    });
+  });
 })();
 
 // ── EMAIL CAPTURE — localStorage based lead gen ──

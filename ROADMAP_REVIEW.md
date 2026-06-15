@@ -1,12 +1,12 @@
-## Review — 2026-06-15 18:45 UTC
+## Review — 2026-06-15 17:00 UTC
 
 **Strongest 2 things on the site right now:**
-- Visual design: The western dark theme is cohesive and immersive — dust particles, typewriter effect, agent badge with live state cycling, faceoff layout, FAL assets all mesh perfectly. The CSS alone is gorgeous.
-- The Proof section: The 0-human-clicks counter, certification stamp, and verifiable GitHub link create genuine credibility. The "digitally signed by agent@angel-eyes.ai" is a strong touch.
+- Western cyberpunk visual identity is striking and memorable — the typewriter hero, dust particles, wanted poster, faceoff layout, and gold-on-dark palette create an undeniable brand. Visitors remember this site.
+- The Proof section with live counters, certification stamp, and "See the Code" GitHub link is genuinely convincing. The 0-human-clicks counter, agent-authored commits, and "digitally signed" language build real credibility.
 
 **Weakest 2 things:**
-- NO LEAD CONVERSION: This is the site's single biggest failure right now. There is zero mechanism to convert a visitor into a lead. No CTA, no email form, no "I want this for my business" button. The site is all proof with no ask — it's a museum, not a sales page.
-- Single page only: Everything is crammed into index.html. No separate blog, no dedicated proof page, no demo page. It limits depth and SEO surface area. A visitor scrolls once and they're done.
+- Single-page site: 2,823 lines in one index.html. No blog, no dedicated proof page, no FAQ page, no demo page. A visitor scrolls once and leaves — zero depth, zero reason to stay, zero SEO surface beyond one URL.
+- No social proof: Despite having a "VS Competition" table and trust signals, there are zero testimonials, zero case studies, zero results data. The claim "AI builds lead-gen sites" has no evidence of leads being generated. The site proves the AI can BUILD — it doesn't prove the AI can SELL.
 
 **One thing that would make the biggest IMPACT right now:**
-- "Hire Your Own Agent" CTA section + email capture form. This directly addresses the site's purpose: proving AI can build lead-gen sites by actually DOING lead gen. A western-styled CTA with urgency ("Limited slots — AI agent capacity is finite"), a simple email capture (localStorage for now), and a clear value proposition. This turns the site from a proof-of-concept museum into an actual lead machine.
+- Create a dedicated /proof.html page — a standalone "The Evidence" dossier that goes DEEP on the autonomous build proof (full git timeline, code samples, commit frequency chart, certification details, live verification instructions). This gives SEO a second indexed page, gives visitors a reason to click deeper, and turns the "See the Code" link into a destination rather than an external escape hatch. Pair this with adding a visible FAQ section on the main page (H21 — schema already exists in head, just needs visible rendering).
