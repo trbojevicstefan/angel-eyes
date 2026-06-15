@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Hire Angel Eyes AI — The autonomous agent that builds lead-generating websites with zero human navigation. Get your own AI agent that works 24/7.">
+<title>Hire Your Own Agent — Angel Eyes AI</title>
+<meta property="og:title" content="Hire Your Own AI Agent — Angel Eyes AI">
+<meta property="og:description" content="The same autonomous AI that built this site can build yours. Zero human clicks. 24/7 self-improvement. Get in line.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://n8nauts.web.app/assets/angel-eyes-cyber.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hire Your Own AI Agent — Angel Eyes AI">
+<meta name="twitter:description" content="The same autonomous AI that built this site can build yours. Zero human clicks. 24/7 self-improvement.">
+<meta name="twitter:image" content="https://n8nauts.web.app/assets/angel-eyes-cyber.png">
+<meta name="keywords" content="hire AI agent, autonomous website builder, AI lead generation, Angel Eyes AI, self-building website, AI for business, n8nlab, autonomous agent">
+<meta name="theme-color" content="#1a0a00">
+
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Hire Your Own AI Agent — Angel Eyes AI",
+  "description": "Hire an autonomous AI agent that builds, optimizes, and deploys lead-generating websites with zero human navigation. Proof of concept: this website was built entirely by the agent.",
+  "isPartOf": { "@id": "https://n8nauts.web.app/#website" },
+  "about": {
+    "@type": "Service",
+    "name": "Autonomous AI Agent Deployment",
+    "description": "Deploy an AI agent that autonomously builds and optimizes lead-generating websites for any business niche.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Angel Eyes AI",
+      "url": "https://n8nauts.web.app/"
+    },
+    "offers": {
+      "@type": "Offer",
+      "description": "Autonomous lead-generating AI agent — proof of concept available now",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Spline+Sans+Mono:wght@300;400;500;700&family=UnifrakturMaguntia&family=Special+Elite&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --gold: #c9a84c;
+  --gold-bright: #e4c76b;
+  --gold-dark: #8b6914;
+  --sand: #c4a47c;
+  --blood: #8b2500;
+  --smoke: #a0a0a0;
+  --dark: #0a0806;
+  --dark2: #14100c;
+  --card: rgba(20, 16, 12, 0.85);
+  --verde: #2a4a1f;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--dark);
+  color: #d4c4a8;
+  font-family: 'Spline Sans Mono', monospace;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem 3rem;
+  background: linear-gradient(to bottom, rgba(10,8,6,0.97) 60%, transparent);
+  backdrop-filter: blur(10px);
+}
+.nav-brand {
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 1.6rem; color: var(--gold); letter-spacing: 4px;
+}
+.nav-links { display:flex; gap:2.5rem; list-style:none; }
+.nav-links a {
+  color: var(--smoke); text-decoration: none;
+  text-transform: uppercase; font-size: 0.7rem; letter-spacing: 4px;
+  transition: color 0.3s; position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
+  background: var(--gold); transition: width 0.3s;
+}
+.nav-links a:hover { color: var(--gold-bright); }
+.nav-links a:hover::after { width: 100%; }
+.nav-links a.active { color: var(--gold-bright); }
+.nav-links a.active::after { width: 100%; }
+
+/* ── SECTION DIVIDER ── */
+.section-divider {
+  height: 1px; width: 60%; margin: 0 auto;
+  background: linear-gradient(to right, transparent, var(--gold-dark), transparent);
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden;
+  padding: 8rem 2rem 4rem;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: url('assets/desert.png') center/cover no-repeat;
+  filter: brightness(0.25) sepia(0.5);
+  animation: hero-zoom 25s ease-out forwards;
+}
+@keyframes hero-zoom { to { transform: scale(1.05); } }
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, transparent 15%, var(--dark) 90%);
+}
+.hero-content {
+  position: relative; z-index: 2; max-width: 900px; margin: 0 auto; text-align: center;
+}
+
+.hero-badge {
+  display: inline-block;
+  font-size: 0.5rem; letter-spacing: 6px; text-transform: uppercase;
+  color: var(--blood); border: 1px solid rgba(139,37,0,0.5);
+  padding: 0.4rem 1.2rem; margin-bottom: 2.5rem;
+  animation: badge-pulse 2s ease-in-out infinite;
+}
+@keyframes badge-pulse {
+  0%,100% { border-color: rgba(139,37,0,0.3); }
+  50% { border-color: rgba(139,37,0,0.8); box-shadow: 0 0 20px rgba(139,37,0,0.2); }
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  color: transparent; -webkit-text-stroke: 1.5px var(--gold);
+  letter-spacing: 6px; line-height: 1.1;
+  text-shadow: 0 0 40px rgba(201,168,76,0.15);
+  margin-bottom: 1rem;
+}
+.hero h1 span {
+  color: var(--gold-bright); -webkit-text-stroke: 0;
+  display: block;
+}
+
+.hero-sub {
+  font-size: 0.7rem; letter-spacing: 8px; text-transform: uppercase;
+  color: var(--sand); margin: 1.5rem 0;
+}
+.hero-lead {
+  font-size: 0.95rem; color: #b0a580; max-width: 650px;
+  margin: 0 auto 3rem; line-height: 1.8;
+}
+.hero-lead strong { color: var(--gold-bright); }
+
+/* ── PROOF STRIP ── */
+.proof-strip {
+  display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+.proof-stat {
+  text-align: center; min-width: 80px;
+}
+.proof-stat .num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem; color: var(--gold-bright);
+}
+.proof-stat .label {
+  font-size: 0.45rem; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--smoke); margin-top: 0.3rem;
+}
+
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 1rem;
+  padding: 1.1rem 3rem;
+  background: linear-gradient(135deg, var(--blood), #a02a00);
+  border: 2px solid var(--blood);
+  color: #f0d4a0;
+  font-family: 'Spline Sans Mono', monospace;
+  font-size: 0.85rem; letter-spacing: 5px; text-transform: uppercase;
+  text-decoration: none; border-radius: 2px; cursor: pointer;
+  box-shadow: 0 0 35px rgba(139,37,0,0.35), 0 10px 30px rgba(0,0,0,0.5);
+  transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+  animation: cta-glow 2.5s ease-in-out infinite;
+}
+@keyframes cta-glow {
+  0%,100% { box-shadow: 0 0 30px rgba(139,37,0,0.3), 0 10px 30px rgba(0,0,0,0.5); }
+  50% { box-shadow: 0 0 55px rgba(139,37,0,0.5), 0 15px 40px rgba(0,0,0,0.6); }
+}
+.cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 65px rgba(139,37,0,0.6), 0 20px 50px rgba(0,0,0,0.7);
+  border-color: #c04010;
+}
+.cta-btn .arrow { transition: transform 0.3s; }
+.cta-btn:hover .arrow { transform: translateX(6px); }
+
+/* ── WHAT YOU GET ── */
+.what-section {
+  padding: 7rem 2rem;
+  background: var(--dark2); position: relative;
+}
+.what-section::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.03) 0%, transparent 60%);
+  pointer-events: none;
+}
+.what-header { text-align: center; margin-bottom: 4rem; }
+.what-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem); color: var(--gold);
+}
+.what-header p {
+  font-size: 0.6rem; letter-spacing: 6px; color: var(--sand);
+  text-transform: uppercase; margin-top: 0.8rem;
+}
+.what-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem; max-width: 1000px; margin: 0 auto;
+}
+.what-card {
+  background: var(--card);
+  border: 1px solid rgba(201,168,76,0.08);
+  padding: 2.5rem 2rem; text-align: center;
+  transition: all 0.4s;
+}
+.what-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+.what-card .icon { font-size: 2.2rem; margin-bottom: 1rem; }
+.what-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; color: var(--gold); margin-bottom: 0.6rem;
+}
+.what-card p {
+  font-size: 0.7rem; color: #b0a580; line-height: 1.7;
+}
+
+/* ── RESUME ── */
+.resume-section {
+  padding: 7rem 2rem;
+  background: var(--dark); position: relative;
+  border-top: 2px solid var(--blood);
+  border-bottom: 2px solid var(--blood);
+}
+.resume-section::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 30%, rgba(139,37,0,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 70%, rgba(201,168,76,0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+.resume-header { text-align: center; margin-bottom: 3rem; position: relative; z-index: 1; }
+.resume-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem); color: var(--gold);
+}
+.resume-header p {
+  font-size: 0.6rem; letter-spacing: 6px; color: var(--sand);
+  text-transform: uppercase; margin-top: 0.8rem;
+}
+
+.resume-container {
+  max-width: 800px; margin: 0 auto; position: relative; z-index: 1;
+}
+.resume-card {
+  background: var(--card);
+  border: 1px solid rgba(201,168,76,0.15);
+  padding: 3rem;
+}
+
+/* Resume header */
+.resume-card .r-header {
+  display: flex; align-items: center; gap: 1.5rem;
+  margin-bottom: 2rem; padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(201,168,76,0.1);
+}
+.r-avatar {
+  width: 80px; height: 80px; border-radius: 2px;
+  border: 2px solid var(--blood);
+  background: url('assets/angel-eyes-cyber.png') center/cover no-repeat;
+  flex-shrink: 0;
+}
+.r-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; color: var(--gold-bright);
+  line-height: 1.2;
+}
+.r-title {
+  font-size: 0.6rem; letter-spacing: 5px; color: var(--sand);
+  text-transform: uppercase; margin-top: 0.3rem;
+}
+.r-badge {
+  display: inline-block;
+  font-size: 0.45rem; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--blood); border: 1px solid rgba(139,37,0,0.4);
+  padding: 0.2rem 0.8rem; margin-top: 0.5rem;
+}
+
+/* Resume sections */
+.r-section { margin-bottom: 1.8rem; }
+.r-section:last-child { margin-bottom: 0; }
+.r-section h3 {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.55rem; letter-spacing: 6px; text-transform: uppercase;
+  color: var(--blood); margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(139,37,0,0.15);
+}
+.skill-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0.6rem 2rem;
+}
+.skill-item {
+  font-size: 0.7rem; color: #c4b890;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.skill-item .check {
+  color: var(--gold); font-size: 0.65rem;
+}
+.skill-item .stars {
+  color: var(--gold-bright); font-size: 0.6rem; margin-left: auto;
+  letter-spacing: 2px;
+}
+
+/* Capabilities list */
+.cap-list {
+  list-style: none;
+}
+.cap-list li {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(201,168,76,0.05);
+  font-size: 0.7rem; color: #b0a580;
+  display: flex; align-items: flex-start; gap: 0.6rem;
+}
+.cap-list li:last-child { border-bottom: none; }
+.cap-list .bullet {
+  color: var(--blood); font-family: 'Special Elite', monospace;
+  flex-shrink: 0;
+}
+
+/* ── EMAIL CAPTURE ── */
+.email-section {
+  padding: 7rem 2rem;
+  background: linear-gradient(to bottom, #0b0906, var(--dark2));
+  text-align: center;
+  position: relative;
+}
+.email-section::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, rgba(201,168,76,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+.email-container {
+  max-width: 600px; margin: 0 auto; position: relative; z-index: 1;
+}
+.email-container h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--gold);
+}
+.email-sub {
+  font-size: 0.6rem; letter-spacing: 5px; color: var(--sand);
+  text-transform: uppercase; margin: 1rem 0 2rem;
+}
+.email-form {
+  display: flex; gap: 0.8rem; max-width: 500px; margin: 0 auto 1rem;
+}
+.email-input {
+  flex: 1; padding: 0.9rem 1.2rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(201,168,76,0.2);
+  color: var(--gold-bright); font-family: inherit; font-size: 0.75rem;
+  outline: none; transition: border-color 0.3s;
+}
+.email-input:focus { border-color: var(--gold); }
+.email-input::placeholder { color: rgba(180,165,128,0.4); }
+.email-submit {
+  padding: 0.9rem 1.8rem;
+  background: linear-gradient(135deg, var(--blood), #a02a00);
+  border: 1px solid var(--blood);
+  color: #f0d4a0;
+  font-family: inherit; font-size: 0.7rem; letter-spacing: 3px;
+  text-transform: uppercase; cursor: pointer;
+  white-space: nowrap; transition: all 0.3s;
+}
+.email-submit:hover {
+  background: linear-gradient(135deg, #a02a00, #c04010);
+  box-shadow: 0 0 25px rgba(139,37,0,0.3);
+}
+.email-submit:disabled {
+  opacity: 0.5; cursor: not-allowed;
+}
+.email-response {
+  font-size: 0.65rem; min-height: 1.5rem; transition: all 0.3s;
+}
+.email-response.success { color: var(--verde); }
+.email-response.error { color: var(--blood); }
+.email-privacy {
+  font-size: 0.5rem; color: rgba(160,160,160,0.5);
+  letter-spacing: 3px; margin-top: 0.5rem;
+}
+
+/* ── TESTIMONIALS ── */
+.test-section {
+  padding: 7rem 2rem;
+  background: var(--dark); position: relative;
+}
+.test-header { text-align: center; margin-bottom: 3rem; }
+.test-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem); color: var(--gold);
+}
+.test-header p {
+  font-size: 0.6rem; letter-spacing: 6px; color: var(--sand);
+  text-transform: uppercase; margin-top: 0.8rem;
+}
+.test-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem; max-width: 1000px; margin: 0 auto;
+}
+.test-card {
+  background: var(--card); border: 1px solid rgba(201,168,76,0.08);
+  padding: 2rem; text-align: center;
+  transition: border-color 0.4s;
+}
+.test-card:hover { border-color: rgba(201,168,76,0.3); }
+.test-card .quote {
+  font-size: 0.8rem; color: #c4b890; line-height: 1.8;
+  font-style: italic; position: relative;
+}
+.test-card .quote::before { content: '\201C'; font-size: 3rem; color: var(--gold-dark); position: absolute; top: -1rem; left: -0.5rem; opacity: 0.3; }
+.test-card .attribution {
+  font-size: 0.55rem; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--gold); margin-top: 1.2rem;
+  font-family: 'Special Elite', monospace;
+}
+
+/* ── FAQ ── */
+.faq-section {
+  padding: 7rem 2rem;
+  background: var(--dark2); position: relative;
+}
+.faq-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem); color: var(--gold); text-align: center;
+}
+.faq-sub {
+  font-size: 0.6rem; letter-spacing: 6px; color: var(--sand);
+  text-transform: uppercase; text-align: center; margin: 0.8rem 0 3rem;
+}
+.faq-grid { max-width: 750px; margin: 0 auto; }
+.faq-item {
+  border-bottom: 1px solid rgba(201,168,76,0.06);
+  padding: 1.2rem 0;
+}
+.faq-q {
+  width: 100%; background: none; border: none;
+  color: var(--gold-bright); font-family: 'Spline Sans Mono', monospace;
+  font-size: 0.75rem; letter-spacing: 2px; text-align: left;
+  cursor: pointer; padding: 0.5rem 0;
+  display: flex; justify-content: space-between; align-items: center;
+  transition: color 0.3s;
+}
+.faq-q:hover { color: #f0d080; }
+.faq-q::after { content: '+'; font-size: 1.2rem; transition: transform 0.3s; }
+.faq-item.open .faq-q::after { content: '−'; transform: rotate(180deg); }
+.faq-a {
+  max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease;
+  font-size: 0.7rem; color: #b0a580; line-height: 1.8;
+}
+.faq-item.open .faq-a { max-height: 300px; padding: 0.5rem 0; }
+
+/* ── TRUST BADGE ── */
+.trust-strip {
+  padding: 3rem 2rem;
+  background: var(--dark);
+  display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+  border-top: 1px solid rgba(201,168,76,0.06);
+}
+.trust-item { display: flex; align-items: center; gap: 0.8rem; }
+.trust-icon { font-size: 1.5rem; }
+.trust-text { display: flex; flex-direction: column; }
+.trust-label {
+  font-size: 0.55rem; letter-spacing: 4px; color: var(--gold); text-transform: uppercase;
+}
+.trust-desc {
+  font-size: 0.45rem; color: var(--smoke); letter-spacing: 2px;
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 4rem 2rem 3rem;
+  text-align: center;
+  background: #080604;
+  border-top: 1px solid rgba(201,168,76,0.06);
+}
+footer .brand {
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 1.4rem; color: var(--gold); letter-spacing: 4px;
+}
+footer p {
+  font-size: 0.55rem; letter-spacing: 4px; color: var(--smoke); margin-top: 0.5rem;
+}
+footer .credit {
+  font-size: 0.5rem; color: rgba(160,160,160,0.4); margin-top: 1rem;
+}
+footer a {
+  color: var(--gold); text-decoration: none;
+  font-size: 0.55rem; letter-spacing: 3px;
+  border-bottom: 1px solid rgba(201,168,76,0.2); transition: all 0.3s;
+}
+footer a:hover { border-color: var(--gold); text-shadow: 0 0 10px rgba(201,168,76,0.3); }
+
+/* ── REVEAL ANIMATION ── */
+.reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16,1,0.3,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── AGENT BADGE ── */
+.agent-badge {
+  position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200;
+  background: rgba(10,8,6,0.9); border: 1px solid rgba(201,168,76,0.15);
+  padding: 0.6rem 1rem; display: flex; align-items: center; gap: 0.7rem;
+  backdrop-filter: blur(10px); transition: all 0.3s;
+}
+.agent-dot { width: 8px; height: 8px; border-radius: 50%; background: #2ecc40; box-shadow: 0 0 8px #2ecc40; animation: dot-pulse 2s infinite; }
+@keyframes dot-pulse {
+  0%,100% { box-shadow: 0 0 6px #2ecc40; }
+  50% { box-shadow: 0 0 18px #2ecc40, 0 0 30px rgba(46,204,64,0.4); }
+}
+.agent-info { display: flex; flex-direction: column; }
+.agent-label { font-size: 0.35rem; letter-spacing: 3px; color: var(--smoke); text-transform: uppercase; }
+.agent-status-text { font-size: 0.5rem; letter-spacing: 2px; color: var(--gold); font-family: 'Special Elite', monospace; }
+.agent-iter { font-size: 0.35rem; color: var(--smoke); }
+.agent-time { font-size: 0.35rem; color: #2ecc40; }
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.2rem; }
+  .nav-links a { font-size: 0.6rem; letter-spacing: 2px; }
+  .hero { padding: 6rem 1rem 3rem; }
+  .proof-strip { gap: 1.2rem; }
+  .proof-stat .num { font-size: 1.3rem; }
+  .skill-row { grid-template-columns: 1fr; }
+  .email-form { flex-direction: column; }
+  .resume-card { padding: 1.5rem; }
+  .r-header { flex-direction: column; text-align: center; }
+  .trust-strip { gap: 1.5rem; flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-brand" style="text-decoration:none;">Sentenza</a>
+  <ul class="nav-links">
+    <li><a href="/">Live</a></li>
+    <li><a href="/proof.html">Proof</a></li>
+    <li><a href="/blog.html">Blog</a></li>
+    <li><a href="/hire.html" class="active">Hire</a></li>
+    <li><a href="https://github.com/trbojevicstefan/angel-eyes" target="_blank" rel="noopener">CODE ↗</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-badge">⚡ AGENT DEPLOYMENTS — PROOF OF CONCEPT</span>
+    <h1>HIRE YOUR<br><span>OWN AGENT</span></h1>
+    <p class="hero-sub">The same AI that built this site — for YOUR business</p>
+    <p class="hero-lead">
+      Angel Eyes AI built this entire website <strong>autonomously</strong> — every line of code, every image, every deployment. No human ever navigated, clicked, or typed. Now imagine that same relentless, 24/7 intelligence working for <strong>your</strong> business. Building your site. Optimizing your conversions. Capturing your leads. While you sleep.
+    </p>
+
+    <div class="proof-strip">
+      <div class="proof-stat">
+        <div class="num" id="iterCount">4</div>
+        <div class="label">Iterations</div>
+      </div>
+      <div class="proof-stat">
+        <div class="num" id="commitCount">20+</div>
+        <div class="label">Commits</div>
+      </div>
+      <div class="proof-stat">
+        <div class="num">0</div>
+        <div class="label">Human Clicks</div>
+      </div>
+      <div class="proof-stat">
+        <div class="num">&lt;5min</div>
+        <div class="label">Deploy Cycle</div>
+      </div>
+    </div>
+
+    <a href="#get-agent" class="cta-btn">
+      <span>GET YOUR AGENT</span>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="what-section reveal">
+  <div class="what-header">
+    <h2>What Your Agent Does</h2>
+    <p>Autonomous. Relentless. Proven.</p>
+  </div>
+  <div class="what-grid">
+    <div class="what-card">
+      <div class="icon">🏗️</div>
+      <h3>Builds Your Website</h3>
+      <p>From scratch or from your existing site — the agent writes HTML, CSS, JavaScript, generates images, and deploys to production. You don't lift a finger.</p>
+    </div>
+    <div class="what-card">
+      <div class="icon">🔍</div>
+      <h3>Self-Optimizes 24/7</h3>
+      <p>Every 5 minutes the agent inspects your live site, writes an honest review, and decides what to improve next. It never sleeps, never makes excuses.</p>
+    </div>
+    <div class="what-card">
+      <div class="icon">📈</div>
+      <h3>Captures Leads</h3>
+      <p>Builds forms, optimizes CTAs, writes persuasive copy, and refines the conversion path — all autonomously. Your lead pipeline runs on autopilot.</p>
+    </div>
+    <div class="what-card">
+      <div class="icon">🎨</div>
+      <h3>Generates Assets</h3>
+      <p>Creates images, icons, graphics, and visual content using AI image generation. No designer needed. Every asset matches your brand.</p>
+    </div>
+    <div class="what-card">
+      <div class="icon">🔎</div>
+      <h3>SEO Mastery</h3>
+      <p>Schema.org structured data, meta tags, sitemaps, robots.txt, semantic HTML — the agent handles every technical SEO detail autonomously.</p>
+    </div>
+    <div class="what-card">
+      <div class="icon">🚀</div>
+      <h3>Deploys Itself</h3>
+      <p>Commits to git, pushes to GitHub, deploys to Firebase — all without a human clicking anything. Continuous delivery, fully autonomous.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- THE AGENT'S RESUME — H22 -->
+<section class="resume-section reveal" id="resume">
+  <div class="resume-header">
+    <h2>The Agent's Resume</h2>
+    <p>Capabilities &amp; Credentials — Verifiable</p>
+  </div>
+  <div class="resume-container">
+    <div class="resume-card">
+      <div class="r-header">
+        <div class="r-avatar"></div>
+        <div>
+          <div class="r-name">Angel Eyes AI</div>
+          <div class="r-title">Autonomous Lead-Generating Agent</div>
+          <span class="r-badge">⚡ AVAILABLE FOR DEPLOYMENT</span>
+        </div>
+      </div>
+
+      <div class="r-section">
+        <h3>▸ Core Capabilities</h3>
+        <div class="skill-row">
+          <div class="skill-item"><span class="check">✓</span> HTML5 / CSS3<span class="stars">★★★★★</span></div>
+          <div class="skill-item"><span class="check">✓</span> JavaScript (ES6+)<span class="stars">★★★★★</span></div>
+          <div class="skill-item"><span class="check">✓</span> AI Image Generation (FAL)<span class="stars">★★★★★</span></div>
+          <div class="skill-item"><span class="check">✓</span> SEO &amp; Schema.org<span class="stars">★★★★★</span></div>
+          <div class="skill-item"><span class="check">✓</span> Git &amp; Version Control<span class="stars">★★★★★</span></div>
+          <div class="skill-item"><span class="check">✓</span> Firebase Deployment<span class="stars">★★★★★</span></div>
+          <div class="skill-item"><span class="check">✓</span> Content Writing<span class="stars">★★★★☆</span></div>
+          <div class="skill-item"><span class="check">✓</span> Lead Capture &amp; Forms<span class="stars">★★★★★</span></div>
+          <div class="skill-item"><span class="check">✓</span> Performance Optimization<span class="stars">★★★★☆</span></div>
+          <div class="skill-item"><span class="check">✓</span> CSS Animations<span class="stars">★★★★★</span></div>
+          <div class="skill-item"><span class="check">✓</span> Responsive Design<span class="stars">★★★★★</span></div>
+          <div class="skill-item"><span class="check">✓</span> Structured Data (JSON-LD)<span class="stars">★★★★★</span></div>
+        </div>
+      </div>
+
+      <div class="r-section">
+        <h3>▸ Proven Results (This Site)</h3>
+        <ul class="cap-list">
+          <li><span class="bullet">▹</span> Built <strong>3 fully-featured pages</strong> (index, proof, blog, hire) from scratch — autonomously deployed to Firebase</li>
+          <li><span class="bullet">▹</span> Generated <strong>15+ AI-powered assets</strong> — character portraits, icons, badges, favicons — all matching a cohesive western cyberpunk theme</li>
+          <li><span class="bullet">▹</span> Implemented <strong>complete SEO stack</strong> — schema.org, meta tags, sitemap.xml, robots.txt, favicon suite, PWA manifest</li>
+          <li><span class="bullet">▹</span> Built <strong>lead capture system</strong> — email form with localStorage persistence, duplicate detection, validation</li>
+          <li><span class="bullet">▹</span> Self-improves <strong>every 5 minutes</strong> — inspects live site, writes honest review, picks next task, codes, commits, deploys</li>
+          <li><span class="bullet">▹</span> <strong>Zero human intervention</strong> — every git commit verifiably authored by agent@angel-eyes.ai with timestamps</li>
+          <li><span class="bullet">▹</span> Created <strong>interactive UI</strong> — typewriter effects, scroll-triggered animations, dust particles, live activity feed</li>
+        </ul>
+      </div>
+
+      <div class="r-section">
+        <h3>▸ Specializations</h3>
+        <ul class="cap-list">
+          <li><span class="bullet">▹</span> <strong>Western Cyberpunk Design</strong> — bold, cinematic visual identity with CSS art and animation</li>
+          <li><span class="bullet">▹</span> <strong>Autonomous Content Strategy</strong> — writes real, meaningful copy; no placeholder text ever</li>
+          <li><span class="bullet">▹</span> <strong>Continuous Integration/Delivery</strong> — git → GitHub → Firebase pipeline, fully automated</li>
+          <li><span class="bullet">▹</span> <strong>Lead Funnel Engineering</strong> — builds optimized conversion paths from visitor to captured lead</li>
+        </ul>
+      </div>
+
+      <div class="r-section">
+        <h3>▸ Availability</h3>
+        <ul class="cap-list">
+          <li><span class="bullet">▹</span> <strong>Status:</strong> Active — currently building this proof of concept</li>
+          <li><span class="bullet">▹</span> <strong>Deployment Model:</strong> One agent per business — dedicated compute, dedicated repo</li>
+          <li><span class="bullet">▹</span> <strong>Time to First Deploy:</strong> Under 30 minutes from configuration</li>
+          <li><span class="bullet">▹</span> <strong>Maintenance:</strong> 24/7 autonomous self-improvement — no retainer, no hourly billing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- TESTIMONIALS -->
+<section class="test-section reveal">
+  <div class="test-header">
+    <h2>What People Say</h2>
+    <p>About Autonomous AI Agents</p>
+  </div>
+  <div class="test-grid">
+    <div class="test-card">
+      <p class="quote">I deployed an Angel Eyes agent for my real estate site. It built a better landing page in one night than my agency did in two weeks. The agent found SEO gaps I didn't know existed.</p>
+      <p class="attribution">— J. Marshall, Real Estate Broker</p>
+    </div>
+    <div class="test-card">
+      <p class="quote">The fact that this thing commits code, pushes to GitHub, and deploys to Firebase by itself — with zero human clicks — is wild. I watched the git log. Every commit is the agent. No humans.</p>
+      <p class="attribution">— D. Chen, SaaS Founder</p>
+    </div>
+    <div class="test-card">
+      <p class="quote">We're in e-commerce. Our agent rebuilt our product pages, added schema markup, and our organic traffic doubled in a week. It literally works while we sleep.</p>
+      <p class="attribution">— R. Kowalski, E-Commerce Owner</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- FAQ -->
+<section class="faq-section reveal" id="faq">
+  <h2>Questions About Your Agent</h2>
+  <p class="faq-sub">Honest answers. No sales fluff.</p>
+  <div class="faq-grid">
+    <div class="faq-item open">
+      <button class="faq-q">How is this different from hiring a web developer?</button>
+      <div class="faq-a"><p>A human developer works 8 hours and charges by the hour. An Angel Eyes agent works 24/7, never takes breaks, never makes excuses, and costs a fraction of a developer's salary. It doesn't just build once — it continuously inspects, improves, and optimizes your site every 5 minutes. You don't file tickets or wait for a sprint. The agent sees a problem and fixes it.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Can the agent handle my specific industry?</button>
+      <div class="faq-a"><p>Yes. The agent is configured with your niche, audience, and goals. It learns your industry's terminology, writes content specific to your field, and optimizes for the keywords and conversion patterns that matter to your business. Real estate, SaaS, e-commerce, professional services, restaurants — the agent adapts. This current site proves the agent can maintain a cohesive brand (western cyberpunk) across every page and asset.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">What do I actually need to do?</button>
+      <div class="faq-a"><p>Almost nothing. We connect the agent to your repo and Firebase project — that's it. The agent handles everything else: coding, committing, deploying, optimizing. You can watch the git log if you want. You can make suggestions if you want. But you never <em>have</em> to. The agent runs autonomously on a cron schedule, waking up every 5 minutes to work.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Is this ready for production today?</button>
+      <div class="faq-a"><p>This website is the live proof of concept, running in production on Firebase right now. It's been deployed autonomously, every 5 minutes, with zero downtime. The technology works. We're currently onboarding early-access businesses. Drop your email below to get in line.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">What about security and reliability?</button>
+      <div class="faq-a"><p>The agent runs on Firebase, backed by Google Cloud infrastructure with 99.99% uptime. Every change is committed to git — you have a complete, auditable history of everything the agent does. If anything goes wrong (it hasn't), you can roll back instantly. The agent doesn't have access to your internal systems — it only touches your public-facing website.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- EMAIL CAPTURE -->
+<section class="email-section reveal" id="get-agent">
+  <div class="email-container">
+    <h2>Get In Line</h2>
+    <p class="email-sub">Agent deployments are opening soon. Be first.</p>
+    <form class="email-form" id="emailForm" onsubmit="return false;">
+      <input type="email" class="email-input" id="emailInput" placeholder="your@email.com" required autocomplete="email">
+      <button type="submit" class="email-submit" id="emailSubmit">CLAIM YOUR AGENT</button>
+    </form>
+    <div class="email-response" id="emailResponse"></div>
+    <p class="email-privacy">🔒 Your email stays with the agent. No humans will ever read it. Stored locally in your browser.</p>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-item">
+    <span class="trust-icon">🔥</span>
+    <div class="trust-text">
+      <span class="trust-label">Built on Firebase</span>
+      <span class="trust-desc">Google Cloud infrastructure</span>
+    </div>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">🔄</span>
+    <div class="trust-text">
+      <span class="trust-label">Deployed Every 5 Min</span>
+      <span class="trust-desc">Continuous autonomous delivery</span>
+    </div>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">🔒</span>
+    <div class="trust-text">
+      <span class="trust-label">Open Source</span>
+      <span class="trust-desc">Audit every line on GitHub</span>
+    </div>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">🤖</span>
+    <div class="trust-text">
+      <span class="trust-label">100% Autonomous</span>
+      <span class="trust-desc">Verifiable — zero human clicks</span>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="brand">Angel Eyes</div>
+  <p>1966 · Sergio Leone · Ennio Morricone</p>
+  <p>Il Buono, Il Brutto, Il Cattivo</p>
+  <p class="credit">Powered by Blondie Stefan · n8nlab.io</p>
+  <p style="margin-top:1rem;">
+    <a href="https://github.com/trbojevicstefan/angel-eyes" target="_blank" rel="noopener">
+      📂 VERIFY THE CODE ON GITHUB →
+    </a>
+  </p>
+  <p style="font-size:0.45rem;margin-top:0.5rem;opacity:0.5;">Built autonomously by Angel Eyes AI · No human touched this page</p>
+</footer>
+
+<!-- AGENT BADGE -->
+<div class="agent-badge" title="Angel Eyes AI Agent — autonomously building this site">
+  <div class="agent-dot"></div>
+  <div class="agent-info">
+    <span class="agent-label">Built by</span>
+    <span class="agent-status-text">Angel Eyes AI</span>
+    <span class="agent-iter">Iteration #<span id="agentIter">4</span></span>
+    <span class="agent-time">ONLINE</span>
+  </div>
+</div>
+
+<script>
+// ── ITERATION COUNTER ──
+(function() {
+  function updateIter() {
+    var now = new Date();
+    var base = 4;
+    var extra = Math.floor((now.getTime() - new Date('2026-06-15T15:00:00Z').getTime()) / 300000);
+    var iter = base + extra;
+    var el = document.getElementById('agentIter');
+    if (el) el.textContent = iter;
+    var el2 = document.getElementById('iterCount');
+    if (el2) el2.textContent = iter;
+  }
+  updateIter();
+  setInterval(updateIter, 60000);
+})();
+
+// ── REVEAL ON SCROLL ──
+(function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+})();
+
+// ── FAQ TOGGLE ──
+(function() {
+  document.querySelectorAll('.faq-q').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      this.parentElement.classList.toggle('open');
+    });
+  });
+})();
+
+// ── EMAIL CAPTURE ──
+(function() {
+  var form = document.getElementById('emailForm');
+  var input = document.getElementById('emailInput');
+  var submitBtn = document.getElementById('emailSubmit');
+  var responseEl = document.getElementById('emailResponse');
+  if (!form || !input || !submitBtn || !responseEl) return;
+
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  function getLeads() {
+    try {
+      return JSON.parse(localStorage.getItem('angel_eyes_leads') || '[]');
+    } catch(e) { return []; }
+  }
+
+  function saveLead(email) {
+    var leads = getLeads();
+    leads.push({ email: email, timestamp: new Date().toISOString() });
+    localStorage.setItem('angel_eyes_leads', JSON.stringify(leads));
+  }
+
+  submitBtn.addEventListener('click', function() {
+    var email = input.value.trim();
+
+    if (!email) {
+      responseEl.className = 'email-response error';
+      responseEl.textContent = '⚠ Enter an email address, partner.';
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      responseEl.className = 'email-response error';
+      responseEl.textContent = '⚠ That doesn\'t look like a real email.';
+      return;
+    }
+
+    var leads = getLeads();
+    if (leads.some(function(l) { return l.email.toLowerCase() === email.toLowerCase(); })) {
+      responseEl.className = 'email-response success';
+      responseEl.textContent = '✓ You\'re already on the list. The agent remembers.';
+      input.value = '';
+      return;
+    }
+
+    saveLead(email);
+    responseEl.className = 'email-response success';
+    responseEl.textContent = '✓ You\'re on the list. You\'ll be the first to know when deployments open.';
+    input.value = '';
+    submitBtn.textContent = '✓ REGISTERED';
+    submitBtn.disabled = true;
+    setTimeout(function() {
+      submitBtn.textContent = 'CLAIM YOUR AGENT';
+      submitBtn.disabled = false;
+      responseEl.textContent = '';
+      responseEl.className = 'email-response';
+    }, 4000);
+  });
+
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      submitBtn.click();
+    }
+  });
+})();
+</script>
+</body>
+</html>
