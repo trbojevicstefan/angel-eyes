@@ -40,21 +40,21 @@
 - [x] H30: Implement cinematic letterbox intro animation
 - [x] H31: Create golden hour light rays effect on hero
 - [x] H32: Add particle system: gold dust follows mouse cursor
-- [ ] H33: Generate FAL asset: wanted poster variations for all characters
+- [x] H33: Generate FAL asset: wanted poster variations for all characters
 - [x] H34: Implement dark/sepia/night triple theme toggle
 - [x] H35: Add CSS whiskey glass fill animation — scroll progress indicator
 - [ ] H36: Create graveyard section with CSS fog and floating names
 
 ## DAY 4 — INTERACTIVE (Mini-games + Engagement)
 - [x] H37: Build quick-draw mini-game — reaction time test
-- [ ] H38: Add Konami code easter egg (↑↑↓↓←→←→BA)
+- [x] H38: Add Konami code easter egg (↑↑↓↓←→←→BA)
 - [ ] H39: Generate FAL asset: poker cards (dead man's hand, ace of spades)
 - [ ] H40: Create trivia quiz — "How well do you know the West?"
 - [ ] H41: Add "Shoot the Target" CSS game — click moving targets
 - [ ] H42: Implement "The Standoff" — pick Blondie or Angel Eyes, random outcome
 - [ ] H43: Generate FAL asset: bullet animation frames for shooting effect
 - [x] H44: Create "Visitor's Wall" — leave your alias carved in wood (localStorage)
-- [ ] H45: Add Ennio Morricone soundtrack buttons with YouTube links
+- [x] H45: Add Ennio Morricone soundtrack buttons with YouTube links
 - [ ] H46: Implement page transition western door swing animation
 - [ ] H47: Create "Spin the Cylinder" Russian roulette mini-game
 - [ ] H48: Generate FAL asset: wanted poster generator template

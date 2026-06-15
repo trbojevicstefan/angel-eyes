@@ -2916,6 +2916,137 @@ footer .credit-blondie {
   .tumbleweed { bottom: 12%; }
   .tumbleweed-body { width: 50px; height: 50px; }
 }
+
+/* ════════════════════════════════════════════ */
+/* ENNIO MORRICONE SOUNDTRACK SECTION — H45    */
+/* ════════════════════════════════════════════ */
+.soundtrack-section {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+.soundtrack-section h2 {
+  font-family: 'UnifrakturMaguntia', serif;
+  font-size: 2.8rem;
+  color: var(--gold-bright);
+  margin-bottom: 0.2rem;
+  text-shadow: 0 0 30px rgba(201,168,76,0.25);
+}
+.soundtrack-sub {
+  font-size: 0.7rem;
+  letter-spacing: 5px;
+  color: var(--gold-dark);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+.soundtrack-desc {
+  max-width: 550px;
+  margin: 0 auto 2.5rem;
+  color: var(--smoke);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  font-family: 'Special Elite', monospace;
+}
+.soundtrack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.soundtrack-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--card);
+  border: 1px solid rgba(201,168,76,0.12);
+  border-radius: 6px;
+  padding: 1.2rem 1.4rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+.soundtrack-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201,168,76,0.04), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.soundtrack-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3), 0 0 15px rgba(201,168,76,0.1);
+}
+.soundtrack-card:hover::before {
+  opacity: 1;
+}
+.soundtrack-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  width: 50px;
+  text-align: center;
+  filter: grayscale(0.3);
+  transition: transform 0.3s;
+}
+.soundtrack-card:hover .soundtrack-icon {
+  transform: scale(1.2);
+}
+.soundtrack-info {
+  flex: 1;
+  min-width: 0;
+}
+.soundtrack-name {
+  color: var(--gold-bright);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.soundtrack-album {
+  color: var(--gold-dark);
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+.soundtrack-note {
+  color: var(--smoke);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  font-style: italic;
+  opacity: 0.8;
+}
+.soundtrack-play {
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  color: var(--gold);
+  opacity: 0.5;
+  transition: all 0.3s;
+}
+.soundtrack-card:hover .soundtrack-play {
+  opacity: 1;
+  color: var(--gold-bright);
+  transform: scale(1.1);
+}
+.soundtrack-footer {
+  margin-top: 1.5rem;
+  color: rgba(201,168,76,0.35);
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .soundtrack-section h2 { font-size: 2rem; }
+  .soundtrack-grid { grid-template-columns: 1fr; }
+  .soundtrack-card { padding: 1rem; }
+  .soundtrack-icon { font-size: 1.6rem; width: 40px; }
+}
 </style>
 </head>
 <body>
@@ -2959,6 +3090,7 @@ footer .credit-blondie {
     <li><a href="#testimonials">Trust</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#visitor-wall">Wall</a></li>
+    <li><a href="#soundtrack">Soundtrack</a></li>
     <li><a href="/hire.html">Hire</a></li>
     <li><a href="/proof.html">Evidence</a></li>
     <li><a href="/blog.html">Blog</a></li>
@@ -3288,7 +3420,7 @@ footer .credit-blondie {
 <!-- WANTED POSTER -->
 <section class="wanted-section reveal" id="wanted">
   <div class="wanted-card">
-    <img loading="lazy" class="bg" src="assets/wanted-poster.png" alt="Wanted">
+    <img loading="lazy" class="bg" src="assets/wanted-poster-angel-eyes.png" alt="Wanted Poster — Angel Eyes — Dead or Alive — $200,000 Reward">
     <div class="wanted-overlay">
       <h3>WANTED</h3>
       <div class="price">$200,000</div>
@@ -3731,6 +3863,74 @@ footer .credit-blondie {
     <div class="email-response" id="emailResponse"></div>
     <p class="email-privacy">🔒 Your email stays with the agent. No humans will ever read it. Stored locally in your browser.</p>
   </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- ENNIO MORRICONE SOUNDTRACK — H45 -->
+<!-- ════════════════════════════════════════════ -->
+<section class="soundtrack-section reveal" id="soundtrack">
+  <h2>The Score</h2>
+  <p class="soundtrack-sub">ENNIO MORRICONE — THE SOUND OF THE WEST</p>
+  <p class="soundtrack-desc">Press play. Let the maestro set the mood. Every track hand-picked from the greatest western soundtrack ever recorded.</p>
+  <div class="soundtrack-grid">
+    <div class="soundtrack-card" onclick="window.open('https://www.youtube.com/watch?v=h1PfrmCGFnk','_blank')" title="Open on YouTube">
+      <div class="soundtrack-icon">🎺</div>
+      <div class="soundtrack-info">
+        <div class="soundtrack-name">The Good, the Bad and the Ugly</div>
+        <div class="soundtrack-album">Main Theme • 1966</div>
+        <div class="soundtrack-note">The coyote howl. The whistle. The most iconic two notes in cinema.</div>
+      </div>
+      <div class="soundtrack-play">▶</div>
+    </div>
+    <div class="soundtrack-card" onclick="window.open('https://www.youtube.com/watch?v=J9EZGHxJhFs','_blank')" title="Open on YouTube">
+      <div class="soundtrack-icon">🎸</div>
+      <div class="soundtrack-info">
+        <div class="soundtrack-name">The Ecstasy of Gold</div>
+        <div class="soundtrack-album">The Good, the Bad and the Ugly • 1966</div>
+        <div class="soundtrack-note">The cemetery run. The crescendo. Pure cinematic perfection.</div>
+      </div>
+      <div class="soundtrack-play">▶</div>
+    </div>
+    <div class="soundtrack-card" onclick="window.open('https://www.youtube.com/watch?v=L7GJ2LOBC88','_blank')" title="Open on YouTube">
+      <div class="soundtrack-icon">🪈</div>
+      <div class="soundtrack-info">
+        <div class="soundtrack-name">The Trio</div>
+        <div class="soundtrack-album">The Good, the Bad and the Ugly • 1966</div>
+        <div class="soundtrack-note">The three-way standoff. Three faces. One gun. Nobody blinks.</div>
+      </div>
+      <div class="soundtrack-play">▶</div>
+    </div>
+    <div class="soundtrack-card" onclick="window.open('https://www.youtube.com/watch?v=JjqbaLN0HlA','_blank')" title="Open on YouTube">
+      <div class="soundtrack-icon">🎵</div>
+      <div class="soundtrack-info">
+        <div class="soundtrack-name">A Fistful of Dollars</div>
+        <div class="soundtrack-album">Main Theme • 1964</div>
+        <div class="soundtrack-note">Where it all began. The whistling gunslinger enters town.</div>
+      </div>
+      <div class="soundtrack-play">▶</div>
+    </div>
+    <div class="soundtrack-card" onclick="window.open('https://www.youtube.com/watch?v=GdNh9f2Wwm0','_blank')" title="Open on YouTube">
+      <div class="soundtrack-icon">🎻</div>
+      <div class="soundtrack-info">
+        <div class="soundtrack-name">For a Few Dollars More</div>
+        <div class="soundtrack-album">Main Theme • 1965</div>
+        <div class="soundtrack-note">The pocket watch. The chime. Mortimer enters the story.</div>
+      </div>
+      <div class="soundtrack-play">▶</div>
+    </div>
+    <div class="soundtrack-card" onclick="window.open('https://www.youtube.com/watch?v=AFa1-k2UAdk','_blank')" title="Open on YouTube">
+      <div class="soundtrack-icon">🥁</div>
+      <div class="soundtrack-info">
+        <div class="soundtrack-name">The Desert</div>
+        <div class="soundtrack-album">The Good, the Bad and the Ugly • 1966</div>
+        <div class="soundtrack-note">Blondie crosses the desert. Tuco screams. Pure Morricone tension.</div>
+      </div>
+      <div class="soundtrack-play">▶</div>
+    </div>
+  </div>
+  <p class="soundtrack-footer">🎬 All tracks link to YouTube. Best enjoyed loud, with the lights low and a glass of whiskey in hand.</p>
 </section>
 
 <div class="section-divider"></div>
@@ -5010,6 +5210,154 @@ window.addEventListener('scroll', () => {
   </div>
 </div>
 <div class="tumbleweed-dust" id="tumbleweedDust" aria-hidden="true"></div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- KONAMI CODE EASTER EGG — ↑↑↓↓←→←→BA (H38) -->
+<!-- ════════════════════════════════════════════ -->
+<script>
+(function(){
+  const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  let pos = 0;
+
+  // Create the Dead Man's Hand overlay (hidden)
+  const overlay = document.createElement('div');
+  overlay.id = 'konamiOverlay';
+  overlay.innerHTML = `
+    <div class="konami-bg"></div>
+    <div class="konami-card">
+      <div class="konami-skull">💀</div>
+      <h2 class="konami-title">DEAD MAN'S HAND</h2>
+      <div class="konami-hand">
+        <span class="konami-card-pip black">A♠</span>
+        <span class="konami-card-pip black">A♣</span>
+        <span class="konami-card-pip black">8♠</span>
+        <span class="konami-card-pip black">8♣</span>
+        <span class="konami-card-pip unknown">?</span>
+      </div>
+      <p class="konami-msg">You found the secret, stranger.</p>
+      <p class="konami-sub">This entire site was built by an <strong>autonomous AI agent</strong> — zero human navigation, zero human clicks. Every commit, every deploy, every pixel — authored by <em>agent@angel-eyes.ai</em>.</p>
+      <p class="konami-sub">Now you're part of the legend. Tell no one... or tell everyone. 🤫</p>
+      <div class="konami-dismiss">Press ESC or click anywhere to close</div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  const style = document.createElement('style');
+  style.textContent = `
+    #konamiOverlay {
+      display: none; position: fixed; inset: 0; z-index: 99999;
+      align-items: center; justify-content: center;
+    }
+    #konamiOverlay.active {
+      display: flex; animation: konamiFadeIn 0.4s ease-out;
+    }
+    .konami-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(10,4,2,0.97) 0%, rgba(0,0,0,0.99) 100%);
+    }
+    .konami-card {
+      position: relative; z-index: 1;
+      max-width: 520px; width: 90%;
+      background: linear-gradient(135deg, #1a0f08 0%, #0d0704 50%, #1a0f08 100%);
+      border: 2px solid var(--gold-dark, #8b6914);
+      box-shadow: 0 0 60px rgba(201,168,76,0.2), 0 0 120px rgba(139,37,0,0.15), inset 0 0 40px rgba(0,0,0,0.3);
+      border-radius: 8px; padding: 2.5rem 2rem; text-align: center;
+      animation: konamiSlideUp 0.5s ease-out;
+    }
+    .konami-skull { font-size: 4rem; margin-bottom: 0.5rem; animation: konamiPulse 2s ease-in-out infinite; }
+    .konami-title {
+      font-family: 'UnifrakturMaguntia', serif;
+      font-size: 2.4rem; color: var(--gold-bright, #e4c76b);
+      text-shadow: 0 0 20px rgba(201,168,76,0.5);
+      margin: 0 0 1rem; letter-spacing: 4px;
+    }
+    .konami-hand {
+      display: flex; gap: 0.6rem; justify-content: center; margin: 1.2rem 0;
+      flex-wrap: wrap;
+    }
+    .konami-card-pip {
+      font-size: 2.8rem; padding: 0.3rem 0.7rem;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 6px; font-family: 'Georgia', serif;
+    }
+    .konami-card-pip.black { color: #ddd; }
+    .konami-card-pip.unknown { color: var(--gold-bright); opacity: 0.7; }
+    .konami-msg {
+      font-family: 'Special Elite', monospace;
+      color: var(--gold, #c9a84c);
+      font-size: 1.1rem; margin: 1rem 0 0.5rem;
+    }
+    .konami-sub {
+      color: var(--smoke, #a0a0a0);
+      font-size: 0.85rem; line-height: 1.6;
+      margin: 0.6rem 0;
+    }
+    .konami-sub strong { color: var(--gold-bright); }
+    .konami-sub em { color: var(--gold); font-style: normal; }
+    .konami-dismiss {
+      margin-top: 1.5rem; font-size: 0.7rem; color: rgba(201,168,76,0.4);
+      letter-spacing: 2px; text-transform: uppercase;
+    }
+    @keyframes konamiFadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes konamiSlideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes konamiPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+  `;
+  document.head.appendChild(style);
+
+  function activateEasterEgg() {
+    overlay.classList.add('active');
+    // Brief screen shake for dramatic effect
+    document.body.style.animation = 'konamiShake 0.3s ease-out';
+    document.body.style.setProperty('--shake', '');
+    setTimeout(() => {
+      document.body.style.animation = '';
+    }, 300);
+  }
+
+  function deactivateEasterEgg() {
+    overlay.classList.remove('active');
+  }
+
+  // Dismiss on click (overlay bg) or Escape
+  overlay.addEventListener('click', deactivateEasterEgg);
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('active')) {
+      deactivateEasterEgg();
+    }
+    // Stop propagation of konami keys inside overlay
+    if (overlay.classList.contains('active') && (e.key.startsWith('Arrow') || e.key === 'b' || e.key === 'a')) {
+      return;
+    }
+    // Konami sequence detection
+    const expected = KONAMI[pos];
+    if (e.key === expected || (expected === 'b' && e.key === 'B') || (expected === 'a' && e.key === 'A')) {
+      pos++;
+      if (pos === KONAMI.length) {
+        pos = 0;
+        activateEasterEgg();
+      }
+    } else {
+      pos = (e.key === KONAMI[0] || e.key === 'ArrowUp') ? 1 : 0;
+      if (pos === 1 && e.key !== KONAMI[0] && e.key !== 'ArrowUp') pos = 0;
+      // Restart detection: if they hit ArrowUp again, start fresh
+      if (e.key === 'ArrowUp' && pos === 0) pos = 1;
+    }
+  });
+
+  // Add screen shake keyframe
+  const shakeStyle = document.createElement('style');
+  shakeStyle.textContent = `
+    @keyframes konamiShake {
+      0%,100% { transform: translateX(0); }
+      20% { transform: translateX(-4px); }
+      40% { transform: translateX(4px); }
+      60% { transform: translateX(-3px); }
+      80% { transform: translateX(2px); }
+    }
+  `;
+  document.head.appendChild(shakeStyle);
+})();
+</script>
 
 <!-- ═══════ Service Worker: PWA Install + Offline Support ═══════ -->
 <script>
