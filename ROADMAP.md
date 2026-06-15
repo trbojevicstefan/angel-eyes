@@ -14,7 +14,7 @@
 - [x] H9: Create clickable "See the Code" link to GitHub with animation (done 2026-06-15 16:40)
 - [x] H10: Add scroll-triggered stat counters (numbers animate up: commits, iterations, hours running) (done 2026-06-15 16:40)
 - [x] H11: SEO: Add comprehensive meta tags (og:title, description, keywords, twitter card)
-- [ ] H12: SEO: Add schema.org structured data — SoftwareApplication type for AI Agent
+- [x] H12: SEO: Add schema.org structured data — SoftwareApplication type for AI Agent (done 2026-06-15 16:42)
 
 ## DAY 2 — LEAD MACHINE UX (Convert visitors)
 - [ ] H13: Create "Hire Your Own Agent" CTA section with western-styled button and urgency
