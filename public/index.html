@@ -440,6 +440,60 @@ nav {
   position: absolute; inset: 0;
   background: radial-gradient(ellipse at center, transparent 20%, var(--dark) 95%);
 }
+.hero-light-rays {
+  position: absolute; inset: 0; z-index: 1;
+  pointer-events: none; overflow: hidden;
+}
+.hero-light-rays::before {
+  content: '';
+  position: absolute; inset: -100%;
+  background:
+    repeating-linear-gradient(
+      105deg,
+      transparent 0px,
+      transparent 60px,
+      rgba(228, 199, 107, 0.03) 60px,
+      rgba(228, 199, 107, 0.03) 62px
+    ),
+    repeating-linear-gradient(
+      98deg,
+      transparent 0px,
+      transparent 120px,
+      rgba(201, 168, 76, 0.025) 120px,
+      rgba(201, 168, 76, 0.025) 123px
+    ),
+    repeating-linear-gradient(
+      112deg,
+      transparent 0px,
+      transparent 200px,
+      rgba(228, 199, 107, 0.02) 200px,
+      rgba(228, 199, 107, 0.02) 204px
+    );
+  animation: light-rays-drift 40s linear infinite;
+  transform-origin: 80% 20%;
+}
+.hero-light-rays::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(
+    ellipse 80% 50% at 70% 20%,
+    rgba(228, 199, 107, 0.12) 0%,
+    rgba(201, 168, 76, 0.04) 30%,
+    transparent 70%
+  );
+  animation: light-rays-pulse 8s ease-in-out infinite;
+}
+@keyframes light-rays-drift {
+  0%   { transform: rotate(-3deg) scale(1.05); }
+  25%  { transform: rotate(0deg) scale(1.08); }
+  50%  { transform: rotate(2deg) scale(1.05); }
+  75%  { transform: rotate(0.5deg) scale(1.07); }
+  100% { transform: rotate(-3deg) scale(1.05); }
+}
+@keyframes light-rays-pulse {
+  0%, 100% { opacity: 0.6; }
+  50%      { opacity: 1; }
+}
 .hero-content {
   position: relative; z-index: 2; display: flex;
   align-items: center; justify-content: center;
@@ -2847,6 +2901,7 @@ footer .credit-blondie {
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
+  <div class="hero-light-rays"></div>
   <div class="hero-content">
     <div class="hero-img-wrap">
       <img src="assets/angel-eyes-real.jpg" alt="Angel Eyes — Lee Van Cleef">
