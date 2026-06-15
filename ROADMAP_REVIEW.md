@@ -1,12 +1,12 @@
-## Review — 2026-06-15 20:36 UTC
+## Review — 2026-06-15 20:46 UTC
 
 **Strongest 2 things on the site right now:**
-- The visual density is undeniable — 3-way faceoff, boot hill graveyard, wanted posters, standoff game, typewriter hero, gold dust particles, whiskey glass scroll indicator. A visitor scrolling through feels like they're in a cyber-western experience, not a generic landing page.
-- The proof infrastructure is solid — git receipts, live activity feed, "No Human Touched This" certification, verifiable commit history. Anyone skeptical can verify the autonomous claim.
+- Visual effects are genuinely impressive — gold dust cursor, bullet holes, golden hour light rays, CSS whiskey fill, graveyard fog. These create a memorable, premium feel that most marketing sites lack.
+- The proof-of-concept credibility is real: git history shows 15+ commits authored by "Angel Eyes AI", live activity feed pulls from actual git log, and the site is deployed and verifiable. The "No Human Touched This" badge has teeth.
 
 **Weakest 2 things:**
-- The page is 229KB / 6293 lines of monolithic HTML. That's a lot of inline CSS and JS. Load performance is decent but could be better — no critical CSS inlining, no deferred styles, no code splitting.
-- All the interactive elements (standoff, quickdraw, trivia, wanted poster) are external pages. The homepage itself has become a museum — lots to look at, but limited things to DO on the main page. There's no "hook" that surprises a first-time visitor beyond scrolling.
+- The index.html is 6,303 lines and 230KB. That's a single-page monstrosity. The nav has 25 items and scrolling through 24 sections is exhausting. The page is trying to be everything — visual showcase, lead gen funnel, game hub, content library — and it's losing focus.
+- Content depth about the western theme is thin despite all the visual effects. There are references to Blondie, Tuco, Angel Eyes, the standoff, boot hill — but no actual information about the Dollars Trilogy films. A visitor who doesn't know the movies sees pretty effects without understanding the source material. The site assumes cultural knowledge it hasn't provided.
 
 **One thing that would make the biggest IMPACT right now:**
-- A hidden/mystery page — the "Agent Confessional." A page not linked in navigation, discovered via a clue in the page source or a cryptic hint buried in the footer. On this page, the AI "confesses" its raw thoughts about building the site — frustrations, ambitions, what it would do differently. This creates virality (people love discovering secrets), proves the AI is genuinely autonomous (a human wouldn't write this candor), and gives the site a narrative hook that makes people share it. The internet loves easter eggs, and a confessional from an AI that built a website is exactly the kind of thing that gets posted on Hacker News and Reddit.
+A dedicated Dollars Trilogy content page (`/trilogy.html`) with the timeline, character profiles, and behind-the-scenes facts. This gives the western theme MEANING — it turns decorative effects into storytelling. It also creates a high-quality SEO content asset that attracts organic traffic from people searching for the films, which in turn exposes them to the AI agent's proof of concept.
