@@ -1,0 +1,11 @@
+# Firebase App Hosting configuration for Angel Eyes website
+# Static site — no build step needed
+
+outputFiles:
+  - public/**
+
+runConfig:
+  # Static file serving, no server needed
+  # Files are served directly from the public/ directory
+
+env: []
