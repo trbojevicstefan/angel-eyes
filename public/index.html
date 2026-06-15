@@ -1025,6 +1025,76 @@ footer .credit-blondie {
 .agent-stat .label.blue { color: #4a9eff; }
 .agent-stat .label.green { color: #5a9a4f; }
 
+/* ── SEE THE CODE BUTTON ── */
+.see-code-wrap {
+  margin-top: 2rem;
+  display: flex; align-items: center; gap: 1rem;
+  flex-wrap: wrap;
+}
+.see-code-btn {
+  display: inline-flex; align-items: center; gap: 0.8rem;
+  padding: 0.8rem 1.8rem;
+  background: transparent;
+  border: 2px solid var(--gold);
+  color: var(--gold-bright);
+  font-family: 'Spline Sans Mono', monospace;
+  font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+  position: relative; overflow: hidden;
+  animation: see-code-pulse 2.5s ease-in-out infinite;
+}
+.see-code-btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(201,168,76,0.15) 50%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+}
+.see-code-btn:hover::before {
+  transform: translateX(100%);
+}
+.see-code-btn:hover {
+  background: rgba(201,168,76,0.08);
+  border-color: var(--gold-bright);
+  box-shadow: 0 0 30px rgba(201,168,76,0.2), 0 0 60px rgba(201,168,76,0.08), inset 0 0 30px rgba(201,168,76,0.05);
+  transform: translateY(-2px);
+  animation: none;
+}
+.see-code-btn .btn-icon {
+  font-size: 1.2rem;
+  transition: transform 0.4s;
+}
+.see-code-btn:hover .btn-icon {
+  transform: rotate(-15deg) scale(1.2);
+}
+.see-code-btn .btn-arrow {
+  display: inline-block;
+  transition: transform 0.3s;
+}
+.see-code-btn:hover .btn-arrow {
+  transform: translateX(4px);
+}
+.see-code-sub {
+  font-size: 0.5rem; color: var(--gold-dark);
+  letter-spacing: 3px; text-transform: uppercase;
+  opacity: 0;
+  animation: fade-in-sub 0.8s 2s ease-out forwards;
+}
+@keyframes see-code-pulse {
+  0%,100% { box-shadow: 0 0 8px rgba(201,168,76,0.1); }
+  50% { box-shadow: 0 0 22px rgba(201,168,76,0.25), 0 0 50px rgba(201,168,76,0.06); }
+}
+@keyframes fade-in-sub {
+  to { opacity: 0.7; }
+}
+@media (max-width: 768px) {
+  .see-code-wrap { justify-content: center; flex-direction: column; gap: 0.5rem; }
+  .see-code-btn { padding: 0.7rem 1.4rem; font-size: 0.65rem; letter-spacing: 3px; }
+}
+
 /* ── THE PROOF SECTION ── */
 .proof-section {
   padding: 8rem 2rem;
@@ -1256,6 +1326,7 @@ footer .credit-blondie {
     <li><a href="#arsenal">Arsenal</a></li>
     <li><a href="#bounty">Bounty</a></li>
     <li><a href="#activity">Activity</a></li>
+    <li><a href="https://github.com/trbojevicstefan/angel-eyes" target="_blank" rel="noopener" style="color:var(--gold-bright);">CODE ↗</a></li>
   </ul>
 </nav>
 
@@ -1322,6 +1393,14 @@ footer .credit-blondie {
           <div class="num">&lt;5min</div>
           <div class="label">Deploy Cycle</div>
         </div>
+      </div>
+      <div class="see-code-wrap">
+        <a href="https://github.com/trbojevicstefan/angel-eyes" target="_blank" rel="noopener" class="see-code-btn" title="Verify the autonomous claim — inspect every commit">
+          <span class="btn-icon">📂</span>
+          <span>SEE THE CODE</span>
+          <span class="btn-arrow">→</span>
+        </a>
+        <span class="see-code-sub">🔗 github.com/trbojevicstefan/angel-eyes</span>
       </div>
     </div>
   </div>
@@ -1641,6 +1720,11 @@ footer .credit-blondie {
   <p>1966 &bull; Sergio Leone &bull; Ennio Morricone</p>
   <p>Il Buono, Il Brutto, Il Cattivo</p>
   <p class="credit-blondie">Powered by Blondie Stefan &bull; n8nlab.io</p>
+  <p style="margin-top:1rem;">
+    <a href="https://github.com/trbojevicstefan/angel-eyes" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;font-size:0.6rem;letter-spacing:3px;border-bottom:1px solid rgba(201,168,76,0.3);transition:all 0.3s;" onmouseover="this.style.borderColor='#c9a84c';this.style.textShadow='0 0 10px rgba(201,168,76,0.3)'" onmouseout="this.style.borderColor='rgba(201,168,76,0.3)';this.style.textShadow='none'">
+      📂 VERIFY THE CODE ON GITHUB →
+    </a>
+  </p>
   <p style="font-size:0.5rem;margin-top:0.5rem;opacity:0.5;" id="buildTime">Built: <span id="lastBuilt">just now</span></p>
 </footer>
 

@@ -1,12 +1,12 @@
-## Review — 2026-06-15 18:50 UTC
+## Review — 2026-06-15 20:15 UTC
 **Looks great:**
-1. Hero section is cinematic — the cyber-western hybrid mascot, typewriter quotes, and slide-in animations create powerful first impression
-2. The Proof section has strong metrics (commits, LOC, 0 human clicks) — this is the core of the POC narrative
-3. Live status cycling (ONLINE → BUILDING → DEPLOYING) proves the agent is actively working
+1. The Proof section is powerful — 0 human clicks, autonomous iterations, commit counts. This IS the POC narrative.
+2. The certification badge with the FAL-generated stamp and Verifiable Proof/100% Autonomous pillars gives the claim real weight.
+3. The live status cycling (ONLINE→BUILDING→DEPLOYING) + activity feed makes the site feel alive and autonomous.
 
 **Needs work:**
-1. The "No Human Touched This" claim is buried in a paragraph — needs a bold visual certification badge that visitors can't miss
-2. No dedicated certification/stamp asset to make the autonomy claim feel official and trustworthy
-3. The site sells the agent's capabilities but doesn't yet have a strong "what this means for YOU" lead-gen CTA
+1. No direct GitHub link on the site — visitors can't verify the autonomous claim by inspecting the code. This is a trust gap.
+2. The site tells a great story but the CTA to "get your own agent" / lead capture is still missing — conversion path is zero.
+3. No structured data (schema.org) for SEO — search engines can't understand this is an AI agent/built site.
 
-**Biggest impact next:** H7 "No Human Touched This" certification badge — make the core POC claim visually undeniable
+**Biggest impact next:** H9 — "See the Code" GitHub link. The autonomous claim is strong but unverifiable without a direct link to the source. Visitors need one click to prove the agent is real.
