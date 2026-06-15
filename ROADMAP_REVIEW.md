@@ -1,12 +1,12 @@
-## Review — 2026-06-15 ~17:30 UTC
+## Review — 2026-06-15 ~18:00 UTC
 
 **Strongest 2 things on the site right now:**
-- The proof section with verifiable metrics and git-based evidence — anyone can audit the autonomous claim
-- The western dark theme is visually distinctive and memorable — cyber-western hybrid aesthetic is unique
+- The Western cyberpunk aesthetic is genuinely distinctive — the cinematic letterbox intro, gold dust cursor trail, dust particles, and dark parchment palette create a premium, memorable experience that no template can replicate
+- The live demo code typing is now functional — visitors can WATCH syntax-highlighted HTML/CSS/JS being typed character-by-character in a terminal window with line numbers, status cycling, and tab switching. This is the most convincing piece of proof on the site
 
 **Weakest 2 things:**
-- The "live now" section shows simulated steps cycling but doesn't show actual code being written — it tells rather than shows. Visitors want to SEE the agent working
-- The faceoff section only has 2 characters (Blondie vs Angel Eyes). No Tuco makes the "trilogy" reference feel incomplete. The 3-way standoff is iconic
+- The faceoff section only has 2 characters (Blondie vs Angel Eyes). The entire thematic premise is the "Dollars Trilogy" — three men. Tuco (Eli Wallach) is the heart of the trilogy and his absence makes the western theme feel incomplete, like a 2-legged stool
+- The site has 20+ sections but no narrative arc guiding visitors through them. It's a collection of proof points stacked vertically — impressive individually but lacking a story that pulls visitors from "what is this" to "I want it"
 
 **One thing that would make the biggest IMPACT right now:**
-A Live Demo section showing simulated code being typed in real-time — a terminal window with a blinking cursor, syntax highlighting, and the agent visibly "writing" HTML/CSS. This would be more convincing than any number of proof cards because visitors would actually WATCH the agent work. Seeing is believing.
+Complete the trilogy faceoff. Generate a Tuco asset, rewrite the faceoff section as the iconic 3-way Mexican standoff (Blondie vs Angel Eyes vs Tuco), and add a CSS bullet hole effect that makes the page feel dangerous and alive. This hits the core theme harder than any other single change — everyone knows the 3-way standoff from The Good, the Bad and the Ugly.
