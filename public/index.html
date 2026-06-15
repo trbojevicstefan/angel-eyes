@@ -2751,7 +2751,7 @@ footer .credit-blondie {
           <div class="label">Iterations</div>
         </div>
         <div class="agent-stat">
-          <div class="num">15+</div>
+          <div class="num">36+</div>
           <div class="label blue">Features Built</div>
         </div>
         <div class="agent-stat">
@@ -2861,25 +2861,25 @@ footer .credit-blondie {
   <div class="proof-grid">
     <div class="proof-card">
       <div class="proof-icon">🔄</div>
-      <div class="proof-number" data-target="5" data-suffix="">5</div>
+      <div class="proof-number" data-target="7" data-suffix="">7</div>
       <div class="proof-label">Autonomous Iterations</div>
       <div class="proof-sublabel">Self-improvement cycles</div>
     </div>
     <div class="proof-card">
       <div class="proof-icon">📦</div>
-      <div class="proof-number" data-target="19" data-suffix="+">19</div>
+      <div class="proof-number" data-target="46" data-suffix="+">46</div>
       <div class="proof-label">Git Commits</div>
       <div class="proof-sublabel">100% by Angel Eyes AI</div>
     </div>
     <div class="proof-card">
       <div class="proof-icon">📝</div>
-      <div class="proof-number" data-target="1868" data-suffix="">1,868</div>
+      <div class="proof-number" data-target="7872" data-suffix="">7,872</div>
       <div class="proof-label">Lines of Code</div>
       <div class="proof-sublabel">Hand-crafted by agent</div>
     </div>
     <div class="proof-card">
       <div class="proof-icon">🎨</div>
-      <div class="proof-number" data-target="15" data-suffix="">15</div>
+      <div class="proof-number" data-target="25" data-suffix="">25</div>
       <div class="proof-label">Assets Generated</div>
       <div class="proof-sublabel">AI-generated imagery</div>
     </div>
@@ -2916,7 +2916,7 @@ footer .credit-blondie {
   <div class="results-grid">
     <div class="result-card">
       <div class="result-icon">📦</div>
-      <div class="result-num" id="resultCommits" data-target="33">0</div>
+      <div class="result-num" id="resultCommits" data-target="46">46</div>
       <div class="result-label">Git Commits</div>
       <div class="result-detail">Every single one authored by Angel Eyes AI</div>
       <div class="result-verify">
@@ -2926,7 +2926,7 @@ footer .credit-blondie {
 
     <div class="result-card">
       <div class="result-icon">📝</div>
-      <div class="result-num" id="resultLines" data-target="4101">0</div>
+      <div class="result-num" id="resultLines" data-target="7872">7,872</div>
       <div class="result-label">Lines of Code</div>
       <div class="result-detail">HTML, CSS, and JS — all written autonomously</div>
       <div class="result-verify">
@@ -2936,7 +2936,7 @@ footer .credit-blondie {
 
     <div class="result-card">
       <div class="result-icon">🖼️</div>
-      <div class="result-num" id="resultAssets" data-target="24">0</div>
+      <div class="result-num" id="resultAssets" data-target="25">25</div>
       <div class="result-label">AI-Generated Assets</div>
       <div class="result-detail">Images created by FAL — no stock photos, no designers</div>
       <div class="result-verify">
@@ -2946,7 +2946,7 @@ footer .credit-blondie {
 
     <div class="result-card">
       <div class="result-icon">🌐</div>
-      <div class="result-num" id="resultPages" data-target="3">0</div>
+      <div class="result-num" id="resultPages" data-target="6">6</div>
       <div class="result-label">Pages Deployed</div>
       <div class="result-detail">Homepage, Evidence, Blog — all built from scratch</div>
       <div class="result-verify">
@@ -2956,7 +2956,7 @@ footer .credit-blondie {
 
     <div class="result-card">
       <div class="result-icon">⏱️</div>
-      <div class="result-num" id="resultHours" data-target="4">0</div>
+      <div class="result-num" id="resultHours" data-target="4">4h</div>
       <div class="result-label">Hours Running</div>
       <div class="result-detail">Autonomously building since June 15, 2026</div>
       <div class="result-verify">
@@ -3880,6 +3880,15 @@ window.addEventListener('scroll', () => {
   } else {
     resultsObserver.observe(resultNumbers[0]);
   }
+
+  // Fallback: if observer hasn't fired after 3s, animate anyway
+  setTimeout(() => {
+    if (!animated) {
+      animated = true;
+      resultNumbers.forEach(el => animateResult(el));
+      resultsObserver.disconnect();
+    }
+  }, 3000);
 })();
 
 // ── FAQ TOGGLE ──
