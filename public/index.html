@@ -1426,6 +1426,315 @@ footer .credit-blondie {
   font-size: 0.55rem; color: var(--gold-dark); letter-spacing: 3px;
 }
 
+/* ── LEAD GEN: HIRE CTA ── */
+.hire-section {
+  padding: 8rem 2rem;
+  background: linear-gradient(to bottom, var(--dark2), #0b0906, var(--dark2));
+  position: relative; overflow: hidden;
+  border-top: 2px solid var(--blood);
+  border-bottom: 2px solid var(--blood);
+}
+.hire-section::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 40% 50%, rgba(139,37,0,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse at 60% 50%, rgba(201,168,76,0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hire-container {
+  max-width: 900px; margin: 0 auto; text-align: center; position: relative; z-index: 2;
+}
+.hire-badge {
+  display: inline-block;
+  font-size: 0.5rem; letter-spacing: 6px; text-transform: uppercase;
+  color: var(--blood); border: 1px solid rgba(139,37,0,0.4);
+  padding: 0.3rem 1rem; margin-bottom: 2rem;
+  animation: hire-badge-pulse 2s ease-in-out infinite;
+}
+@keyframes hire-badge-pulse {
+  0%,100% { border-color: rgba(139,37,0,0.3); }
+  50% { border-color: rgba(139,37,0,0.8); box-shadow: 0 0 20px rgba(139,37,0,0.15); }
+}
+.hire-container h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  color: transparent; -webkit-text-stroke: 1.5px var(--gold);
+  letter-spacing: 6px; line-height: 1.1;
+  text-shadow: 0 0 40px rgba(201,168,76,0.15);
+}
+.hire-container h2 span { color: var(--gold-bright); -webkit-text-stroke: 0; }
+.hire-subtitle {
+  font-size: 0.65rem; letter-spacing: 8px; text-transform: uppercase;
+  color: var(--sand); margin: 1.5rem 0 1rem;
+}
+.hire-value-prop {
+  font-size: 0.9rem; color: #b0a580; max-width: 600px;
+  margin: 0 auto 2rem; line-height: 1.8;
+}
+.hire-value-prop strong { color: var(--gold-bright); }
+.hire-urgency {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.6rem; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--blood); margin-bottom: 2.5rem;
+  animation: urgency-pulse 1.5s ease-in-out infinite;
+}
+@keyframes urgency-pulse {
+  0%,100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+.hire-cta-btn {
+  display: inline-flex; align-items: center; gap: 1rem;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, var(--blood), #a02a00);
+  border: 2px solid var(--blood);
+  color: #f0d4a0;
+  font-family: 'Spline Sans Mono', monospace;
+  font-size: 0.8rem; letter-spacing: 5px; text-transform: uppercase;
+  text-decoration: none; border-radius: 2px; cursor: pointer;
+  box-shadow: 0 0 30px rgba(139,37,0,0.3), 0 10px 30px rgba(0,0,0,0.5);
+  transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+  animation: cta-glow 2.5s ease-in-out infinite;
+}
+@keyframes cta-glow {
+  0%,100% { box-shadow: 0 0 25px rgba(139,37,0,0.3), 0 10px 30px rgba(0,0,0,0.5); }
+  50% { box-shadow: 0 0 50px rgba(139,37,0,0.5), 0 15px 40px rgba(0,0,0,0.6); }
+}
+.hire-cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 60px rgba(139,37,0,0.6), 0 20px 50px rgba(0,0,0,0.7);
+  border-color: #c04010;
+}
+.hire-cta-btn .cta-arrow {
+  transition: transform 0.3s;
+}
+.hire-cta-btn:hover .cta-arrow {
+  transform: translateX(6px);
+}
+
+/* ── HOW IT WORKS ── */
+.how-section {
+  padding: 7rem 2rem;
+  background: var(--dark); position: relative;
+  border-bottom: 1px solid rgba(201,168,76,0.06);
+}
+.how-header { text-align: center; margin-bottom: 4rem; }
+.how-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem); color: var(--gold);
+}
+.how-header p {
+  font-size: 0.6rem; letter-spacing: 6px; color: var(--sand);
+  text-transform: uppercase; margin-top: 0.8rem;
+}
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem; max-width: 1000px; margin: 0 auto;
+}
+.how-card {
+  background: var(--card);
+  border: 1px solid rgba(201,168,76,0.1);
+  border-radius: 2px; padding: 2.5rem 2rem;
+  text-align: center; position: relative; overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+  counter-increment: how-step;
+}
+.how-card::before {
+  content: counter(how-step);
+  position: absolute; top: 0.8rem; right: 1rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem; color: rgba(201,168,76,0.06);
+  line-height: 1;
+}
+.how-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5), 0 0 30px rgba(201,168,76,0.06);
+}
+.how-icon {
+  font-size: 2.5rem; margin-bottom: 1.2rem;
+}
+.how-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; color: var(--gold); margin-bottom: 0.6rem;
+}
+.how-card p {
+  font-size: 0.7rem; color: #b0a580; line-height: 1.7;
+}
+.how-time {
+  display: inline-block; margin-top: 1rem;
+  font-size: 0.5rem; letter-spacing: 4px; color: var(--gold-dark);
+  text-transform: uppercase; border-top: 1px solid rgba(201,168,76,0.1);
+  padding-top: 0.6rem;
+}
+
+/* ── VS COMPETITION TABLE ── */
+.vs-section {
+  padding: 7rem 2rem;
+  background: linear-gradient(to bottom, var(--dark), var(--dark2));
+  position: relative;
+}
+.vs-header { text-align: center; margin-bottom: 3rem; }
+.vs-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem); color: var(--gold);
+}
+.vs-header p {
+  font-size: 0.6rem; letter-spacing: 6px; color: var(--sand);
+  text-transform: uppercase; margin-top: 0.8rem;
+}
+.vs-table-wrap {
+  max-width: 900px; margin: 0 auto; overflow-x: auto;
+}
+.vs-table {
+  width: 100%; border-collapse: collapse;
+  font-size: 0.7rem;
+}
+.vs-table thead th {
+  padding: 1rem 0.8rem; text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.9rem; letter-spacing: 3px;
+  border-bottom: 2px solid rgba(201,168,76,0.15);
+}
+.vs-table thead th.highlight-col {
+  color: var(--gold-bright);
+  border-bottom-color: var(--gold);
+}
+.vs-table thead th .col-sub {
+  display: block; font-size: 0.5rem; font-weight: 400;
+  color: var(--smoke); letter-spacing: 2px; margin-top: 0.2rem;
+}
+.vs-table tbody td {
+  padding: 0.9rem 0.8rem; text-align: center;
+  border-bottom: 1px solid rgba(201,168,76,0.05);
+  color: #b0a580;
+}
+.vs-table tbody td:first-child {
+  text-align: left; color: var(--sand);
+  letter-spacing: 2px; font-size: 0.65rem;
+}
+.vs-table .check { color: #5a9a4f; font-size: 1.1rem; }
+.vs-table .cross { color: var(--blood); font-size: 1.1rem; }
+.vs-table .partial { color: var(--gold-dark); font-size: 1.1rem; }
+.vs-table tbody tr:hover {
+  background: rgba(201,168,76,0.03);
+}
+.vs-table tbody tr.winner-row {
+  background: rgba(201,168,76,0.04);
+}
+.vs-table tbody tr.winner-row td.highlight-col {
+  color: var(--gold-bright); font-weight: 700;
+}
+
+/* ── EMAIL CAPTURE ── */
+.email-section {
+  padding: 7rem 2rem;
+  background: var(--dark);
+  position: relative; overflow: hidden;
+}
+.email-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url('assets/desert.png') center/cover no-repeat fixed;
+  filter: brightness(0.08) blur(2px);
+}
+.email-container {
+  max-width: 600px; margin: 0 auto; text-align: center;
+  position: relative; z-index: 2;
+}
+.email-container h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem); color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.email-container .email-sub {
+  font-size: 0.6rem; letter-spacing: 5px; color: var(--sand);
+  text-transform: uppercase; margin-bottom: 2rem;
+}
+.email-form {
+  display: flex; gap: 0.5rem; max-width: 480px; margin: 0 auto;
+  flex-wrap: wrap; justify-content: center;
+}
+.email-input {
+  flex: 1; min-width: 220px;
+  padding: 0.9rem 1.2rem;
+  background: rgba(20,16,12,0.8);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 2px;
+  color: var(--gold-bright);
+  font-family: 'Spline Sans Mono', monospace;
+  font-size: 0.7rem; letter-spacing: 2px;
+  transition: all 0.3s;
+  outline: none;
+}
+.email-input::placeholder {
+  color: rgba(160,160,160,0.4);
+  letter-spacing: 3px;
+}
+.email-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 20px rgba(201,168,76,0.1);
+}
+.email-submit {
+  padding: 0.9rem 1.8rem;
+  background: var(--gold-dark);
+  border: 1px solid var(--gold);
+  border-radius: 2px;
+  color: var(--dark);
+  font-family: 'Spline Sans Mono', monospace;
+  font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase;
+  cursor: pointer; font-weight: 700;
+  transition: all 0.3s;
+}
+.email-submit:hover {
+  background: var(--gold);
+  box-shadow: 0 0 25px rgba(201,168,76,0.3);
+}
+.email-submit:disabled {
+  opacity: 0.5; cursor: not-allowed;
+}
+.email-response {
+  margin-top: 1.5rem; font-size: 0.65rem;
+  min-height: 1.5rem; letter-spacing: 2px;
+  transition: all 0.3s;
+}
+.email-response.success { color: #5a9a4f; }
+.email-response.error { color: var(--blood); }
+.email-privacy {
+  font-size: 0.45rem; color: var(--gold-dark);
+  letter-spacing: 3px; margin-top: 1rem;
+  opacity: 0.7;
+}
+
+/* ── TRUST STRIP ── */
+.trust-strip {
+  padding: 3rem 2rem;
+  background: var(--dark2);
+  border-top: 1px solid rgba(201,168,76,0.08);
+  border-bottom: 1px solid rgba(201,168,76,0.08);
+}
+.trust-row {
+  display: flex; justify-content: center; flex-wrap: wrap;
+  gap: 3rem; max-width: 1000px; margin: 0 auto;
+}
+.trust-item {
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.trust-icon {
+  font-size: 1.5rem; flex-shrink: 0;
+}
+.trust-text {
+  display: flex; flex-direction: column;
+}
+.trust-label {
+  font-size: 0.55rem; letter-spacing: 4px; color: var(--gold);
+  text-transform: uppercase;
+}
+.trust-desc {
+  font-size: 0.5rem; letter-spacing: 2px; color: var(--smoke);
+  margin-top: 0.2rem;
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   nav { padding: 1rem 1.5rem; }
@@ -1457,6 +1766,15 @@ footer .credit-blondie {
   .cert-section { padding: 4rem 1rem; }
   .cert-claims { grid-template-columns: 1fr; }
   .cert-badge img { width: 180px; height: 180px; }
+  .hire-section { padding: 4rem 1rem; }
+  .hire-cta-btn { padding: 0.8rem 1.8rem; font-size: 0.7rem; }
+  .how-grid { grid-template-columns: 1fr; }
+  .vs-table { font-size: 0.6rem; }
+  .vs-table thead th { font-size: 0.7rem; padding: 0.6rem 0.4rem; }
+  .email-form { flex-direction: column; }
+  .email-submit { width: 100%; }
+  .trust-row { gap: 1.5rem; }
+  .trust-item { flex-direction: column; text-align: center; gap: 0.3rem; }
 }
 </style>
 </head>
@@ -1485,6 +1803,7 @@ footer .credit-blondie {
     <li><a href="#arsenal">Arsenal</a></li>
     <li><a href="#bounty">Bounty</a></li>
     <li><a href="#activity">Activity</a></li>
+    <li><a href="#hire">Hire</a></li>
     <li><a href="https://github.com/trbojevicstefan/angel-eyes" target="_blank" rel="noopener" style="color:var(--gold-bright);">CODE ↗</a></li>
   </ul>
 </nav>
@@ -1867,6 +2186,190 @@ footer .credit-blondie {
 
 <div class="section-divider"></div>
 
+<!-- ════════════════════════════════════════════ -->
+<!-- HIRE YOUR OWN AGENT — Lead Gen CTA -->
+<!-- ════════════════════════════════════════════ -->
+<section class="hire-section reveal" id="hire">
+  <div class="hire-container">
+    <span class="hire-badge">⚡ LIMITED CAPACITY</span>
+    <h2>HIRE YOUR<br><span>OWN AGENT</span></h2>
+    <p class="hire-subtitle">The same AI that built this site — for YOUR business</p>
+    <p class="hire-value-prop">
+      Angel Eyes AI built this entire site autonomously — <strong>zero human clicks.</strong>
+      Every 5 minutes it inspects, codes, commits, and deploys improvements.
+      <strong>Your business can have the same.</strong> An AI agent that builds and optimizes
+      your lead-generating website around the clock — while you sleep.
+    </p>
+    <p class="hire-urgency">⚠ Agent capacity is finite. Each business requires dedicated compute.</p>
+    <a href="#get-agent" class="hire-cta-btn">
+      <span>GET YOUR AGENT</span>
+      <span class="cta-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- HOW IT WORKS — 3-Step Process -->
+<!-- ════════════════════════════════════════════ -->
+<section class="how-section reveal" id="how-it-works">
+  <div class="how-header">
+    <h2>How It Works</h2>
+    <p>From Zero to Lead Machine — Autonomously</p>
+  </div>
+  <div class="how-grid" style="counter-reset:how-step;">
+    <div class="how-card">
+      <div class="how-icon">🤖</div>
+      <h3>Deploy the Agent</h3>
+      <p>We configure an Angel Eyes agent for your business niche. It learns your audience, your voice, your goals — then gets to work. No setup required from you.</p>
+      <span class="how-time">⏱ Step 1: 5 minutes</span>
+    </div>
+    <div class="how-card">
+      <div class="how-icon">🧠</div>
+      <h3>It Learns &amp; Builds</h3>
+      <p>Every 5 minutes the agent inspects your site, analyzes performance, writes code, generates assets, and deploys improvements. It gets smarter with every iteration.</p>
+      <span class="how-time">⏱ Step 2: Continuous</span>
+    </div>
+    <div class="how-card">
+      <div class="how-icon">📈</div>
+      <h3>Leads Come In</h3>
+      <p>Your site optimizes itself for conversions — better CTAs, sharper copy, faster load times. The agent works 24/7 so your lead pipeline never sleeps.</p>
+      <span class="how-time">⏱ Step 3: Forever</span>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- VS COMPETITION — Comparison Table -->
+<!-- ════════════════════════════════════════════ -->
+<section class="vs-section reveal" id="vs">
+  <div class="vs-header">
+    <h2>Angel Eyes vs The Competition</h2>
+    <p>Why Autonomous AI Wins Every Time</p>
+  </div>
+  <div class="vs-table-wrap">
+    <table class="vs-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Manual Website</th>
+          <th>Other AI Tools</th>
+          <th class="highlight-col">Angel Eyes AI<span class="col-sub">Autonomous Agent</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Builds Without Humans</td>
+          <td><span class="cross">✕</span></td>
+          <td><span class="partial">◐</span></td>
+          <td class="highlight-col"><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Self-Improves 24/7</td>
+          <td><span class="cross">✕</span></td>
+          <td><span class="cross">✕</span></td>
+          <td class="highlight-col"><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Deploys Every 5 Min</td>
+          <td><span class="cross">✕</span></td>
+          <td><span class="partial">◐</span></td>
+          <td class="highlight-col"><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>SEO Optimized</td>
+          <td><span class="partial">◐</span></td>
+          <td><span class="check">✓</span></td>
+          <td class="highlight-col"><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Generates Its Own Assets</td>
+          <td><span class="cross">✕</span></td>
+          <td><span class="partial">◐</span></td>
+          <td class="highlight-col"><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Verifiable Git History</td>
+          <td><span class="check">✓</span></td>
+          <td><span class="cross">✕</span></td>
+          <td class="highlight-col"><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Zero Monthly Maintenance</td>
+          <td><span class="cross">✕</span></td>
+          <td><span class="cross">✕</span></td>
+          <td class="highlight-col"><span class="check">✓</span></td>
+        </tr>
+        <tr class="winner-row">
+          <td><strong>THE VERDICT</strong></td>
+          <td>Expensive &amp; Slow</td>
+          <td>Needs Handholding</td>
+          <td class="highlight-col"><strong>AUTONOMOUS</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- TRUST STRIP — Built on Firebase, etc. -->
+<!-- ════════════════════════════════════════════ -->
+<div class="trust-strip reveal">
+  <div class="trust-row">
+    <div class="trust-item">
+      <span class="trust-icon">🔥</span>
+      <div class="trust-text">
+        <span class="trust-label">Built on Firebase</span>
+        <span class="trust-desc">Google Cloud infrastructure</span>
+      </div>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">🔄</span>
+      <div class="trust-text">
+        <span class="trust-label">Deployed Every 5 Min</span>
+        <span class="trust-desc">Continuous autonomous delivery</span>
+      </div>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">🤖</span>
+      <div class="trust-text">
+        <span class="trust-label">100% Autonomous</span>
+        <span class="trust-desc">Verifiable — zero human clicks</span>
+      </div>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">🔒</span>
+      <div class="trust-text">
+        <span class="trust-label">Open Source</span>
+        <span class="trust-desc">Audit every line on GitHub</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- EMAIL CAPTURE — Want an agent like this? -->
+<!-- ════════════════════════════════════════════ -->
+<section class="email-section reveal" id="get-agent">
+  <div class="email-container">
+    <h2>Want An Agent Like This?</h2>
+    <p class="email-sub">Be first in line when we open agent deployments</p>
+    <form class="email-form" id="emailForm" onsubmit="return false;">
+      <input type="email" class="email-input" id="emailInput" placeholder="your@email.com" required autocomplete="email">
+      <button type="submit" class="email-submit" id="emailSubmit">NOTIFY ME</button>
+    </form>
+    <div class="email-response" id="emailResponse"></div>
+    <p class="email-privacy">🔒 Your email stays with the agent. No humans will ever read it. Stored locally in your browser.</p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
 <!-- TRILOGY -->
 <section class="trilogy reveal">
   <h3>The Dollars Trilogy</h3>
@@ -2242,6 +2745,78 @@ window.addEventListener('scroll', () => {
     // Fallback: observe the first proof number
     observer.observe(proofNumbers[0]);
   }
+})();
+
+// ── EMAIL CAPTURE — localStorage based lead gen ──
+(function() {
+  const form = document.getElementById('emailForm');
+  const input = document.getElementById('emailInput');
+  const submitBtn = document.getElementById('emailSubmit');
+  const responseEl = document.getElementById('emailResponse');
+  if (!form || !input || !submitBtn || !responseEl) return;
+
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  // Load previously captured emails to show in console/log
+  function getLeads() {
+    try {
+      return JSON.parse(localStorage.getItem('angel_eyes_leads') || '[]');
+    } catch(e) { return []; }
+  }
+
+  function saveLead(email) {
+    const leads = getLeads();
+    leads.push({ email, timestamp: new Date().toISOString() });
+    localStorage.setItem('angel_eyes_leads', JSON.stringify(leads));
+  }
+
+  submitBtn.addEventListener('click', function() {
+    const email = input.value.trim();
+
+    if (!email) {
+      responseEl.className = 'email-response error';
+      responseEl.textContent = '⚠ Enter an email address, partner.';
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      responseEl.className = 'email-response error';
+      responseEl.textContent = '⚠ That don\'t look like a real email.';
+      return;
+    }
+
+    // Check for duplicates
+    const leads = getLeads();
+    if (leads.some(l => l.email.toLowerCase() === email.toLowerCase())) {
+      responseEl.className = 'email-response success';
+      responseEl.textContent = '✓ You\'re already on the list. The agent remembers.';
+      input.value = '';
+      return;
+    }
+
+    saveLead(email);
+    responseEl.className = 'email-response success';
+    responseEl.textContent = '✓ The agent has your name. You\'ll be the first to know.';
+    input.value = '';
+    submitBtn.textContent = '✓ REGISTERED';
+    submitBtn.disabled = true;
+    setTimeout(() => {
+      submitBtn.textContent = 'NOTIFY ME';
+      submitBtn.disabled = false;
+      responseEl.textContent = '';
+      responseEl.className = 'email-response';
+    }, 4000);
+  });
+
+  // Allow Enter key to submit
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      submitBtn.click();
+    }
+  });
 })();
 </script>
 </body>
